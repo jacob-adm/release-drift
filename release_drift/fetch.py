@@ -96,11 +96,22 @@ def npm_files(name, version):
     return [(filename, url, "sha512", sri[0][len("sha512-"):], "npm")]
 
 
-def fetch(registry, name, version, directory, kinds=None):
-    """Download every file of the version into directory; return the paths."""
-    files = pypi_files(name, version) if registry == "pypi" else npm_files(name, version)
-    if kinds:
-        files = [f for f in files if f[4] in kinds]
+PYPI_TYPES = {"sdist": ("sdist",), "wheel": ("bdist_wheel",), "all": None}
+
+
+def fetch(registry, name, version, directory, kind="sdist"):
+    """Download the version's files into directory and return their paths. For
+    PyPI, kind picks the sdist (default), the wheels or all files; npm has one."""
+    if registry == "pypi":
+        files = pypi_files(name, version)
+        wanted = PYPI_TYPES[kind]
+        if wanted:
+            files = [f for f in files if f[4] in wanted]
+        if not files:
+            raise FetchError("%s %s has no %s on PyPI; choose another with --type (sdist, wheel, all)"
+                             % (name, version, kind))
+    else:
+        files = npm_files(name, version)
     if not os.path.isdir(directory):
         raise FetchError("%s is not a directory" % directory)
     saved = []

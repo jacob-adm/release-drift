@@ -1,9 +1,9 @@
 # Commands
 
 ```
-release-drift diff OLD NEW [--surfaces] [--json]
-release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--surfaces] [--json]
-release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel}]
+release-drift diff OLD NEW [--json]
+release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json]
+release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel,all}]
 release-drift --version
 ```
 
@@ -30,7 +30,7 @@ DETAIL of `-` means there is none.
 With `--json` the same records are printed as a JSON array of objects with the keys `category`,
 `status`, `path` and `detail`, in the same order, ASCII only, without the escaping above.
 
-With `--surfaces`, `file` records are left out.
+To see only the findings of `diff`, leave out the `file` records: `grep -v '^file'`.
 
 ### Categories
 
@@ -53,9 +53,14 @@ With `--surfaces`, `file` records are left out.
 
 | Status | Meaning |
 | --- | --- |
-| 0 | no records printed |
-| 1 | one or more records printed |
+| 0 | no findings; `diff` may still have printed `file` records |
+| 1 | one or more findings |
 | 2 | error: an unreadable or unsafe artifact, a git failure, a bad argument or a failed download |
+
+A finding is any record of `diff` other than a plain `file` record: a new or changed execution
+surface, a new URL host or a new blob. Every record of `source` is a finding, because each names a
+file of the artifact that is not, as it is, in the tag. So `diff` between two releases that only
+change ordinary files prints those files and exits 0.
 
 On exit 2 nothing is printed to standard output and the reason is on standard error, starting
 with `release-drift: error:`.
@@ -76,7 +81,8 @@ with `release-drift: error:`.
   for each file of NEW it appears in.
 - Surfaces that NEW drops are not reported, apart from the `file removed` record.
 
-Two identical artifacts give exit 0 and no output.
+Two identical artifacts give no output. Releases that differ only in ordinary files give `file`
+records and exit 0.
 
 ## source
 
@@ -102,9 +108,12 @@ REF must not start with `-`. It can be any name `git rev-parse` accepts: a tag, 
 `release-drift fetch pypi NAME VERSION DIR` and `release-drift fetch npm NAME VERSION DIR`
 download one published version into an existing directory and print the saved paths, sorted.
 
-- PyPI: every file of the version from `https://pypi.org/pypi/NAME/VERSION/json`, or only the
-  sdist or only the wheels with `--type`. Each file's SHA-256 is checked against the digest in that
-  response.
+- PyPI: the files of the version listed by `https://pypi.org/pypi/NAME/VERSION/json`. By default
+  only the sdist; `--type wheel` downloads every wheel, `--type all` every file. Each file's SHA-256
+  is checked against the digest in that response. If the version has no file of the chosen type
+  (for example a release published as wheels only), nothing is downloaded and the command exits 2
+  with an error naming `--type`.
+- npm: `--type` is ignored; a version has one tarball.
 - npm: the tarball named in `https://registry.npmjs.org/NAME/VERSION`. Its SHA-512 is checked
   against the `dist.integrity` value. npm publishes no SHA-256; a version without a SHA-512
   integrity value is refused. A scoped package `@scope/name` is saved as

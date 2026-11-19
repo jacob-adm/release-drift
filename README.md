@@ -48,21 +48,24 @@ pip installs `release-drift` as a console script. Without installing, it runs fr
 4. **Compare.** `diff` lists the files added, removed or changed between two releases, and the
    surfaces, hosts and strings that are new. `source` lists the files of a release that are not,
    as they are, in git at a tag, apart from a documented list of files packaging tools generate.
-5. **Act on the result.** Like `diff` and `grep`, release-drift exits 1 when it prints
-   something, 0 when it prints nothing and 2 on an error.
+5. **Act on the result.** release-drift exits 1 when it finds something, 0 when it finds nothing
+   and 2 on an error, like `grep`. A finding is a new or changed execution surface, a new URL host
+   or encoded string, or, for `source`, a file not in the tag. Files that merely changed between
+   two releases are listed but are not findings.
 
 ## Commands
 
 ```
-release-drift diff OLD NEW [--surfaces] [--json]               compare two artifacts
+release-drift diff OLD NEW [--json]                           compare two artifacts
 release-drift source ARTIFACT --repo DIR --ref REF             files not in git at REF
-      [--prefix PATH] [--surfaces] [--json]
+      [--prefix PATH] [--json]
 release-drift fetch {pypi,npm} NAME VERSION DIR                download one version; no install
-      [--type {sdist,wheel}]
+      [--type {sdist,wheel,all}]
 ```
 
 Output is one TAB-separated record per line: `CATEGORY`, `STATUS`, `PATH`, `DETAIL`, sorted.
-`--surfaces` leaves out the plain `file` records; `--json` prints a JSON array instead.
+`--json` prints a JSON array instead. `fetch` downloads only the sdist from PyPI unless `--type`
+says otherwise.
 
 ## Quick start
 
@@ -73,6 +76,7 @@ mkdir old new
 release-drift fetch pypi six 1.16.0 old
 release-drift fetch pypi six 1.17.0 new
 release-drift diff old/six-1.16.0.tar.gz new/six-1.17.0.tar.gz
+echo $?
 ```
 
 ```text
@@ -88,11 +92,14 @@ file	changed	setup.py	-
 file	changed	six.egg-info/PKG-INFO	-
 file	changed	six.py	-
 file	changed	test_six.py	-
+1
 ```
 
-`fetch` also prints the path of each file it saves. In the diff, no file was added and no new
-start-up hook, install script, binary or URL host appeared; `setup.py`, which runs when the sdist
-is built, changed. Then check the release against its tag:
+`fetch` downloads the sdist and prints the path it saves. In the diff, no file was added and no new
+start-up hook, install script, binary or URL host appeared. The exit status is 1 because
+`setup.py`, which runs when the sdist is built, changed: `build changed setup.py` is a finding.
+The `file changed` records are listed but are not findings; the two wheels of the same versions,
+in which no build script runs, give exit 0. Then check the release against its tag:
 
 ```sh
 git clone https://github.com/benjaminp/six

@@ -41,7 +41,7 @@ def _keyed(artifact):
     return {normalize(p): p for p in artifact.files}, {normalize(p): p for p in artifact.links}
 
 
-def diff(old, new, with_files=True):
+def diff(old, new):
     """Records (category, status, path, detail) describing what NEW adds over OLD."""
     records = []
     old_files, old_links = _keyed(old)
@@ -53,15 +53,14 @@ def diff(old, new, with_files=True):
     new_paths = dict(new_files, **new_links)
     old_paths = dict(old_files, **old_links)
 
-    if with_files:
-        for key, path in new_paths.items():
-            if key not in old_content:
-                records.append(("file", "added", path, "-"))
-            elif old_content[key] != new_content[key]:
-                records.append(("file", "changed", path, "-"))
-        for key, path in old_paths.items():
-            if key not in new_content:
-                records.append(("file", "removed", path, "-"))
+    for key, path in new_paths.items():
+        if key not in old_content:
+            records.append(("file", "added", path, "-"))
+        elif old_content[key] != new_content[key]:
+            records.append(("file", "changed", path, "-"))
+    for key, path in old_paths.items():
+        if key not in new_content:
+            records.append(("file", "removed", path, "-"))
 
     old_surfaces = {(cat, normalize(path), detail) for cat, path, detail, _ in surfaces(old)}
     for cat, path, detail, content_sensitive in surfaces(new):
@@ -76,6 +75,12 @@ def diff(old, new, with_files=True):
         if (cat, detail) not in old_strings:
             records.append((cat, "added", path, detail))
     return sorted(set(records))
+
+
+def is_finding(command, record):
+    """A finding sets exit status 1. For diff, every record except a plain file
+    record; for source, every record, since each names a file not in the tag."""
+    return command == "source" or record[0] != "file"
 
 
 # --- release against git ---------------------------------------------------
@@ -208,7 +213,7 @@ def pick_prefix(artifact, tree, fmt):
     return best
 
 
-def source(artifact, repo, ref, prefix=None, with_files=True):
+def source(artifact, repo, ref, prefix=None):
     """Records for files of the artifact that are not, as they are, in REF."""
     tree, fmt = read_tree(repo, ref)
     if prefix is None:
@@ -231,9 +236,7 @@ def source(artifact, repo, ref, prefix=None, with_files=True):
             continue
         flagged[path] = status
 
-    records = []
-    if with_files:
-        records += [("file", status, path, "-") for path, status in flagged.items()]
+    records = [("file", status, path, "-") for path, status in flagged.items()]
     for cat, path, detail, _ in surfaces(artifact):
         if path in flagged:
             records.append((cat, flagged[path], path, detail))

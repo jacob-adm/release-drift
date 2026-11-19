@@ -7,7 +7,7 @@ import sys
 
 from . import __version__
 from .archive import ArtifactError, read_artifact
-from .compare import CompareError, diff, source
+from .compare import CompareError, diff, is_finding, source
 from .fetch import FetchError, fetch
 
 _ESCAPES = {"\\": "\\\\", "\t": "\\t", "\n": "\\n", "\r": "\\r"}
@@ -58,16 +58,14 @@ def _parser():
 
     for cmd in (d, s):
         cmd.add_argument("--json", action="store_true", help="print a JSON array")
-        cmd.add_argument("--surfaces", action="store_true",
-                         help="leave out the file records; print only findings")
 
     f = sub.add_parser("fetch", help="download one version from PyPI or npm (no install)")
     f.add_argument("registry", choices=("pypi", "npm"))
     f.add_argument("name", metavar="NAME")
     f.add_argument("version", metavar="VERSION")
     f.add_argument("directory", metavar="DIR")
-    f.add_argument("--type", choices=("sdist", "wheel"), dest="kind",
-                   help="PyPI only: download only the sdist or only the wheels")
+    f.add_argument("--type", choices=("sdist", "wheel", "all"), dest="kind", default="sdist",
+                   help="PyPI only: the sdist (default), the wheels, or every file")
     return p
 
 
@@ -76,19 +74,16 @@ def main(argv=None):
     out = sys.stdout.buffer
     try:
         if args.command == "fetch":
-            kinds = {"sdist": {"sdist"}, "wheel": {"bdist_wheel"}}.get(args.kind)
-            for path in fetch(args.registry, args.name, args.version, args.directory, kinds):
+            for path in fetch(args.registry, args.name, args.version, args.directory, args.kind):
                 out.write(escape(path).encode("utf-8", "surrogateescape") + b"\n")
             return 0
         if args.command == "diff":
-            records = diff(read_artifact(args.old), read_artifact(args.new),
-                           with_files=not args.surfaces)
+            records = diff(read_artifact(args.old), read_artifact(args.new))
         else:
-            records = source(read_artifact(args.artifact), args.repo, args.ref, args.prefix,
-                             with_files=not args.surfaces)
+            records = source(read_artifact(args.artifact), args.repo, args.ref, args.prefix)
     except (ArtifactError, CompareError, FetchError, OSError) as exc:
         sys.stderr.write("release-drift: error: %s\n" % exc)
         return 2
     out.write(render(records, args.json))
     out.flush()
-    return 1 if records else 0
+    return 1 if any(is_finding(args.command, r) for r in records) else 0
