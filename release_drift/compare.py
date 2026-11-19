@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """The two comparisons: release against release, and release against git."""
 
+import configparser
 import hashlib
 import json
 import re
@@ -145,17 +146,17 @@ def _license_copy(kind, path):
     return parts[1] == "licenses" or parts[1].upper().startswith(LICENSE_PREFIXES)
 
 
-def strip_egg_info(data):
-    """setup.cfg minus the [egg_info] section setuptools adds to the sdist copy."""
-    lines = data.decode("utf-8", "surrogateescape").splitlines(True)
-    out = []
-    skipping = False
-    for line in lines:
-        if line.strip().startswith("["):
-            skipping = line.strip() == "[egg_info]"
-        if not skipping:
-            out.append(line)
-    return "".join(out).rstrip().encode("utf-8", "surrogateescape")
+def setup_cfg(data):
+    """setup.cfg as {section: {key: value}}, without the [egg_info] section.
+    setuptools rewrites setup.cfg in the sdist with configparser: it adds
+    [egg_info] and respaces 'key=value' lines, and drops comments."""
+    parser = configparser.RawConfigParser(strict=True)
+    parser.optionxform = str
+    try:
+        parser.read_string(data.decode("utf-8"))
+    except (UnicodeDecodeError, configparser.Error):
+        return None
+    return {name: dict(parser.items(name)) for name in parser.sections() if name != "egg_info"}
 
 
 def npm_manifest(data):
@@ -172,11 +173,10 @@ def npm_manifest(data):
 def _same_after_normalising(repo, kind, path, data, entry):
     """path is relative to the artifact; entry is the tree entry it maps to."""
     if entry is None:
-        if kind == SDIST and path == "setup.cfg":
-            return strip_egg_info(data) == b""
-        return False
+        return kind == SDIST and path == "setup.cfg" and setup_cfg(data) == {}
     if kind == SDIST and path == "setup.cfg":
-        return strip_egg_info(data) == _blob(repo, entry[1]).rstrip()
+        mine = setup_cfg(data)
+        return mine is not None and mine == setup_cfg(_blob(repo, entry[1]))
     if kind == NPM and path == "package.json":
         mine = npm_manifest(data)
         return mine is not None and mine == npm_manifest(_blob(repo, entry[1]))

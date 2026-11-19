@@ -118,6 +118,7 @@ def fetch(registry, name, version, directory, kinds=None):
             fd, tmp = tempfile.mkstemp(dir=directory, prefix=".release-drift-")
             with os.fdopen(fd, "wb") as fh:
                 fh.write(data)
+            os.chmod(tmp, 0o644)
             os.replace(tmp, target)
         saved.append(target)
     return sorted(saved)

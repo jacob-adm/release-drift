@@ -104,7 +104,7 @@ class Source(TempCase):
         self.repo = self.path("repo")
         os.makedirs(self.repo)
         self.tree = {
-            "setup.cfg": b"[metadata]\nname = demo\n",
+            "setup.cfg": b"# comment\n[metadata]\nname=demo\n",
             "pyproject.toml": b"[build-system]\nbuild-backend = \"setuptools.build_meta\"\n",
             "src/demo/__init__.py": b"VERSION = '1.0'\n",
             "src/demo/core.py": b"def add(a, b):\n    return a + b\n",
@@ -127,7 +127,8 @@ class Source(TempCase):
 
     def test_clean_sdist_with_generated_files_exits_0(self):
         files = {"demo-1.0/" + k: v for k, v in self.tree.items()}
-        files["demo-1.0/setup.cfg"] = self.tree["setup.cfg"] + b"\n[egg_info]\ntag_build = \ntag_date = 0\n\n"
+        # setuptools rewrites it: comments dropped, "key = value", [egg_info] added.
+        files["demo-1.0/setup.cfg"] = b"[metadata]\nname = demo\n\n[egg_info]\ntag_build = \ntag_date = 0\n\n"
         files["demo-1.0/PKG-INFO"] = b"Metadata-Version: 2.1\n"
         files["demo-1.0/src/demo.egg-info/SOURCES.txt"] = b"x\n"
         files["demo-1.0/src/demo.egg-info/PKG-INFO"] = b"x\n"
@@ -140,10 +141,12 @@ class Source(TempCase):
         files["demo-1.0/src/demo_init.pth"] = MALICIOUS_PTH
         files["demo-1.0/src/demo/core.py"] = b"import urllib\nurllib.urlopen('https://x.example')\n"
         files["demo-1.0/src/demo.egg-info/evil.txt"] = b""
+        files["demo-1.0/setup.cfg"] = b"[metadata]\nname = demo2\n\n[egg_info]\ntag_build = \n"
         sdist = write_tar(self.path("demo-1.0.tar.gz"), files)
         code, out, _ = self.run_source(sdist)
         self.assertEqual(code, 1)
         self.assertEqual(out.decode().splitlines(), [
+            "file\tdiffers\tsetup.cfg\t-",
             "file\tdiffers\tsrc/demo/core.py\t-",
             "file\tnot-in-tag\tsrc/demo.egg-info/evil.txt\t-",
             "file\tnot-in-tag\tsrc/demo_init.pth\t-",
