@@ -18,6 +18,7 @@ def write_zip(path, files, links=None):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as zf:
         for name in sorted(files):
             info = zipfile.ZipInfo(name, (2020, 1, 1, 0, 0, 0))
+            info.filename = name  # store the name as given; ZipInfo maps "\\" to "/" on Windows
             zf.writestr(info, files[name])
         for name, target in sorted((links or {}).items()):
             info = zipfile.ZipInfo(name, (2020, 1, 1, 0, 0, 0))
