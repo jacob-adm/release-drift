@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: Apache-2.0
 import tarfile
+import zipfile
 
-from fixtures import TempCase, wheel_files, write_tar, write_zip
+from fixtures import TempCase, run_cli, wheel_files, write_tar, write_zip
 from release_drift.archive import NPM, SDIST, WHEEL, ArtifactError, read_artifact
 
 
@@ -86,6 +87,23 @@ class ReadArtifact(TempCase):
         path = write_tar(self.path("d.tar.gz"), {"a/x": b"", "b/y": b""})
         with self.assertRaisesRegex(ArtifactError, "top-level"):
             read_artifact(path)
+
+    def test_corrupt_compressed_member_is_an_error(self):
+        path = self.path("demo-1.0-py3-none-any.whl")
+        with zipfile.ZipFile(path, "w") as zf:
+            zf.writestr("demo/core.py", b"x = 1\n" * 2000, compress_type=zipfile.ZIP_DEFLATED)
+        with open(path, "rb") as fh:
+            raw = bytearray(fh.read())
+        start = 30 + len("demo/core.py")
+        for i in range(start, start + 8):
+            raw[i] ^= 0xFF
+        with open(path, "wb") as fh:
+            fh.write(raw)
+        with self.assertRaises(ArtifactError):
+            read_artifact(path)
+        code, out, err = run_cli("diff", path, path)
+        self.assertEqual((code, out), (2, b""))
+        self.assertNotIn(b"Traceback", err)
 
     def test_garbage_is_an_error(self):
         path = self.path("x.tar.gz")
