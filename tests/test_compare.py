@@ -227,3 +227,30 @@ class Source(TempCase):
             "file\tnot-in-tag\talias.py\t-",
             "link\tnot-in-tag\talias.py\tindex.js",
         ])
+
+
+class EdgeCaseDiffs(TempCase):
+    def test_npm_scripts_without_install_hooks_are_not_findings(self):
+        old = write_tar(self.path("demo-1.0.0.tgz"), {"package/package.json": b'{"name": "demo"}'})
+        new = write_tar(self.path("demo-1.0.1.tgz"),
+                        {"package/package.json": b'{"name": "demo", "scripts": {"test": "x"}}'})
+        self.assertEqual(run_cli("diff", old, new), (0, b"file\tchanged\tpackage.json\t-\n", b""))
+
+    def test_unicode_paths_are_printed_as_utf8(self):
+        old = write_tar(self.path("demo-1.0.tar.gz"), {"demo-1.0/PKG-INFO": b""})
+        new = write_tar(self.path("demo-1.1.tar.gz"),
+                        {"demo-1.1/PKG-INFO": b"", "demo-1.1/café/x.pth": b"import os\n"})
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual((code, out.decode("utf-8").splitlines()), (1, [
+            "file\tadded\tcafé/x.pth\t-", "pth\tadded\tcafé/x.pth\timport"]))
+
+    def test_build_backend_change_in_pyproject_only_sdist(self):
+        toml = b'[build-system]\nbuild-backend = "%s"\n'
+        old = write_tar(self.path("demo-1.0.tar.gz"),
+                        {"demo-1.0/pyproject.toml": toml % b"hatchling.build"})
+        new = write_tar(self.path("demo-1.1.tar.gz"),
+                        {"demo-1.1/pyproject.toml": toml % b"local_backend",
+                         "demo-1.1/local_backend.py": b"def build_wheel(*a): pass\n"})
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual(code, 1)
+        self.assertIn(b'build\tadded\tpyproject.toml\tbuild-backend = "local_backend"\n', out)

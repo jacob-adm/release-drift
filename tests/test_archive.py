@@ -93,3 +93,37 @@ class ReadArtifact(TempCase):
             fh.write(b"not an archive")
         with self.assertRaises(ArtifactError):
             read_artifact(path)
+
+
+class EdgeCases(TempCase):
+    def test_empty_wheel_reads_with_no_files(self):
+        art = read_artifact(write_zip(self.path("demo-1.0-py3-none-any.whl"), {}))
+        self.assertEqual((art.kind, art.files, art.links), (WHEEL, {}, {}))
+
+    def test_empty_sdist_is_an_error(self):
+        with self.assertRaises(ArtifactError):
+            read_artifact(write_tar(self.path("demo-1.0.tar.gz"), {}))
+
+    def test_member_exactly_at_the_size_cap_is_read(self):
+        path = write_zip(self.path("demo-1.0-py3-none-any.whl"), {"a": b"x" * 100, "b": b"y" * 100})
+        art = read_artifact(path, limits=(2, 100, 200))
+        self.assertEqual(sorted(art.files), ["a", "b"])
+        for limits in ((1, 100, 200), (2, 99, 200), (2, 100, 199)):
+            with self.assertRaises(ArtifactError):
+                read_artifact(path, limits=limits)
+
+    def test_unicode_member_names_are_kept(self):
+        name = "demo-1.0/café/日本.py"
+        art = read_artifact(write_tar(self.path("demo-1.0.tar.gz"), {name: b"x = 1\n",
+                                                                       "demo-1.0/PKG-INFO": b""}))
+        self.assertIn("café/日本.py", art.files)
+
+    def test_sdist_without_setup_py_is_an_sdist(self):
+        art = read_artifact(write_tar(self.path("demo-1.0.tar.gz"),
+                                      {"demo-1.0/pyproject.toml": b"[project]\nname = 'demo'\n"}))
+        self.assertEqual(art.kind, SDIST)
+
+    def test_npm_package_without_scripts(self):
+        art = read_artifact(write_tar(self.path("demo-1.0.0.tgz"),
+                                      {"package/package.json": b'{"name": "demo"}'}))
+        self.assertEqual(art.kind, NPM)
