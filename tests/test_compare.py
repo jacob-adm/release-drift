@@ -267,6 +267,16 @@ class EdgeCaseDiffs(TempCase):
         self.assertEqual((code, out.decode("utf-8").splitlines()), (1, [
             "file\tadded\tcafé/x.pth\t-", "pth\tadded\tcafé/x.pth\timport"]))
 
+    def test_poetry_legacy_build_key_added(self):
+        toml = b'[tool.poetry]\nname = "demo"\n%s'
+        old = write_tar(self.path("demo-1.0.tar.gz"), {"demo-1.0/pyproject.toml": toml % b""})
+        new = write_tar(self.path("demo-1.1.tar.gz"),
+                        {"demo-1.1/pyproject.toml": toml % b'build = "build.py"\n',
+                         "demo-1.1/build.py": b"def build(setup_kwargs): pass\n"})
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual(code, 1)
+        self.assertIn(b'build\tadded\tpyproject.toml\ttool.poetry: build = "build.py"\n', out)
+
     def test_build_backend_change_in_pyproject_only_sdist(self):
         toml = b'[build-system]\nbuild-backend = "%s"\n'
         old = write_tar(self.path("demo-1.0.tar.gz"),

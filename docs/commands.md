@@ -40,7 +40,7 @@ To see only the findings of `diff`, leave out the `file` records: `grep -v '^fil
 | `pth` | any `*.pth` file | `import` if a line starts with `import ` or `import<TAB>` (Python's `site` module runs those lines at every interpreter start when the file is in site-packages), otherwise `paths` |
 | `startup` | any `sitecustomize.py` or `usercustomize.py` | the file name; Python imports these at start-up when they are on the path |
 | `build` | sdist: `setup.py` or `hatch_build.py` at the root | the file name |
-| `build` | sdist: root `pyproject.toml` | the `build-backend` and `backend-path` lines of `[build-system]`; hook tables under `[tool.hatch.build]`; `script`, `setup-script` and `build` keys of `[tool.hatch.build]`, `[tool.poetry.build]` and `[tool.pdm.build]` |
+| `build` | sdist: root `pyproject.toml` | the `build-backend` and `backend-path` lines of `[build-system]`; hook tables under `[tool.hatch.build]`; `script`, `setup-script` and `build` keys of `[tool.hatch.build]`, `[tool.poetry.build]` and `[tool.pdm.build]`; the `build` key of `[tool.poetry]` itself (older Poetry: `build = "build.py"` or `build = { script = "build.py" }`) |
 | `npm-script` | npm: the root `package.json` and those under `node_modules/` (bundled dependencies) | `NAME=COMMAND` for each of `preinstall`, `install`, `postinstall`, `prepare`; `package.json does not parse` if it is not valid JSON |
 | `npm-script` | npm: `binding.gyp` at the root | `install=node-gyp rebuild (implicit)`: npm runs this when a package has `binding.gyp` and no `install` or `preinstall` script |
 | `pyc-only` | any `*.pyc` whose `.py` source is not in the artifact | `no .py source` |
