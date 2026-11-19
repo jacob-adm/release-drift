@@ -115,12 +115,14 @@ Every file of the sdist is in the tag `1.17.0`, apart from the files setuptools 
 
 ## Documentation
 
-- [Commands](docs/commands.md): each command's input, records, options and exit status.
-- [Source comparison](docs/source-comparison.md): which generated files `source` accepts, and why.
-- [Limitations and security](docs/limitations-and-security.md): what release-drift reads, refuses
+- [Commands](https://github.com/jacob-adm/release-drift/blob/main/docs/commands.md): each command's input, records, options and exit status.
+- [Source comparison](https://github.com/jacob-adm/release-drift/blob/main/docs/source-comparison.md): which generated files `source` accepts, and why.
+- [Limitations and security](https://github.com/jacob-adm/release-drift/blob/main/docs/limitations-and-security.md): what release-drift reads, refuses
   and does not detect.
-- [Other tools](docs/other-tools.md): GuardDog and Socket, and what release-drift adds.
+- [Other tools](https://github.com/jacob-adm/release-drift/blob/main/docs/other-tools.md): GuardDog and Socket, and what release-drift adds.
+- [Contributing](https://github.com/jacob-adm/release-drift/blob/main/CONTRIBUTING.md): running the tests and contributing a change.
+- [Reporting a vulnerability](https://github.com/jacob-adm/release-drift/blob/main/SECURITY.md)
 
-## Licence
+## License
 
-Apache-2.0; see `LICENSE`.
+Apache License 2.0; see [LICENSE](https://github.com/jacob-adm/release-drift/blob/main/LICENSE).

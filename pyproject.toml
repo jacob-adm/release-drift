@@ -26,6 +26,7 @@ classifiers = [
 Homepage = "https://github.com/jacob-adm/release-drift"
 Documentation = "https://github.com/jacob-adm/release-drift/tree/main/docs"
 Source = "https://github.com/jacob-adm/release-drift"
+Issues = "https://github.com/jacob-adm/release-drift/issues"
 
 [project.scripts]
 release-drift = "release_drift.cli:main"
