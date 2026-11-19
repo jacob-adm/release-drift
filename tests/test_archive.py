@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: Apache-2.0
+import os
 import tarfile
 import zipfile
+from unittest import mock
 
 from fixtures import TempCase, run_cli, wheel_files, write_tar, write_zip
 from release_drift.archive import NPM, SDIST, WHEEL, ArtifactError, read_artifact
@@ -30,6 +32,14 @@ class ReadArtifact(TempCase):
                 path = write_zip(self.path("bad.whl"), {name: b"x"})
                 with self.assertRaises(ArtifactError):
                     read_artifact(path)
+
+    def test_backslash_name_is_refused_where_backslash_is_a_separator(self):
+        # zipfile turns "\\" into "/" in ZipInfo.filename when os.sep is "\\"
+        # (Windows); the reader must check the name as stored in the archive.
+        path = write_zip(self.path("bad.whl"), {"a\\b": b"x"})
+        with mock.patch.object(os, "sep", "\\"):
+            with self.assertRaises(ArtifactError):
+                read_artifact(path)
 
     def test_link_inside_the_artifact_is_kept(self):
         art = read_artifact(write_tar(self.path("d.tar.gz"), {"d/PKG-INFO": b""},
