@@ -15,7 +15,7 @@ check in CI. There is no AI and no scoring: the same inputs always give byte-ide
 
 ## Requirements
 
-- Python 3.8 or later, standard library only.
+- Python 3.9 or later, standard library only.
 - git, for `release-drift source`.
 - No platform-specific code; tested on macOS.
 - Network access only for the optional `fetch` command.
