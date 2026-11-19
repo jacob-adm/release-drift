@@ -56,6 +56,15 @@ class Surfaces(unittest.TestCase):
     def test_pyproject_without_build_system(self):
         self.assertEqual(pyproject_findings(b"[project]\nname = 'x'\n"), [])
 
+    def test_poetry_legacy_build_key(self):
+        self.assertEqual(pyproject_findings(b'[tool.poetry]\nname = "x"\nbuild = "build.py"\n'),
+                         ['tool.poetry: build = "build.py"'])
+        self.assertEqual(pyproject_findings(b'[tool.poetry]\nbuild = { script = "b.py" }\n'),
+                         ['tool.poetry: build = { script = "b.py" }'])
+        self.assertEqual(pyproject_findings(b'[tool.poetry.dependencies]\nbuild = "^1.0"\n'
+                                            b'[tool.poetry]\n# build = "x.py"\nbuild.script = "c.py"\n'),
+                         ['tool.poetry: build.script = "c.py"'])
+
     def test_npm_install_scripts_root_and_bundled(self):
         pkg = b'{"scripts": {"preinstall": "node evil.js", "test": "x", "prepare": "tsc"}}'
         found = cats(surfaces(art(NPM, {

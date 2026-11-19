@@ -52,14 +52,15 @@ def pth_detail(data):
     return "paths"
 
 
-def _section_lines(text, header):
-    """Lines of one TOML table, matched textually (no TOML parser before Python 3.11)."""
+def _section_lines(text, header, nested=True):
+    """Lines of one TOML table (and, if nested, its sub-tables), matched textually
+    (no TOML parser before Python 3.11)."""
     out = []
     inside = False
     for line in text.splitlines():
         stripped = line.strip()
         if stripped.startswith("["):
-            inside = stripped == header or stripped.startswith(header[:-1] + ".")
+            inside = stripped == header or (nested and stripped.startswith(header[:-1] + "."))
             if inside and stripped != header:
                 out.append(stripped)
             continue
@@ -76,6 +77,10 @@ def pyproject_findings(data):
         key = line.split("=", 1)[0].strip()
         if key in ("build-backend", "backend-path"):
             details.append(" ".join(line.split()))
+    for line in _section_lines(text, "[tool.poetry]", nested=False):
+        # Older Poetry: build = "build.py" or build = { script = "build.py" }
+        if line.split("=", 1)[0].split(".", 1)[0].strip() == "build":
+            details.append("tool.poetry: " + " ".join(line.split()))
     for header in ("[tool.hatch.build]", "[tool.poetry.build]", "[tool.pdm.build]"):
         for line in _section_lines(text, header):
             if line.startswith("[") and "hooks" in line:
