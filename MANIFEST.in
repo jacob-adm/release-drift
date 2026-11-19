@@ -1,0 +1,2 @@
+# The tests import their helpers from tests/fixtures.py; ship it so the sdist can run them.
+include tests/fixtures.py

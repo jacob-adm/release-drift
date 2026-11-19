@@ -228,6 +228,20 @@ class Source(TempCase):
             "link\tnot-in-tag\talias.py\tindex.js",
         ])
 
+    def test_files_under_a_git_directory_symlink_match_its_target(self):
+        # alias -> src/demo, added through the index so no OS symlink is needed.
+        oid = subprocess.run(["git", "-C", self.repo, "hash-object", "-w", "--stdin"],
+                             input=b"src/demo", stdout=subprocess.PIPE, check=True).stdout
+        self.git("update-index", "--add", "--cacheinfo", "120000,%s,alias" % oid.decode().strip())
+        self.git("commit", "-q", "-m", "v1.1")
+        self.git("tag", "v1.1")
+        files = {"demo-1.1/" + k: v for k, v in self.tree.items()}
+        files["demo-1.1/PKG-INFO"] = b""
+        files["demo-1.1/alias/core.py"] = self.tree["src/demo/core.py"]
+        files["demo-1.1/alias/__init__.py"] = b"VERSION = '9.9'\n"
+        sdist = write_tar(self.path("demo-1.1.tar.gz"), files)
+        code, out, _ = run_cli("source", sdist, "--repo", self.repo, "--ref", "v1.1")
+        self.assertEqual((code, out.decode().splitlines()), (1, ["file\tdiffers\talias/__init__.py\t-"]))
 
 class EdgeCaseDiffs(TempCase):
     def test_npm_scripts_without_install_hooks_are_not_findings(self):
