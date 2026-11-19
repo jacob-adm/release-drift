@@ -42,6 +42,9 @@ release-drift lists facts about files. It does not decide whether a package is m
   of other ecosystems are not covered.
 - URL hosts are found only in plain text: a URL built at run time, encoded or compressed is not
   seen. Blobs shorter than 200 characters are not reported.
+- Files are read as UTF-8: a host in another encoding ends at its first byte that is not
+  UTF-8. A host written in punycode (`xn--`) and the same host written in Unicode count as two
+  hosts.
 - `diff` does not report surfaces that a release removes.
 - `source` maps artifact paths to repository paths by a fixed prefix. Packages whose files come
   from several directories (for example a wheel's `.data/` directories, or a tree rearranged by

@@ -9,6 +9,7 @@ sits in changes; the others are compared by their detail only.
 import hashlib
 import json
 import re
+import unicodedata
 
 from .archive import NPM, SDIST
 
@@ -17,7 +18,8 @@ STARTUP_MODULES = ("sitecustomize.py", "usercustomize.py")
 BUILD_SCRIPTS = ("setup.py", "hatch_build.py")
 BLOB_MIN = 200
 
-_URL = re.compile(rb"(?i)\b(?:https?|wss?|ftp)://([a-z0-9._~%-]+(?::[0-9]{1,5})?)")
+_URL = re.compile(r"(?ai)\b(?:https?|wss?|ftp)://")
+_PORT = re.compile(r":[0-9]{1,5}")
 _BLOB = re.compile(rb"[A-Za-z0-9+/_-]{%d,}={0,2}" % BLOB_MIN)
 _HEX = re.compile(rb"[0-9A-Fa-f]+")
 
@@ -153,12 +155,32 @@ def surfaces(artifact):
     return out
 
 
+def _host_char(ch):
+    """Letters and digits of any script, combining marks and ._~%-: never a control character."""
+    return ch.isalnum() or ch in "._~%-" or unicodedata.category(ch)[0] == "M"
+
+
+def url_hosts(data):
+    """Hosts (and ports) after a URL scheme, as found, with ASCII letters lower-cased."""
+    if b"://" not in data:
+        return
+    text = data.decode("utf-8", "surrogateescape")
+    for match in _URL.finditer(text):
+        start = end = match.end()
+        while end < len(text) and _host_char(text[end]):
+            end += 1
+        if end == start:
+            continue
+        port = _PORT.match(text, end)
+        host = text[start:end] + (port.group(0) if port else "")
+        yield host.encode("utf-8").lower().decode("utf-8")
+
+
 def strings(artifact):
     """URL hosts and long encoded blobs, as (category, path, detail) tuples."""
     out = set()
     for path, data in artifact.files.items():
-        for match in _URL.finditer(data):
-            host = match.group(1).decode("ascii").lower()
+        for host in url_hosts(data):
             out.add(("url-host", path, host))
         for match in _BLOB.finditer(data):
             blob = match.group(0)

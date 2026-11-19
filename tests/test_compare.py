@@ -47,6 +47,15 @@ class Diff(TempCase):
         records = diff(read_artifact(old), read_artifact(new))
         self.assertEqual(records, [("file", "added", "b.py", "-"), ("file", "removed", "a.py", "-")])
 
+    def test_non_ascii_host_is_reported_whole(self):
+        old = write_zip(self.path("a.whl"), {"a.py": b"x = 1\n"})
+        new = write_zip(self.path("b.whl"), {"a.py": "u = 'https://ex\u00e4mple.com/'\n".encode("utf-8")})
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual(code, 1)
+        self.assertIn("url-host\tadded\ta.py\tex\u00e4mple.com\n".encode("utf-8"), out)
+        code, out, _ = run_cli("diff", "--json", old, new)
+        self.assertIn(b'"detail": "ex\\u00e4mple.com"', out)
+
     def test_npm_preinstall_added(self):
         old = write_tar(self.path("demo-1.0.0.tgz"),
                         {"package/package.json": b'{"version": "1.0.0", "scripts": {"test": "t"}}'})
