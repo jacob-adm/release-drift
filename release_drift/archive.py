@@ -9,6 +9,13 @@ written to disk.
 import posixpath
 import tarfile
 import zipfile
+import zlib
+
+try:
+    import lzma
+    _DECOMPRESS_ERRORS = (zlib.error, lzma.LZMAError)
+except ImportError:  # Python built without lzma
+    _DECOMPRESS_ERRORS = (zlib.error,)
 
 MAX_MEMBERS = 50000
 MAX_MEMBER_BYTES = 64 * 1024 * 1024
@@ -160,8 +167,9 @@ def read_artifact(path, limits=(MAX_MEMBERS, MAX_MEMBER_BYTES, MAX_TOTAL_BYTES))
             _read_tar(path, reader)
         else:
             raise ArtifactError("not a wheel, zip or tar archive")
-    except (OSError, EOFError, zipfile.BadZipFile, tarfile.TarError, RuntimeError) as exc:
-        # zipfile raises RuntimeError for encrypted members.
+    except (OSError, EOFError, zipfile.BadZipFile, tarfile.TarError, RuntimeError) + _DECOMPRESS_ERRORS as exc:
+        # zipfile raises RuntimeError for encrypted members; corrupt compressed
+        # data raises the decompressor's own error.
         raise ArtifactError(str(exc) or exc.__class__.__name__)
     if lower.endswith(".whl"):
         return Artifact(path, WHEEL, reader.files, reader.links)
