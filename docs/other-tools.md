@@ -1,10 +1,103 @@
-# Other tools
+# Using it with other tools
 
-Two widely used free tools look at the same problem: GuardDog and Socket. This page states what
+This page shows the tested stacks release-drift is part of, then what two similar tools cover.
+
+The commands on this page use [release-drift](https://github.com/jacob-adm/release-drift) and
+[git-surface](https://github.com/jacob-adm/git-surface). release-drift and git-surface are not on
+PyPI yet and install from GitHub:
+
+```sh
+pip install git+https://github.com/jacob-adm/release-drift
+pip install git+https://github.com/jacob-adm/git-surface
+```
+
+The examples come from a test repository whose `main` has a small Python module, its tests, a
+`requirements.txt`, a changelog and a Markdown guide, and six branches as an agent might push
+them: `agent/a` renames a function, `agent/b` changes the same line, `agent/c` adds a module that
+calls the function by its old name, `agent/ci` adds a workflow that passes the pull request title
+to a step holding a secret, `agent/deps` bumps a pinned version in `requirements.txt`, and
+`agent/docs` adds an HTML comment to the guide. Every command was run on that repository and the
+output shown is what it printed.
+
+**Exit status.** `git overlap`, `git pairmerge`, `git surface`, `trust-path` and
+`release-drift diff` and `source` exit like `grep`: 0 nothing found, 1 found, 2 error.
+`git footprint` and `release-drift fetch` exit 0 on success. With `set -o pipefail`, a pipeline
+in which any step found something exits 1: treat 1 as a finding, not a failure, and only 2 as an
+error. In a `for` or `while` loop the status is that of the last command only, so read the
+output.
+
+## Checking a release against its tag (release-drift)
+
+Download every file of a PyPI release, then compare each with the tag it was built from, in a
+clone of the project's repository:
+
+```sh
+mkdir dist
+release-drift fetch pypi git-overlap 0.3.2 dist --type all
+for f in dist/*; do release-drift source "$f" --repo git-overlap --ref v0.3.2; done
+```
+
+```text
+dist/git_overlap-0.3.2-py3-none-any.whl
+dist/git_overlap-0.3.2.tar.gz
+```
+
+`fetch` prints the saved paths. `source` printed nothing and exited 0 for both files: every file
+in the wheel and the sdist is in the tag as it is, or is one that packaging tools generate. A
+record from `source` names a file that is not in the tag, or differs from it, with its execution
+surfaces, URL hosts and blobs.
+
+**What it catches:** files in a published release that do not come from the tagged source.
+**What it does not catch:** a change committed to the repository before the tag; `source` takes
+the tag as the reference.
+
+## Checking dependency bumps (git surface, then release-drift)
+
+`git surface` reports a pinned version change as `name old->new` in the `deps` detail. The awk
+recipe in git-surface's [Classes](https://github.com/jacob-adm/git-surface/blob/main/docs/classes.md) page turns those into
+`NAME TAB OLD TAB NEW` lines; `release-drift fetch` downloads both versions from PyPI and
+`release-drift diff` reports what the new one adds:
+
+```sh
+git for-each-ref --format='%(refname:short)' refs/heads/agent/ | git surface main | awk -F'\t' '$2 == "deps" {
+    n = split($3, w, " ")
+    for (i = 2; i < n; i++) if (w[i] !~ /^[+-]/ && w[i+1] ~ /->/) {
+        split(w[i+1], v, "->"); print w[i] "\t" v[1] "\t" v[2]; i++
+    }
+}' > bumps.tsv
+while IFS="$(printf '\t')" read -r name old new; do
+    mkdir -p "old/$name" "new/$name"
+    release-drift fetch pypi "$name" "$old" "old/$name" &&
+    release-drift fetch pypi "$name" "$new" "new/$name" &&
+    release-drift diff "old/$name"/* "new/$name"/*
+done < bumps.tsv
+```
+
+```text
+old/git-overlap/git_overlap-0.3.1.tar.gz
+new/git-overlap/git_overlap-0.3.2.tar.gz
+file	changed	PKG-INFO	-
+file	changed	README.md	-
+file	changed	git_overlap.egg-info/PKG-INFO	-
+file	changed	git_overlap/__init__.py	-
+file	changed	pyproject.toml	-
+```
+
+`agent/deps` bumps `git-overlap` from 0.3.1 to 0.3.2. `fetch` takes the sdist by default, so each
+directory holds one file. Only `file` records came back and `diff` exited 0: the new version adds
+no execution surface, URL host or blob.
+
+**What it catches:** new install-time code, native files, URL hosts and blobs in a bumped
+dependency. **What it does not catch:** requirements without a pinned version, and the
+dependencies of the dependency, which are not in the diff.
+
+## Similar tools
+
+Two widely used free tools look at the same problem: GuardDog and Socket. This section states what
 each covers, as documented by its project in November 2026, and what release-drift does
 differently. Check each project's own documentation for its current state.
 
-## GuardDog
+### GuardDog
 
 [GuardDog](https://github.com/DataDog/guarddog) is a command-line tool from Datadog, licensed
 Apache-2.0, that looks for malicious packages.
@@ -27,7 +120,7 @@ Apache-2.0, that looks for malicious packages.
 - **Isolation:** extraction and scanning run in a kernel sandbox (Landlock on Linux, Seatbelt on
   macOS) by default.
 
-## Socket
+### Socket
 
 [Socket](https://socket.dev) is a commercial service with a free plan. Its open-source CLI
 (`npm install -g socket`, Node.js 22 or later) works with the Socket API.
@@ -43,7 +136,7 @@ Apache-2.0, that looks for malicious packages.
   integration and Socket Firewall, which blocks known malicious packages at install, are
   included.
 
-## What release-drift adds
+### What release-drift adds
 
 - **Two releases side by side.** `release-drift diff` lists every file a release adds, removes or
   changes compared with the previous release, and every execution surface (startup hooks, build

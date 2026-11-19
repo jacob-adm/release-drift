@@ -119,7 +119,8 @@ Every file of the sdist is in the tag `1.17.0`, apart from the files setuptools 
 - [Source comparison](https://github.com/jacob-adm/release-drift/blob/main/docs/source-comparison.md): which generated files `source` accepts, and why.
 - [Limitations and security](https://github.com/jacob-adm/release-drift/blob/main/docs/limitations-and-security.md): what release-drift reads, refuses
   and does not detect.
-- [Other tools](https://github.com/jacob-adm/release-drift/blob/main/docs/other-tools.md): GuardDog and Socket, and what release-drift adds.
+- [Using it with other tools](https://github.com/jacob-adm/release-drift/blob/main/docs/other-tools.md): tested stacks for releases
+  and dependency bumps, and GuardDog and Socket, and what release-drift adds.
 - [Contributing](https://github.com/jacob-adm/release-drift/blob/main/CONTRIBUTING.md): running the tests and contributing a change.
 - [Reporting a vulnerability](https://github.com/jacob-adm/release-drift/blob/main/SECURITY.md)
 
