@@ -92,7 +92,8 @@ class ReadArtifact(TempCase):
         path = self.path("demo-1.0-py3-none-any.whl")
         with zipfile.ZipFile(path, "w") as zf:
             zf.writestr("demo/core.py", b"x = 1\n" * 2000, compress_type=zipfile.ZIP_DEFLATED)
-        raw = bytearray(open(path, "rb").read())
+        with open(path, "rb") as fh:
+            raw = bytearray(fh.read())
         start = 30 + len("demo/core.py")
         for i in range(start, start + 8):
             raw[i] ^= 0xFF
