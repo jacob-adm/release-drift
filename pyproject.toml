@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,7 +9,8 @@ version = "0.1.0"
 description = "Report what a package release adds: changed files, new install and startup code, files not in the tagged source."
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 dependencies = []
 keywords = ["supply-chain", "security", "pypi", "npm", "wheel", "sdist", "cli"]
 classifiers = [
