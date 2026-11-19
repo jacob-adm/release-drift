@@ -53,7 +53,7 @@ def pth_detail(data):
 
 
 def _section_lines(text, header):
-    """Lines of one TOML table, matched textually (no TOML parser on 3.8)."""
+    """Lines of one TOML table, matched textually (no TOML parser before Python 3.11)."""
     out = []
     inside = False
     for line in text.splitlines():
