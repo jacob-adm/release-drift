@@ -108,17 +108,20 @@ class _Reader:
 def _read_zip(path, reader):
     with zipfile.ZipFile(path) as zf:
         for info in zf.infolist():
+            # orig_filename is the name as stored: zipfile cuts .filename at a NUL
+            # and, on Windows, turns "\\" into "/", which would hide both from check_name.
+            name = info.orig_filename
             if info.is_dir():
-                check_name(info.filename)
+                check_name(name)
                 continue
             mode = (info.external_attr >> 16) & 0o170000
             if info.create_system == 3 and mode == 0o120000:  # Unix symlink
                 with zf.open(info) as fh:
                     target = fh.read(4097)
-                reader.add_link(info.filename, target.decode("utf-8", "surrogateescape"))
+                reader.add_link(name, target.decode("utf-8", "surrogateescape"))
                 continue
             with zf.open(info) as fh:
-                reader.add(info.filename, fh.read)
+                reader.add(name, fh.read)
 
 
 def _read_tar(path, reader):
