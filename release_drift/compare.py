@@ -4,6 +4,7 @@
 import configparser
 import hashlib
 import json
+import posixpath
 import re
 import subprocess
 
@@ -188,8 +189,35 @@ def _same_after_normalising(repo, kind, path, data, entry):
     return False
 
 
-def _status(tree, fmt, prefix, path, data, is_link):
-    entry = tree.get(prefix + path)
+MAX_LINK_HOPS = 40
+
+
+def _lookup(repo, tree, path):
+    """The tree entry for path, following directory symlinks in the tree the
+    way a checkout would (a build copies the files through them). Links that
+    leave the repository are not followed."""
+    for _ in range(MAX_LINK_HOPS):
+        entry = tree.get(path)
+        if entry is not None:
+            return entry
+        parts = path.split("/")
+        for i in range(1, len(parts)):
+            head = "/".join(parts[:i])
+            link = tree.get(head)
+            if link is not None and link[0] == "120000":
+                target = _blob(repo, link[1]).decode("utf-8", "surrogateescape")
+                resolved = posixpath.normpath(posixpath.join(posixpath.dirname(head), target))
+                if target.startswith("/") or resolved == ".." or resolved.startswith("../"):
+                    return None
+                path = resolved + "/" + "/".join(parts[i:])
+                break
+        else:
+            return None
+    return None
+
+
+def _status(repo, tree, fmt, prefix, path, data, is_link):
+    entry = _lookup(repo, tree, prefix + path)
     if entry is None:
         return "not-in-tag", None
     if (entry[0] == "120000") != is_link:
@@ -229,7 +257,7 @@ def source(artifact, repo, ref, prefix=None):
             continue
         if not is_link and _license_copy(artifact.kind, path) and blob_id(data, fmt) in tree_blobs:
             continue
-        status, entry = _status(tree, fmt, prefix, path, data, is_link)
+        status, entry = _status(repo, tree, fmt, prefix, path, data, is_link)
         if status is None:
             continue
         if not is_link and _same_after_normalising(repo, artifact.kind, path, data, entry):
