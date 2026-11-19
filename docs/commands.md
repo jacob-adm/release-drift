@@ -46,7 +46,7 @@ To see only the findings of `diff`, leave out the `file` records: `grep -v '^fil
 | `pyc-only` | any `*.pyc` whose `.py` source is not in the artifact | `no .py source` |
 | `native` | any file starting with an ELF, Mach-O, PE or WebAssembly header | `ELF`, `Mach-O`, `PE` or `WebAssembly` |
 | `link` | a symbolic or hard link member | its target |
-| `url-host` | any file containing `http://`, `https://`, `ws://`, `wss://` or `ftp://` | the host (and port), lower-cased |
+| `url-host` | any file containing `http://`, `https://`, `ws://`, `wss://` or `ftp://` | the host (and port) as found, with ASCII letters lower-cased; a host is a run of letters and digits of any script, combining marks and `._~%-`, so it never holds a control character, and it is not converted to or from punycode (`xn--`) |
 | `blob` | any run of 200 or more characters from `A-Za-z0-9+/_-` (plus `=` padding) | `base64` or `hex`, its length and the first 16 hex digits of its SHA-256 |
 
 ### Exit status

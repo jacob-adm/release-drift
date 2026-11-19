@@ -114,3 +114,18 @@ class Strings(unittest.TestCase):
                                  ("url-host", "a.py", "ok.test")])
         blobs = sorted(f[2].split(" ")[0] + " " + f[2].split(" ")[1] for f in found if f[0] == "blob")
         self.assertEqual(blobs, ["base64 len=%d" % len(blob), "hex len=240"])
+
+    def test_non_ascii_hosts_are_kept_whole(self):
+        text = ("a = 'https://ex\u00e4mple.com/'\n"
+                "b = 'https://\u00c4BC.Example:8080/'\n"
+                "c = 'http://\u0645\u062b\u0627\u0644.test'\n"
+                "d = 'https://cafe\u0301.test'\n"
+                "e = \u201chttps://quoted.test\u201d\n"
+                "f = 'https://bidi\u202etxt.test'\n"
+                "g = 'https://c1\u0085.test'\n")
+        found = strings(art(WHEEL, {"a.py": text.encode("utf-8"),
+                                    "b.py": b"https://bad\xff.test caf\xc3"}))
+        hosts = sorted(f[2] for f in found if f[0] == "url-host")
+        self.assertEqual(hosts, ["bad", "bidi", "c1", "cafe\u0301.test",
+                                 "ex\u00e4mple.com", "quoted.test", "\u00c4bc.example:8080",
+                                 "\u0645\u062b\u0627\u0644.test"])
