@@ -3,10 +3,13 @@
 
 Every artifact is treated as hostile: member names are checked before use,
 sizes are capped while reading (header sizes are not trusted), and nothing is
-written to disk.
+written to disk. An artifact someone else unpacked can be given as a
+directory; its files are read under the same checks and limits.
 """
 
+import os
 import posixpath
+import stat
 import tarfile
 import zipfile
 import zlib
@@ -147,24 +150,55 @@ def _read_tar(path, reader):
                 raise ArtifactError("member %r is a device, FIFO or other special file" % member.name)
 
 
+def _read_dir(root, reader):
+    """Read an unpacked artifact. Links are recorded, never followed."""
+    for folder, dirs, names in os.walk(root):
+        rel = os.path.relpath(folder, root)
+        prefix = "" if rel == "." else "/".join(rel.split(os.sep)) + "/"
+        for name in sorted(dirs + names):
+            full = os.path.join(folder, name)
+            mode = os.lstat(full).st_mode
+            if stat.S_ISLNK(mode):
+                reader.add_link(prefix + name, os.readlink(full))
+            elif stat.S_ISREG(mode):
+                with open(full, "rb") as fh:
+                    reader.add(prefix + name, fh.read)
+            elif not stat.S_ISDIR(mode):
+                raise ArtifactError("member %r is a device, FIFO or other special file"
+                                    % (prefix + name))
+        dirs[:] = sorted(d for d in dirs if not os.path.islink(os.path.join(folder, d)))
+
+
 def _strip_top(names_files, names_links):
-    """sdists and npm tarballs keep everything under one top directory."""
-    tops = {n.split("/", 1)[0] for n in list(names_files) + list(names_links)}
+    """sdists and npm tarballs keep everything under one top directory. tar on
+    macOS also writes "._NAME" metadata files at the top level; those stay in
+    the artifact, as files at its root, so they are compared like any other."""
+    extra = {n for n in names_files if "/" not in n and n.startswith("._")}
+    names = [n for n in list(names_files) + list(names_links) if n not in extra]
+    tops = {n.split("/", 1)[0] for n in names}
     if len(tops) != 1:
         raise ArtifactError("expected one top-level directory, found %d" % len(tops))
-    if any("/" not in n for n in list(names_files) + list(names_links)):
+    if any("/" not in n for n in names):
         raise ArtifactError("expected one top-level directory, found a top-level file")
-    files = {n.split("/", 1)[1]: d for n, d in names_files.items()}
+    files = {n.split("/", 1)[1]: d for n, d in names_files.items() if n not in extra}
     links = {n.split("/", 1)[1]: t for n, t in names_links.items()}
+    for n in extra:
+        if n in files or n in links:
+            raise ArtifactError("duplicate member %r" % n)
+        files[n] = names_files[n]
     return files, links
 
 
 def read_artifact(path, limits=(MAX_MEMBERS, MAX_MEMBER_BYTES, MAX_TOTAL_BYTES)):
-    """Read a .whl, .zip, .tar.gz, .tgz (or other tar) artifact into an Artifact."""
+    """Read a .whl, .zip, .tar.gz, .tgz (or other tar) artifact, or the
+    directory one was unpacked into, into an Artifact."""
     reader = _Reader(limits)
     lower = path.lower()
+    unpacked = os.path.isdir(path)
     try:
-        if lower.endswith((".whl", ".zip")):
+        if unpacked:
+            _read_dir(path, reader)
+        elif lower.endswith((".whl", ".zip")):
             _read_zip(path, reader)
         elif tarfile.is_tarfile(path):
             _read_tar(path, reader)
@@ -176,7 +210,14 @@ def read_artifact(path, limits=(MAX_MEMBERS, MAX_MEMBER_BYTES, MAX_TOTAL_BYTES))
         raise ArtifactError(str(exc) or exc.__class__.__name__)
     if lower.endswith(".whl"):
         return Artifact(path, WHEEL, reader.files, reader.links)
-    files, links = _strip_top(reader.files, reader.links)
+    if unpacked:
+        # The directory is the artifact's root: a wheel's contents, or the
+        # inside of an sdist's or npm tarball's top directory.
+        files, links = reader.files, reader.links
+        if any(n.split("/")[0].endswith(".dist-info") and "/" in n for n in files):
+            return Artifact(path, WHEEL, files, links)
+    else:
+        files, links = _strip_top(reader.files, reader.links)
     if lower.endswith(".tgz") and "package.json" in files:
         kind = NPM
     elif "PKG-INFO" in files or "setup.py" in files or "pyproject.toml" in files:

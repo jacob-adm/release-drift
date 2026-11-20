@@ -3,7 +3,8 @@
 ## What release-drift reads and writes
 
 - `diff` and `source` read the artifact files given on the command line into memory. Nothing from
-  an artifact is written to disk, unpacked, imported or run.
+  an artifact is written to disk, unpacked, imported or run. A directory given as an artifact is
+  read the same way: regular files only, under the same size limits, without following links.
 - `source` runs `git rev-parse`, `git ls-tree` and `git cat-file` in the repository given with
   `--repo`. It does not change the repository.
 - `fetch` connects to `pypi.org`, `registry.npmjs.org` and the download host the registry names,
