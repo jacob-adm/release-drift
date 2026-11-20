@@ -12,7 +12,13 @@ format) or an npm tarball (`.tgz`). The kind is taken from the file: `.whl` is a
 with a `package.json` at its root is an npm tarball; a tar or zip with `PKG-INFO`, `setup.py` or
 `pyproject.toml` at its root is an sdist; any other tar or zip with a `package.json` is an npm
 tarball, and anything else is treated as an sdist. The top directory of an sdist or npm tarball
-(`name-1.0/`, `package/`) is removed from every path.
+(`name-1.0/`, `package/`) is removed from every path. A `._NAME` metadata file that tar on macOS
+writes beside that directory is kept, as a file at the root, and compared like any other.
+
+An artifact that is already unpacked can be given as a directory: the directory is the artifact's
+root (for an sdist or npm tarball, the inside of its top directory). It is a wheel when it holds a
+`.dist-info` directory, and otherwise its kind is decided as above. Symbolic links in it are
+recorded, not followed, and one that points outside the directory is an error.
 
 ## Output
 

@@ -123,6 +123,76 @@ class ReadArtifact(TempCase):
             read_artifact(path)
 
 
+class Directories(TempCase):
+    def tree(self, name, files):
+        root = self.path(name)
+        for rel, data in files.items():
+            full = os.path.join(root, *rel.split("/"))
+            os.makedirs(os.path.dirname(full), exist_ok=True)
+            with open(full, "wb") as fh:
+                fh.write(data)
+        return root
+
+    def test_unpacked_sdist_reads_like_the_archive(self):
+        files = {"PKG-INFO": b"x", "demo/a.py": b"y"}
+        packed = read_artifact(write_tar(self.path("demo-1.0.tar.gz"),
+                                         {"demo-1.0/" + n: d for n, d in files.items()}))
+        unpacked = read_artifact(self.tree("demo-1.0", files))
+        self.assertEqual((unpacked.kind, unpacked.files), (SDIST, packed.files))
+
+    def test_unpacked_wheel_and_npm_package(self):
+        self.assertEqual(read_artifact(self.tree("w", wheel_files("1.0"))).kind, WHEEL)
+        art = read_artifact(self.tree("n", {"package.json": b"{}", "index.js": b""}))
+        self.assertEqual((art.kind, sorted(art.files)), (NPM, ["index.js", "package.json"]))
+
+    def test_links_are_recorded_and_not_followed(self):
+        root = self.tree("d", {"PKG-INFO": b"x", "sub/real.py": b"y"})
+        outside = self.tree("outside", {"secret": b"s"})
+        try:
+            os.symlink("sub/real.py", os.path.join(root, "link.py"))
+            os.symlink("sub", os.path.join(root, "linkdir"))
+        except (OSError, NotImplementedError):
+            self.skipTest("symbolic links are not available")
+        art = read_artifact(root)
+        self.assertEqual(art.links, {"link.py": "sub/real.py", "linkdir": "sub"})
+        self.assertEqual(sorted(art.files), ["PKG-INFO", "sub/real.py"])
+        os.symlink(outside, os.path.join(root, "escape"))
+        with self.assertRaisesRegex(ArtifactError, "points outside the artifact"):
+            read_artifact(root)
+
+    def test_limits_apply_to_a_directory(self):
+        root = self.tree("d", {"a": b"x" * 600, "b": b"x" * 600})
+        with self.assertRaisesRegex(ArtifactError, "larger than 500 bytes"):
+            read_artifact(root, limits=(10, 500, 10 ** 6))
+        with self.assertRaisesRegex(ArtifactError, "more than 1 members"):
+            read_artifact(root, limits=(1, 1000, 10 ** 6))
+
+    def test_diff_accepts_a_directory(self):
+        old = write_tar(self.path("demo-1.0.tar.gz"), {"demo-1.0/PKG-INFO": b"x"})
+        new = self.tree("demo-1.1", {"PKG-INFO": b"x", "extra.py": b"y"})
+        code, out, err = run_cli("diff", old, new)
+        self.assertEqual((code, err), (0, b""))  # a plain added file is not a finding
+        self.assertIn(b"file\tadded\textra.py", out)
+
+
+class MacMetadata(TempCase):
+    def test_metadata_file_beside_the_top_directory_is_kept_as_a_file(self):
+        art = read_artifact(write_tar(self.path("demo-1.0.tar.gz"), {
+            "._demo-1.0": b"meta", "demo-1.0/PKG-INFO": b"x", "demo-1.0/._a.py": b"m"}))
+        self.assertEqual(art.kind, SDIST)
+        self.assertEqual(art.files, {"._demo-1.0": b"meta", "PKG-INFO": b"x", "._a.py": b"m"})
+
+    def test_other_top_level_files_are_still_refused(self):
+        path = write_tar(self.path("d.tar.gz"), {"notes.txt": b"", "demo-1.0/PKG-INFO": b"x"})
+        with self.assertRaisesRegex(ArtifactError, "top-level"):
+            read_artifact(path)
+
+    def test_metadata_name_already_inside_is_refused(self):
+        path = write_tar(self.path("d.tar.gz"), {"._x": b"1", "demo-1.0/._x": b"2"})
+        with self.assertRaisesRegex(ArtifactError, "duplicate member"):
+            read_artifact(path)
+
+
 class EdgeCases(TempCase):
     def test_empty_wheel_reads_with_no_files(self):
         art = read_artifact(write_zip(self.path("demo-1.0-py3-none-any.whl"), {}))
