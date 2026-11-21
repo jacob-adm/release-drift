@@ -4,9 +4,14 @@ release-drift compares two releases of a package, and a release with the git tag
 from, before you install it. It reports which files changed, which new code runs at install or
 interpreter start-up, and which files of the release are not in the project's tagged source.
 
-Recent supply-chain attacks used these places: a `.pth` file in a PyPI wheel that Python runs at
-every start, an npm release published from a stolen account instead of the project's CI, and
-npm `preinstall` scripts. A new `.pth` file or install script is a record in release-drift's
+Recent supply-chain attacks used these places: a `.pth` file in a PyPI wheel, which
+[Python runs at every start](https://docs.python.org/3/library/site.html)
+([LiteLLM 1.82.8](https://docs.litellm.ai/blog/security-update-march-2026)); npm releases
+published with a stolen maintainer account or token
+([axios](https://github.com/axios/axios/issues/10636),
+[Cline](https://github.com/cline/cline/security/advisories/GHSA-9ppg-jx86-fqw7)); and npm
+`preinstall` scripts
+([tensorlake](https://github.com/tensorlakeai/tensorlake/security/advisories/GHSA-8g63-53c9-65j2)). A new `.pth` file or install script is a record in release-drift's
 output, and so is a file in a release that is not in the project's tag.
 
 release-drift only reports. It does not decide whether a package is malicious, and it does not
@@ -17,10 +22,16 @@ check in CI. There is no AI and no scoring: the same inputs always give byte-ide
 
 - Python 3.9 or later, standard library only.
 - git, for `release-drift source`.
-- No platform-specific code; tested on macOS.
+- No platform-specific code; the tests run on Linux, macOS and Windows in CI.
 - Network access only for the optional `fetch` command.
 
 ## Install
+
+From PyPI:
+
+```
+pip install release-drift
+```
 
 From a clone:
 
