@@ -1,7 +1,7 @@
 # Findings on ordinary releases
 
 How often release-drift reports a finding (exit status 1) for an ordinary release, measured on
-23 November 2026 with release-drift 0.2.0. `benchmark/noise.py` reproduces it.
+23 November 2026 with release-drift 0.2.0, and re-run on the same files with the 0.3.0 rule. `benchmark/noise.py` reproduces it.
 
 ## Sample
 
@@ -39,14 +39,21 @@ In the replays of the 2026 attacks, the records that caught each attack were `bl
 1.82.7, tensorlake 0.5.144), `pth` (LiteLLM 1.82.8), `npm-script` with `postinstall` (Cline 2.3.0,
 plain-crypto-js 4.2.1) and `dependency` (axios 1.14.1). No attack was caught by `url-host` alone.
 
-| If | Pairs with a finding | Replayed attacks still reported |
+| Rule | Pairs with a finding | Replayed attacks still reported |
 | --- | --- | --- |
-| Nothing changes | 47 (23.6%) | All six |
-| `url-host` does not set exit status 1 | 21 (10.6%) | All six |
-| and `prepare` is not an install script | 19 (9.5%) | All six |
+| Every record but `file` is a finding (0.2.0) | 47 (23.6%) | All six |
+| `url-host` is printed but not a finding (from 0.3.0) | 21 (10.6%): PyPI 15, npm 6 | All six |
 
-npm runs `prepare` when a package is installed from git or from its own directory, not when it is
-installed from the registry.
+The 9 `build` records were read by hand. Two `setup.py` changes are only a version pin or a
+copyright line (boto3, six), two change the version and supported Python versions (pyyaml,
+jmespath), two add or change build logic (charset-normalizer now runs a separate build hook file at
+install, pillow), and three rewrite or empty the file (python-dateutil, sniffio, tenacity). No narrow
+pattern separates harmless changes from the rest, and `setup.py` runs at install, so a change to it
+stays a finding.
+
+`prepare` stays an install script. In a test with npm 10.9.9, `npm install ./PACKAGE.tgz` and a
+plain `npm install` with a folder dependency both ran a package's `prepare`; a plain `npm install`
+with a tarball dependency did not. npm's documentation also names git dependencies.
 
 ## Limits
 
