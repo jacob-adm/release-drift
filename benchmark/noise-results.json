@@ -1,0 +1,1531 @@
+{
+  "by_category_pairs": {
+    "blob": 2,
+    "build": 9,
+    "dependency": 9,
+    "link": 1,
+    "native": 1,
+    "npm-script": 2,
+    "url-host": 34
+  },
+  "by_registry": {
+    "npm": {
+      "compared": 100,
+      "with_finding": 17
+    },
+    "pypi": {
+      "compared": 99,
+      "with_finding": 30
+    }
+  },
+  "compared": 199,
+  "errors": [
+    {
+      "error": "duplicate member 'pyarrow-26.0.0/LICENSE.txt'",
+      "name": "pyarrow",
+      "registry": "pypi"
+    }
+  ],
+  "pairs": 200,
+  "rows": [
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "boto3",
+      "new": "1.44.9",
+      "old": "1.44.8",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "packaging",
+      "new": "26.3",
+      "old": "26.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "typing-extensions",
+      "new": "4.16.0",
+      "old": "4.15.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "certifi",
+      "new": "2026.11.20",
+      "old": "2026.10.23",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "idna",
+      "new": "3.20",
+      "old": "3.19",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 50
+      },
+      "name": "urllib3",
+      "new": "2.8.0",
+      "old": "2.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "charset-normalizer",
+      "new": "3.5.3",
+      "old": "3.5.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "requests",
+      "new": "2.34.2",
+      "old": "2.34.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "cryptography",
+      "new": "50.0.2",
+      "old": "50.0.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "cffi",
+      "new": "2.1.1",
+      "old": "2.1.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "pluggy",
+      "new": "1.7.0",
+      "old": "1.6.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "pyyaml",
+      "new": "6.0.4",
+      "old": "6.0.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "pycparser",
+      "new": "3.12",
+      "old": "3.11",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 7
+      },
+      "name": "pygments",
+      "new": "2.21.0",
+      "old": "2.20.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 2,
+        "url-host": 3
+      },
+      "name": "python-dateutil",
+      "new": "4.0.0",
+      "old": "3.0.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "six",
+      "new": "1.17.0",
+      "old": "1.16.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "setuptools",
+      "new": "84.2.1",
+      "old": "84.2.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pydantic",
+      "new": "2.14.4",
+      "old": "2.14.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pydantic-core",
+      "new": "2.50.5",
+      "old": "2.50.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "click",
+      "new": "8.5.1",
+      "old": "8.5.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "numpy",
+      "new": "2.5.5",
+      "old": "2.5.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "botocore",
+      "new": "1.44.9",
+      "old": "1.44.8",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 4
+      },
+      "name": "anyio",
+      "new": "4.16.0",
+      "old": "4.15.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "annotated-types",
+      "new": "0.8.0",
+      "old": "0.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 6,
+        "url-host": 8
+      },
+      "name": "pytest",
+      "new": "9.2.0",
+      "old": "9.1.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "iniconfig",
+      "new": "2.3.1",
+      "old": "2.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "typing-inspection",
+      "new": "0.4.5",
+      "old": "0.4.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "h11",
+      "new": "0.16.0",
+      "old": "0.15.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 17
+      },
+      "name": "attrs",
+      "new": "26.1.0",
+      "old": "25.4.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "markupsafe",
+      "new": "3.0.4",
+      "old": "3.0.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "httpx",
+      "new": "0.28.1",
+      "old": "0.28.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "httpcore",
+      "new": "1.0.9",
+      "old": "1.0.8",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "s3transfer",
+      "new": "0.19.3",
+      "old": "0.19.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "protobuf",
+      "new": "7.36.2",
+      "old": "7.36.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "python-dotenv",
+      "new": "1.2.4",
+      "old": "1.2.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pyjwt",
+      "new": "2.15.1",
+      "old": "2.15.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "jinja2",
+      "new": "3.1.6",
+      "old": "3.1.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 3
+      },
+      "name": "pandas",
+      "new": "3.1.1",
+      "old": "3.1.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "aiobotocore",
+      "new": "3.10.0",
+      "old": "3.9.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "starlette",
+      "new": "1.10.0",
+      "old": "1.9.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "opentelemetry-api",
+      "new": "1.45.2",
+      "old": "1.45.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "platformdirs",
+      "new": "4.14.8",
+      "old": "4.14.7",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 1,
+        "url-host": 5
+      },
+      "name": "pillow",
+      "new": "13.0.0",
+      "old": "12.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "uvicorn",
+      "new": "0.54.0",
+      "old": "0.53.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pathspec",
+      "new": "1.1.1",
+      "old": "1.1.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "rpds-py",
+      "new": "2026.9.1",
+      "old": "2026.6.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "fsspec",
+      "new": "2026.9.0",
+      "old": "2026.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "jsonschema",
+      "new": "4.26.0",
+      "old": "4.25.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "filelock",
+      "new": "4.3.0",
+      "old": "4.2.12",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "jmespath",
+      "new": "1.1.0",
+      "old": "1.0.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "tzdata",
+      "new": "2026.6",
+      "old": "2026.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "referencing",
+      "new": "0.37.0",
+      "old": "0.36.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "tomlkit",
+      "new": "0.15.2",
+      "old": "0.15.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "jsonschema-specifications",
+      "new": "2025.9.1",
+      "old": "2025.4.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "multidict",
+      "new": "7.2.1",
+      "old": "7.2.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 3,
+        "url-host": 57
+      },
+      "name": "markdown-it-py",
+      "new": "4.3.0",
+      "old": "4.2.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "rich",
+      "new": "15.0.0",
+      "old": "14.3.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "aiohttp",
+      "new": "3.14.5",
+      "old": "3.14.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "yarl",
+      "new": "1.25.1",
+      "old": "1.24.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mdurl",
+      "new": "0.1.2",
+      "old": "0.1.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "propcache",
+      "new": "0.5.4",
+      "old": "0.5.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pip",
+      "new": "26.3",
+      "old": "26.2.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "annotated-doc",
+      "new": "0.0.7",
+      "old": "0.0.6",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "websockets",
+      "new": "17.4",
+      "old": "17.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "fastapi",
+      "new": "0.165.0",
+      "old": "0.164.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "googleapis-common-protos",
+      "new": "1.76.0",
+      "old": "1.75.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pytz",
+      "new": "2026.6",
+      "old": "2026.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "frozenlist",
+      "new": "1.8.0",
+      "old": "1.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "tqdm",
+      "new": "4.70.1",
+      "old": "4.70.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pyasn1",
+      "new": "0.6.5",
+      "old": "0.6.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 1,
+        "url-host": 1
+      },
+      "name": "aiosignal",
+      "new": "1.4.0",
+      "old": "1.3.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "aiohappyeyeballs",
+      "new": "2.7.1",
+      "old": "2.6.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "url-host": 1
+      },
+      "name": "sniffio",
+      "new": "1.3.1",
+      "old": "1.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pydantic-settings",
+      "new": "2.16.3",
+      "old": "2.16.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "wrapt",
+      "new": "2.5.2",
+      "old": "2.5.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "python-multipart",
+      "new": "0.0.34",
+      "old": "0.0.33",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "google-auth",
+      "new": "2.63.1",
+      "old": "2.63.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "trove-classifiers",
+      "new": "2026.9.21.13",
+      "old": "2026.6.1.19",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "zipp",
+      "new": "4.1.2",
+      "old": "4.1.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "lxml",
+      "new": "6.1.3",
+      "old": "6.1.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 2,
+        "link": 1,
+        "url-host": 1
+      },
+      "name": "tenacity",
+      "new": "9.2.1",
+      "old": "9.1.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "importlib-metadata",
+      "new": "10.2.0",
+      "old": "10.1.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pyasn1-modules",
+      "new": "0.4.2",
+      "old": "0.4.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "ruff",
+      "new": "0.17.6",
+      "old": "0.17.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "sqlalchemy",
+      "new": "2.1.9",
+      "old": "2.1.8",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "jiter",
+      "new": "0.19.0",
+      "old": "0.18.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "greenlet",
+      "new": "3.5.6",
+      "old": "3.5.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "hatchling",
+      "new": "1.33.0",
+      "old": "1.32.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "wheel",
+      "new": "0.48.0",
+      "old": "0.47.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pyparsing",
+      "new": "3.3.3",
+      "old": "3.3.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "grpcio",
+      "new": "1.85.3",
+      "old": "1.85.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "regex",
+      "new": "2026.11.19",
+      "old": "2026.11.18",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "truststore",
+      "new": "0.10.5",
+      "old": "0.10.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "scipy",
+      "new": "1.18.1",
+      "old": "1.18.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "grpcio-status",
+      "new": "1.85.3",
+      "old": "1.85.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "openai",
+      "new": "3.57.0",
+      "old": "3.56.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "httpx2",
+      "new": "2.16.2",
+      "old": "2.16.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "watchfiles",
+      "new": "1.3.0",
+      "old": "1.2.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "httpcore2",
+      "new": "2.16.2",
+      "old": "2.16.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "semver",
+      "new": "7.8.6",
+      "old": "7.8.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "minimatch",
+      "new": "11.0.9",
+      "old": "11.0.8",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "debug",
+      "new": "4.4.3",
+      "old": "4.4.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ansi-styles",
+      "new": "7.0.0",
+      "old": "6.2.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "brace-expansion",
+      "new": "5.0.13",
+      "old": "5.0.12",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "strip-ansi",
+      "new": "7.2.0",
+      "old": "7.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ansi-regex",
+      "new": "6.6.0",
+      "old": "6.5.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ms",
+      "new": "2.1.3",
+      "old": "2.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "supports-color",
+      "new": "11.0.0",
+      "old": "10.2.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "chalk",
+      "new": "6.0.1",
+      "old": "6.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "commander",
+      "new": "15.1.0",
+      "old": "15.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "lru-cache",
+      "new": "11.5.3",
+      "old": "11.5.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "string-width",
+      "new": "9.0.0",
+      "old": "8.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "wrap-ansi",
+      "new": "10.0.2",
+      "old": "10.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "tslib",
+      "new": "2.9.1",
+      "old": "2.8.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "picomatch",
+      "new": "4.0.7",
+      "old": "4.0.6",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "emoji-regex",
+      "new": "11.0.0",
+      "old": "10.6.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "glob",
+      "new": "14.0.6",
+      "old": "14.0.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "type-fest",
+      "new": "6.0.3",
+      "old": "6.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "color-name",
+      "new": "2.1.1",
+      "old": "2.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 4
+      },
+      "name": "eslint-visitor-keys",
+      "new": "5.0.1",
+      "old": "5.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "color-convert",
+      "new": "3.1.3",
+      "old": "3.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ajv",
+      "new": "8.20.0",
+      "old": "8.18.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "minipass",
+      "new": "7.1.3",
+      "old": "7.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "source-map",
+      "new": "0.8.0",
+      "old": "0.7.6",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "balanced-match",
+      "new": "5.0.0",
+      "old": "4.0.4",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "readable-stream",
+      "new": "4.8.0",
+      "old": "4.7.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "which",
+      "new": "7.0.0",
+      "old": "6.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "glob-parent",
+      "new": "7.0.0",
+      "old": "6.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "escape-string-regexp",
+      "new": "5.0.0",
+      "old": "4.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "has-flag",
+      "new": "5.0.1",
+      "old": "5.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "find-up",
+      "new": "8.0.0",
+      "old": "7.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "locate-path",
+      "new": "8.0.0",
+      "old": "7.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "json-schema-traverse",
+      "new": "1.0.0",
+      "old": "0.5.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "p-limit",
+      "new": "7.3.3",
+      "old": "7.3.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "npm-script": 1,
+        "url-host": 1
+      },
+      "name": "yallist",
+      "new": "5.0.0",
+      "old": "4.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "safe-buffer",
+      "new": "5.2.1",
+      "old": "5.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "npm-script": 1
+      },
+      "name": "uuid",
+      "new": "14.0.3",
+      "old": "14.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "p-locate",
+      "new": "7.0.0",
+      "old": "6.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "undici-types",
+      "new": "8.13.1",
+      "old": "8.13.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ignore",
+      "new": "7.0.16",
+      "old": "7.0.14",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "iconv-lite",
+      "new": "0.7.3",
+      "old": "0.7.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "signal-exit",
+      "new": "4.1.0",
+      "old": "4.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "esbuild",
+      "new": "0.28.2",
+      "old": "0.28.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is-fullwidth-code-point",
+      "new": "5.1.0",
+      "old": "5.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "js-yaml",
+      "new": "5.5.0",
+      "old": "5.4.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "blob": 2
+      },
+      "name": "entities",
+      "new": "9.0.0",
+      "old": "8.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "globals",
+      "new": "17.14.0",
+      "old": "17.13.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "postcss",
+      "new": "8.5.33",
+      "old": "8.5.32",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "isexe",
+      "new": "4.0.0",
+      "old": "3.1.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "isarray",
+      "new": "2.0.5",
+      "old": "2.0.4",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 3
+      },
+      "name": "path-key",
+      "new": "4.0.0",
+      "old": "3.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "string_decoder",
+      "new": "1.3.0",
+      "old": "1.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "argparse",
+      "new": "3.0.4",
+      "old": "3.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "ws",
+      "new": "8.23.0",
+      "old": "8.22.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "mime-db",
+      "new": "1.54.0",
+      "old": "1.53.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "resolve",
+      "new": "1.22.14",
+      "old": "1.22.13",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "agent-base",
+      "new": "9.0.0",
+      "old": "8.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "blob": 2,
+        "native": 1
+      },
+      "name": "@esbuild/linux-x64",
+      "new": "0.28.2",
+      "old": "0.28.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "yargs-parser",
+      "new": "22.0.0",
+      "old": "21.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "mime-types",
+      "new": "3.0.2",
+      "old": "3.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "acorn",
+      "new": "8.19.0",
+      "old": "8.18.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "estraverse",
+      "new": "5.3.0",
+      "old": "5.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "cross-spawn",
+      "new": "7.0.6",
+      "old": "7.0.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "react-is",
+      "new": "19.3.1",
+      "old": "19.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "picocolors",
+      "new": "1.1.1",
+      "old": "1.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "fs-extra",
+      "new": "11.4.1",
+      "old": "11.4.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "hasown",
+      "new": "2.0.4",
+      "old": "2.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "nanoid",
+      "new": "6.0.2",
+      "old": "6.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "yargs",
+      "new": "18.2.0",
+      "old": "18.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "resolve-from",
+      "new": "5.0.0",
+      "old": "4.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "shebang-command",
+      "new": "2.0.0",
+      "old": "1.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pretty-format",
+      "new": "30.5.1",
+      "old": "30.5.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "json5",
+      "new": "2.2.3",
+      "old": "2.2.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "https-proxy-agent",
+      "new": "9.1.0",
+      "old": "9.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "path-to-regexp",
+      "new": "9.0.0",
+      "old": "8.4.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "path-exists",
+      "new": "5.0.0",
+      "old": "4.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 1
+      },
+      "name": "punycode",
+      "new": "2.3.1",
+      "old": "2.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "js-tokens",
+      "new": "10.0.1",
+      "old": "10.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "cliui",
+      "new": "9.0.1",
+      "old": "9.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "shebang-regex",
+      "new": "4.0.0",
+      "old": "3.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@babel/types",
+      "new": "8.1.3",
+      "old": "8.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "chokidar",
+      "new": "6.0.0",
+      "old": "5.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "strip-json-comments",
+      "new": "5.1.0",
+      "old": "5.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "inherits",
+      "new": "2.0.4",
+      "old": "2.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "url-host": 2
+      },
+      "name": "webidl-conversions",
+      "new": "8.0.1",
+      "old": "8.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "get-stream",
+      "new": "9.0.1",
+      "old": "9.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "eslint-scope",
+      "new": "9.1.2",
+      "old": "9.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "cookie",
+      "new": "2.0.2",
+      "old": "2.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@babel/parser",
+      "new": "8.1.3",
+      "old": "8.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "qs",
+      "new": "6.17.1",
+      "old": "6.17.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is-number",
+      "new": "7.0.0",
+      "old": "6.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "whatwg-url",
+      "new": "17.3.0",
+      "old": "17.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@types/estree",
+      "new": "1.0.10",
+      "old": "1.0.9",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "tr46",
+      "new": "7.0.0",
+      "old": "6.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "convert-source-map",
+      "new": "2.0.0",
+      "old": "1.9.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is-glob",
+      "new": "4.0.3",
+      "old": "4.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "braces",
+      "new": "3.0.3",
+      "old": "3.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "fast-deep-equal",
+      "new": "3.1.3",
+      "old": "3.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "form-data",
+      "new": "4.0.6",
+      "old": "4.0.5",
+      "registry": "npm"
+    }
+  ],
+  "with_finding": 47
+}

@@ -128,6 +128,7 @@ Every file of the sdist is in the tag `1.17.0`, apart from the files setuptools 
 ## Documentation
 
 - [Commands](https://github.com/jacob-adm/release-drift/blob/main/docs/commands.md): each command's input, records, options and exit status.
+- [Findings on ordinary releases](https://github.com/jacob-adm/release-drift/blob/main/docs/noise.md): how often a finding appears for 199 ordinary releases of popular PyPI and npm packages, and by which category.
 - [Source comparison](https://github.com/jacob-adm/release-drift/blob/main/docs/source-comparison.md): which generated files `source` accepts, and why.
 - [Limitations and security](https://github.com/jacob-adm/release-drift/blob/main/docs/limitations-and-security.md): what release-drift reads, refuses
   and does not detect.
