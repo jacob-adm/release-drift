@@ -84,11 +84,20 @@ def diff(old, new):
 INFORMATIONAL = ("file", "url-host")
 
 
-def is_finding(command, record):
+# Records diff can be told to print without failing (--informational): a native file or a
+# build script that is in both releases but changed. Off by default, because a modified
+# setup.py or a replaced binary is an install-time attack route (docs/noise.md).
+OPTIONAL_INFORMATIONAL = {"native-changed": ("native", "changed"),
+                          "build-changed": ("build", "changed")}
+
+
+def is_finding(command, record, quiet=()):
     """A finding sets exit status 1. For diff, every record except a plain file
-    record or a new URL host; for source, every record, since each names a file
-    not in the tag."""
-    return command == "source" or record[0] not in INFORMATIONAL
+    record, a new URL host, or a (category, status) pair in QUIET; for source,
+    every record, since each names a file not in the tag."""
+    if command == "source":
+        return True
+    return record[0] not in INFORMATIONAL and tuple(record[:2]) not in quiet
 
 
 # --- release against git ---------------------------------------------------

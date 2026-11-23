@@ -1,7 +1,7 @@
 # Commands
 
 ```
-release-drift diff OLD NEW [--json]
+release-drift diff OLD NEW [--json] [--informational LIST]
 release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json]
 release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel,all}]
 release-drift --version
@@ -76,6 +76,13 @@ set the exit status on its own, because ordinary releases add links often (in th
 [Findings on ordinary releases](noise.md), 26 of 199 ordinary updates had no other record). Every record of `source` is a finding, because each names a
 file of the artifact that is not, as it is, in the tag. So `diff` between two releases that only
 change ordinary files prints those files and exits 0.
+
+`--informational LIST` makes the records it names printed but not findings, for `diff` only.
+LIST is comma-separated: `native-changed` (a native file in both releases, changed) and
+`build-changed` (a build script or build section in both releases, changed). The default treats
+both as findings, because a modified `setup.py` or a replaced binary is a way to run code at
+install. [Findings on ordinary releases](noise.md#optional-informational-records) gives the measured
+trade-off. Any other value is a usage error (exit 2).
 
 On exit 2 nothing is printed to standard output and the reason is on standard error, starting
 with `release-drift: error:`.

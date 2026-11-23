@@ -50,6 +50,25 @@ class Diff(TempCase):
         self.assertEqual(code, 1)
         self.assertIn(b"url-host\tadded\tb.py\tnew.invalid\n", out)
 
+    def test_informational_option_quiets_only_what_it_names(self):
+        setup = b"from setuptools import setup\nsetup(name='demo', version='%s')\n"
+        old = write_tar(self.path("demo-1.0.tar.gz"), {"demo-1.0/PKG-INFO": b"x",
+                                                       "demo-1.0/setup.py": setup % b"1.0"})
+        new = write_tar(self.path("demo-1.1.tar.gz"), {"demo-1.1/PKG-INFO": b"x",
+                                                       "demo-1.1/setup.py": setup % b"1.1"})
+        line = b"build\tchanged\tsetup.py\tsetup.py\n"
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual(code, 1)  # strict by default
+        self.assertIn(line, out)
+        code, out, _ = run_cli("diff", "--informational", "build-changed", old, new)
+        self.assertEqual(code, 0)  # still printed, no longer a finding
+        self.assertIn(line, out)
+        code, _, _ = run_cli("diff", "--informational", "native-changed", old, new)
+        self.assertEqual(code, 1)  # names only what it quiets
+        code, _, err = run_cli("diff", "--informational", "pth-added", old, new)
+        self.assertEqual(code, 2)
+        self.assertIn(b"unknown value 'pth-added'", err)
+
     def test_known_host_is_not_new(self):
         old = write_zip(self.path("a.whl"), {"a.py": b"'https://docs.example/'"})
         new = write_zip(self.path("b.whl"), {"b.py": b"'https://docs.example/other'"})
