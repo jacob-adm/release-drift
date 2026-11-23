@@ -1,0 +1,1530 @@
+{
+  "by_category_pairs": {
+    "blob": 4,
+    "build": 33,
+    "dependency": 17,
+    "native": 6
+  },
+  "by_registry": {
+    "npm": {
+      "compared": 100,
+      "with_finding": 9
+    },
+    "pypi": {
+      "compared": 98,
+      "with_finding": 40
+    }
+  },
+  "compared": 198,
+  "errors": [
+    {
+      "error": "expected one top-level directory, found 6",
+      "name": "hexdump",
+      "registry": "pypi"
+    },
+    {
+      "error": "member 'livekit_plugins_krisp_internal-0.2.2/src/livekit/plugins/krisp_internal/libplugins_krisp_uniffi.so' is larger than 67108864 bytes",
+      "name": "livekit-plugins-krisp-internal",
+      "registry": "pypi"
+    }
+  ],
+  "pairs": 200,
+  "rows": [
+    {
+      "findings": {},
+      "name": "apache-airflow-providers-mongo",
+      "new": "5.5.1",
+      "old": "5.5.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "rotary-embedding-torch",
+      "new": "0.9.2",
+      "old": "0.9.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "iterproxy",
+      "new": "0.3.1",
+      "old": "0.2.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "blob": 1
+      },
+      "name": "xprof",
+      "new": "2.20.7",
+      "old": "2.20.6",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "advanced-alchemy",
+      "new": "1.12.0",
+      "old": "1.11.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "rangehttpserver",
+      "new": "1.4.0",
+      "old": "1.3.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "pyro-api",
+      "new": "0.1.2",
+      "old": "0.1.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "microsoft-opentelemetry",
+      "new": "1.6.0",
+      "old": "1.5.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "blob": 20,
+        "build": 1,
+        "dependency": 1
+      },
+      "name": "ta-lib",
+      "new": "0.8.3",
+      "old": "0.8.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "arviz-stats",
+      "new": "1.3.3",
+      "old": "1.3.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "types-qrcode",
+      "new": "8.2.0.20261122",
+      "old": "8.2.0.20260518",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-comprehend",
+      "new": "1.44.1",
+      "old": "1.44.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "python-gdcm",
+      "new": "3.2.6",
+      "old": "3.2.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-emr",
+      "new": "1.44.0",
+      "old": "1.43.124",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "cmsis-pack-manager",
+      "new": "0.6.0",
+      "old": "0.5.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "customtkinter",
+      "new": "6.0.0",
+      "old": "5.2.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "kedro-telemetry",
+      "new": "0.9.0",
+      "old": "0.8.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "sqlalchemy-drill",
+      "new": "1.1.10",
+      "old": "1.1.9",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "flask-testing",
+      "new": "0.8.1",
+      "old": "0.8.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "typeid-python",
+      "new": "0.3.11",
+      "old": "0.3.10",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "demjson3",
+      "new": "3.0.6",
+      "old": "3.0.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mkdocs-include-markdown-plugin",
+      "new": "7.3.2",
+      "old": "7.3.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "rawpy",
+      "new": "0.28.0",
+      "old": "0.27.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "aiooui",
+      "new": "0.1.11",
+      "old": "0.1.9",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "dash-ag-grid",
+      "new": "35.3.0",
+      "old": "35.2.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-cloudtrail",
+      "new": "1.44.0",
+      "old": "1.43.90",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "microsoft-agents-hosting-fastapi",
+      "new": "1.9.0",
+      "old": "1.8.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 1
+      },
+      "name": "smbus2",
+      "new": "0.6.1",
+      "old": "0.6.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "python-schema-registry-client",
+      "new": "2.6.1",
+      "old": "2.6.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "native": 15
+      },
+      "name": "pydevd-pycharm",
+      "new": "263.8311.32",
+      "old": "263.7307.329",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "openapi-schema-pydantic",
+      "new": "1.2.4",
+      "old": "1.2.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "jsons",
+      "new": "1.6.3",
+      "old": "0.8.9",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pytest-examples",
+      "new": "0.0.18",
+      "old": "0.0.17",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 4
+      },
+      "name": "azure-ai-textanalytics",
+      "new": "5.4.0",
+      "old": "5.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "e3nn",
+      "new": "0.6.0",
+      "old": "0.5.9",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 1
+      },
+      "name": "hnswlib",
+      "new": "0.8.0",
+      "old": "0.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "uncurl",
+      "new": "0.0.11",
+      "old": "0.0.10",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "alibabacloud-dingtalk",
+      "new": "2.2.67",
+      "old": "2.2.65",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "pdbp",
+      "new": "1.9.0",
+      "old": "1.8.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "axe-playwright-python",
+      "new": "0.1.8",
+      "old": "0.1.7",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "ag-ui-langgraph",
+      "new": "0.0.48",
+      "old": "0.0.47",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "rouge",
+      "new": "1.0.1",
+      "old": "1.0.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "simplegeneric",
+      "new": "0.8.1",
+      "old": "0.8",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "scons",
+      "new": "4.11.1",
+      "old": "4.11.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "bigquery-schema-generator",
+      "new": "1.6.1",
+      "old": "1.5.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "bluetooth-adapters",
+      "new": "2.4.0",
+      "old": "2.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "azure-multiapi-storage",
+      "new": "1.6.0",
+      "old": "1.5.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 4
+      },
+      "name": "mujoco-warp",
+      "new": "4.0.1",
+      "old": "4.0.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "prefab-ui",
+      "new": "0.21.1",
+      "old": "0.21.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "opt-einsum-fx",
+      "new": "0.1.4",
+      "old": "0.1.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "bindep",
+      "new": "2.14.0",
+      "old": "2.13.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-resourcegroupstaggingapi",
+      "new": "1.44.1",
+      "old": "1.44.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "azure-ai-translation-document",
+      "new": "2.0.0",
+      "old": "1.1.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "cmakelang",
+      "new": "0.6.13",
+      "old": "0.6.12",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "livekit-plugins-krisp",
+      "new": "0.4.13",
+      "old": "0.4.12",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "apache-airflow-providers-oracle",
+      "new": "4.7.1",
+      "old": "4.7.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "openqasm3",
+      "new": "1.0.2",
+      "old": "1.0.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 2
+      },
+      "name": "flask-openid",
+      "new": "1.3.1",
+      "old": "1.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pyoxigraph",
+      "new": "0.5.13",
+      "old": "0.5.12",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pytest-variables",
+      "new": "3.1.0",
+      "old": "3.0.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "django-ckeditor",
+      "new": "6.7.4",
+      "old": "6.7.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "potracer",
+      "new": "0.0.4",
+      "old": "0.0.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "llama-index-legacy",
+      "new": "0.9.48",
+      "old": "0.9.46",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "runpod",
+      "new": "2.4.0",
+      "old": "2.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "fuzzysearch",
+      "new": "0.8.1",
+      "old": "0.8.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "kylinpy",
+      "new": "2.8.4",
+      "old": "2.8.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "gilknocker",
+      "new": "0.4.2",
+      "old": "0.4.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "prefixed",
+      "new": "0.9.0",
+      "old": "0.8.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "uipath-runtime",
+      "new": "0.13.6",
+      "old": "0.13.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "sqids",
+      "new": "0.5.2",
+      "old": "0.5.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 2
+      },
+      "name": "lomond",
+      "new": "0.3.4",
+      "old": "0.3.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "hsluv",
+      "new": "5.0.5",
+      "old": "5.0.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "dbt-trino",
+      "new": "1.12.0",
+      "old": "1.11.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "skyfield",
+      "new": "1.55",
+      "old": "1.54",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "fsspec-xrootd",
+      "new": "0.5.5",
+      "old": "0.5.4",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "tabcompleter",
+      "new": "1.4.1",
+      "old": "1.4.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "webrtcvad",
+      "new": "2.0.10",
+      "old": "2.0.9",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "usb-devices",
+      "new": "0.5.1",
+      "old": "0.5.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "hl7",
+      "new": "0.4.5",
+      "old": "0.4.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "openhands-aci",
+      "new": "0.3.3",
+      "old": "0.3.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 2
+      },
+      "name": "cassetter",
+      "new": "0.17.0",
+      "old": "0.16.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "robotframework-robocop",
+      "new": "9.4.0",
+      "old": "9.3.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-appflow",
+      "new": "1.44.0",
+      "old": "1.43.90",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "blob": 6589,
+        "build": 1,
+        "native": 3
+      },
+      "name": "blingfire",
+      "new": "0.1.8",
+      "old": "0.1.7",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "fnv-hash-fast",
+      "new": "2.0.3",
+      "old": "2.0.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-sagemaker-runtime",
+      "new": "1.44.0",
+      "old": "1.43.68",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "pulumi-postgresql",
+      "new": "3.18.3",
+      "old": "3.18.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1,
+        "dependency": 10
+      },
+      "name": "pyodps",
+      "new": "0.13.3",
+      "old": "0.13.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "splunk-handler",
+      "new": "3.0.0",
+      "old": "2.2.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mypy-boto3-s3control",
+      "new": "1.44.5",
+      "old": "1.44.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "esp-idf-size",
+      "new": "2.3.2",
+      "old": "2.3.1",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "mcp-server-time",
+      "new": "2026.11.18",
+      "old": "2026.11.11",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "magiccube",
+      "new": "1.2.0",
+      "old": "1.1.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "dependency": 3
+      },
+      "name": "corner",
+      "new": "2.3.0",
+      "old": "2.2.3",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "python-fasthtml",
+      "new": "0.14.30",
+      "old": "0.14.29",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "influxdb3-python",
+      "new": "0.21.0",
+      "old": "0.20.0",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "ngrok",
+      "new": "0.1.6",
+      "old": "0.1.5",
+      "registry": "pypi"
+    },
+    {
+      "findings": {
+        "build": 1
+      },
+      "name": "suds",
+      "new": "1.2.0",
+      "old": "1.1.2",
+      "registry": "pypi"
+    },
+    {
+      "findings": {},
+      "name": "sort-object-keys",
+      "new": "2.1.0",
+      "old": "2.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@antfu/utils",
+      "new": "9.3.0",
+      "old": "9.2.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@lexical/html",
+      "new": "0.53.0",
+      "old": "0.52.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@tiptap/extension-text-align",
+      "new": "3.35.0",
+      "old": "3.34.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "lodash.capitalize",
+      "new": "4.2.1",
+      "old": "4.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "react-intl",
+      "new": "12.2.1",
+      "old": "12.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "native": 1
+      },
+      "name": "draco3d",
+      "new": "1.5.9",
+      "old": "1.5.8",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@walletconnect/sign-client",
+      "new": "2.26.0",
+      "old": "2.25.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@electric-sql/pglite-socket",
+      "new": "0.2.20",
+      "old": "0.2.19",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "env-editor",
+      "new": "1.3.0",
+      "old": "1.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@csstools/utilities",
+      "new": "3.0.0",
+      "old": "2.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "sponge-case",
+      "new": "2.0.3",
+      "old": "2.0.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "nlcst-to-string",
+      "new": "4.0.0",
+      "old": "3.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@jimp/plugin-fisheye",
+      "new": "1.7.0",
+      "old": "1.6.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@csstools/postcss-color-mix-function",
+      "new": "4.0.17",
+      "old": "4.0.16",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "lodash.mapvalues",
+      "new": "4.6.0",
+      "old": "4.5.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@types/uglify-js",
+      "new": "3.17.5",
+      "old": "3.17.4",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "suspend-react",
+      "new": "0.1.3",
+      "old": "0.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@codemirror/state",
+      "new": "6.7.6",
+      "old": "6.7.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "dom-serialize",
+      "new": "2.2.1",
+      "old": "2.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@module-federation/cli",
+      "new": "2.9.3",
+      "old": "2.9.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "expo-web-browser",
+      "new": "58.1.0",
+      "old": "58.0.8",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@shikijs/transformers",
+      "new": "4.6.0",
+      "old": "4.5.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@react-stately/list",
+      "new": "3.14.1",
+      "old": "3.14.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@sentry/hub",
+      "new": "7.120.4",
+      "old": "7.120.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@internationalized/string",
+      "new": "3.2.10",
+      "old": "3.2.9",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "echarts",
+      "new": "6.1.0",
+      "old": "6.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pug-parser",
+      "new": "6.0.0",
+      "old": "5.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "detective",
+      "new": "5.2.1",
+      "old": "5.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "git-remote-origin-url",
+      "new": "4.0.0",
+      "old": "3.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "doctypes",
+      "new": "1.1.0",
+      "old": "1.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "assert-never",
+      "new": "1.4.0",
+      "old": "1.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "git-hooks-list",
+      "new": "4.2.1",
+      "old": "4.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@vercel/functions",
+      "new": "3.11.3",
+      "old": "3.11.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "jsbi",
+      "new": "4.3.2",
+      "old": "4.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "mailparser",
+      "new": "3.15.0",
+      "old": "3.14.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@expo/config",
+      "new": "58.0.12",
+      "old": "58.0.11",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "blob": 13,
+        "native": 1
+      },
+      "name": "@unrs/resolver-binding-darwin-x64",
+      "new": "1.13.0",
+      "old": "1.12.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "robots-parser",
+      "new": "3.1.1",
+      "old": "3.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is-gzip",
+      "new": "2.0.0",
+      "old": "1.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "trim-right",
+      "new": "2.0.0",
+      "old": "1.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 1
+      },
+      "name": "bin-version-check",
+      "new": "6.0.0",
+      "old": "5.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@expo/devtools",
+      "new": "58.0.2",
+      "old": "58.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@types/mapbox__point-geometry",
+      "new": "1.0.87",
+      "old": "1.0.86",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "proxy-compare",
+      "new": "3.0.1",
+      "old": "3.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@lexical/list",
+      "new": "0.53.0",
+      "old": "0.52.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@isaacs/string-locale-compare",
+      "new": "1.1.0",
+      "old": "1.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 5
+      },
+      "name": "@react-types/combobox",
+      "new": "3.15.0",
+      "old": "3.14.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "error",
+      "new": "10.4.0",
+      "old": "10.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is",
+      "new": "3.3.2",
+      "old": "3.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@better-auth/core",
+      "new": "1.7.27",
+      "old": "1.7.26",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "react-virtualized-auto-sizer",
+      "new": "2.0.4",
+      "old": "2.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "fast-memoize",
+      "new": "2.5.2",
+      "old": "2.5.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "intersection-observer",
+      "new": "0.12.2",
+      "old": "0.12.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@react-stately/menu",
+      "new": "3.10.1",
+      "old": "3.10.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@lexical/table",
+      "new": "0.53.0",
+      "old": "0.52.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "postgres-range",
+      "new": "1.1.4",
+      "old": "1.1.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "native": 1
+      },
+      "name": "@parcel/watcher-darwin-arm64",
+      "new": "2.6.0",
+      "old": "2.5.6",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "nano-css",
+      "new": "5.6.2",
+      "old": "5.6.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@ljharb/through",
+      "new": "2.3.14",
+      "old": "2.3.13",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "concat-with-sourcemaps",
+      "new": "1.1.0",
+      "old": "1.0.7",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "image-q",
+      "new": "4.0.0",
+      "old": "3.0.8",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "token-stream",
+      "new": "1.0.0",
+      "old": "0.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pug",
+      "new": "3.0.4",
+      "old": "3.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@internationalized/message",
+      "new": "3.1.10",
+      "old": "3.1.9",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "mermaid",
+      "new": "12.3.0",
+      "old": "12.2.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "native": 1
+      },
+      "name": "esbuild-linux-64",
+      "new": "0.15.18",
+      "old": "0.15.17",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@angular-eslint/bundled-angular-compiler",
+      "new": "22.8.0",
+      "old": "22.7.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pug-linker",
+      "new": "4.0.0",
+      "old": "3.0.6",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@electron/osx-sign",
+      "new": "2.7.2",
+      "old": "2.7.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "markdown-it-anchor",
+      "new": "10.1.0",
+      "old": "10.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 4
+      },
+      "name": "@react-types/dialog",
+      "new": "3.6.0",
+      "old": "3.5.24",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pug-filters",
+      "new": "4.0.0",
+      "old": "3.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "retry-as-promised",
+      "new": "7.1.1",
+      "old": "7.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "unist-builder",
+      "new": "4.0.0",
+      "old": "3.0.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 5
+      },
+      "name": "@react-types/menu",
+      "new": "3.11.0",
+      "old": "3.10.7",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@types/color-name",
+      "new": "2.0.0",
+      "old": "1.1.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "babel-traverse",
+      "new": "6.26.0",
+      "old": "6.25.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@restart/hooks",
+      "new": "0.6.2",
+      "old": "0.6.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "lolex",
+      "new": "6.0.0",
+      "old": "5.1.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "inspect-with-kind",
+      "new": "1.0.5",
+      "old": "1.0.4",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@pnpm/error",
+      "new": "1100.2.3",
+      "old": "1100.2.2",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@parcel/watcher-linux-arm64-musl",
+      "new": "2.6.0",
+      "old": "2.5.6",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@lexical/clipboard",
+      "new": "0.53.0",
+      "old": "0.52.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@better-auth/telemetry",
+      "new": "1.7.27",
+      "old": "1.7.26",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@react-aria/combobox",
+      "new": "3.16.1",
+      "old": "3.16.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@mapbox/whoots-js",
+      "new": "3.1.0",
+      "old": "3.0.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "cloneable-readable",
+      "new": "3.0.0",
+      "old": "2.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "pug-code-gen",
+      "new": "3.0.4",
+      "old": "3.0.3",
+      "registry": "npm"
+    },
+    {
+      "findings": {
+        "dependency": 5
+      },
+      "name": "@react-types/datepicker",
+      "new": "3.14.0",
+      "old": "3.13.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "parse-bmfont-xml",
+      "new": "1.1.6",
+      "old": "1.1.5",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "warn-once",
+      "new": "0.1.1",
+      "old": "0.1.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@react-aria/dialog",
+      "new": "3.6.1",
+      "old": "3.6.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@lexical/history",
+      "new": "0.53.0",
+      "old": "0.52.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "is-valid-glob",
+      "new": "1.0.0",
+      "old": "0.3.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@angular-eslint/eslint-plugin",
+      "new": "22.8.0",
+      "old": "22.7.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@mrleebo/prisma-ast",
+      "new": "0.16.0",
+      "old": "0.15.0",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "css-mediaquery",
+      "new": "0.1.2",
+      "old": "0.1.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@prisma/dev",
+      "new": "0.25.2",
+      "old": "0.25.1",
+      "registry": "npm"
+    },
+    {
+      "findings": {},
+      "name": "@sindresorhus/transliterate",
+      "new": "3.1.0",
+      "old": "3.0.0",
+      "registry": "npm"
+    }
+  ],
+  "with_finding": 49
+}
