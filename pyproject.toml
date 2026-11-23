@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "release-drift"
-version = "0.1.2"
+version = "0.2.0"
 description = "Report what a package release adds: changed files, new install and startup code, files not in the tagged source."
 readme = "README.md"
 requires-python = ">=3.9"
