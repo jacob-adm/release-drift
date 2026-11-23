@@ -212,8 +212,15 @@ def read_artifact(path, limits=(MAX_MEMBERS, MAX_MEMBER_BYTES, MAX_TOTAL_BYTES))
         return Artifact(path, WHEEL, reader.files, reader.links)
     if unpacked:
         # The directory is the artifact's root: a wheel's contents, or the
-        # inside of an sdist's or npm tarball's top directory.
+        # inside of an sdist's or npm tarball's top directory. A directory that
+        # holds nothing but one directory is where an archive was unpacked
+        # (`tar xzf` leaves `package/` or `NAME-VERSION/`): read from inside it,
+        # as from the archive, so its files are not compared one level too high.
         files, links = reader.files, reader.links
+        names = list(files) + list(links)
+        if names and all("/" in n for n in names) and \
+                len({n.split("/", 1)[0] for n in names}) == 1:
+            files, links = _strip_top(files, links)
         if any(n.split("/")[0].endswith(".dist-info") and "/" in n for n in files):
             return Artifact(path, WHEEL, files, links)
     else:

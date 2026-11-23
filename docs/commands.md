@@ -16,7 +16,9 @@ tarball, and anything else is treated as an sdist. The top directory of an sdist
 writes beside that directory is kept, as a file at the root, and compared like any other.
 
 An artifact that is already unpacked can be given as a directory: the directory is the artifact's
-root (for an sdist or npm tarball, the inside of its top directory). It is a wheel when it holds a
+root (for an sdist or npm tarball, the inside of its top directory). A directory that holds nothing
+but one directory, as `tar xzf` leaves an npm tarball (`package/`) or an sdist (`NAME-VERSION/`),
+is read from inside that directory, like the archive. It is a wheel when it holds a
 `.dist-info` directory, and otherwise its kind is decided as above. Symbolic links in it are
 recorded, not followed, and one that points outside the directory is an error.
 

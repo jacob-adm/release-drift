@@ -145,6 +145,21 @@ class Directories(TempCase):
         art = read_artifact(self.tree("n", {"package.json": b"{}", "index.js": b""}))
         self.assertEqual((art.kind, sorted(art.files)), (NPM, ["index.js", "package.json"]))
 
+    def test_directory_holding_only_the_top_directory_reads_from_inside(self):
+        # Where `tar xzf` leaves an npm tarball or an sdist: one directory and nothing else.
+        npm = read_artifact(self.tree("x", {"package/package.json": b"{}", "package/i.js": b""}))
+        self.assertEqual((npm.kind, sorted(npm.files)), (NPM, ["i.js", "package.json"]))
+        sdist = read_artifact(self.tree("y", {"demo-1.0/PKG-INFO": b"x", "demo-1.0/demo/a.py": b"y"}))
+        self.assertEqual((sdist.kind, sorted(sdist.files)), (SDIST, ["PKG-INFO", "demo/a.py"]))
+
+    def test_install_script_found_in_an_unpacked_tarball_directory(self):
+        old = write_tar(self.path("p-1.0.tgz"), {"package/package.json": b'{"name": "p"}'})
+        new = self.tree("p-1.1", {"package/package.json":
+                                  b'{"name": "p", "scripts": {"postinstall": "node setup.js"}}'})
+        code, out, err = run_cli("diff", old, new)
+        self.assertEqual((code, err), (1, b""))
+        self.assertIn(b"npm-script\tadded\tpackage.json\tpostinstall=node setup.js", out)
+
     def test_links_are_recorded_and_not_followed(self):
         root = self.tree("d", {"PKG-INFO": b"x", "sub/real.py": b"y"})
         outside = self.tree("outside", {"secret": b"s"})
