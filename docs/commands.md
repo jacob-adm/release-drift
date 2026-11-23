@@ -48,6 +48,8 @@ To see only the findings of `diff`, leave out the `file` records: `grep -v '^fil
 | `build` | sdist: `setup.py` or `hatch_build.py` at the root | the file name |
 | `build` | sdist: root `pyproject.toml` | the `build-backend` and `backend-path` lines of `[build-system]`; hook tables under `[tool.hatch.build]`; `script`, `setup-script` and `build` keys of `[tool.hatch.build]`, `[tool.poetry.build]` and `[tool.pdm.build]`; the `build` key of `[tool.poetry]` itself (older Poetry: `build = "build.py"` or `build = { script = "build.py" }`) |
 | `npm-script` | npm: the root `package.json` and those under `node_modules/` (bundled dependencies) | `NAME=COMMAND` for each of `preinstall`, `install`, `postinstall`, `prepare`; `package.json does not parse` if it is not valid JSON |
+| `dependency` | npm: the root `package.json` | `FIELD NAME` for each name in `dependencies`, `optionalDependencies` and `peerDependencies`; versions are left out |
+| `dependency` | wheel `*.dist-info/METADATA`, sdist `PKG-INFO` | `Requires-Dist NAME` for each `Requires-Dist` header, the name normalised as pip compares it (`Evil_Pkg` is `evil-pkg`), with ` [extra=X]` when it only installs with an extra |
 | `npm-script` | npm: `binding.gyp` at the root | `install=node-gyp rebuild (implicit)`: npm runs this when a package has `binding.gyp` and no `install` or `preinstall` script |
 | `pyc-only` | any `*.pyc` whose `.py` source is not in the artifact | `no .py source` |
 | `native` | any file starting with an ELF, Mach-O, PE or WebAssembly header | `ELF`, `Mach-O`, `PE` or `WebAssembly` |
@@ -83,6 +85,9 @@ with `release-drift: error:`.
   surface is in both but its file's bytes differ (for `pth`, `startup`, `build` scripts,
   `pyc-only` and `native`). `npm-script` and `pyproject.toml` records are compared by DETAIL only,
   because `package.json` and `pyproject.toml` change in every release.
+- `dependency`: `added` when NEW installs a name OLD does not, compared by DETAIL only, so a new
+  version of an existing dependency is not reported. A new dependency carries its own install
+  scripts and code, which release-drift sees only when that package is compared itself.
 - `url-host` and `blob`: `added` when the host or blob does not appear anywhere in OLD; one record
   for each file of NEW it appears in.
 - Surfaces that NEW drops are not reported, apart from the `file removed` record.

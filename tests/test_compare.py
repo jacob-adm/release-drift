@@ -71,6 +71,35 @@ class Diff(TempCase):
             "npm-script\tadded\tpackage.json\tpreinstall=node setup.js",
         ])
 
+    def test_new_npm_dependency_is_reported(self):
+        # The axios 1.14.1 attack (March 2026) changed only package.json, adding a
+        # dependency whose own install script carried the payload.
+        old = write_tar(self.path("a-1.14.0.tgz"), {"package/package.json":
+                        b'{"version": "1.14.0", "dependencies": {"follow-redirects": "^1.15"}}'})
+        new = write_tar(self.path("a-1.14.1.tgz"), {"package/package.json":
+                        b'{"version": "1.14.1", "dependencies": {"follow-redirects": "^1.16",'
+                        b' "plain-crypto-js": "^4.2.1"}}'})
+        code, out, err = run_cli("diff", old, new)
+        self.assertEqual((code, err), (1, b""))
+        self.assertEqual(out.decode().splitlines(), [
+            "dependency\tadded\tpackage.json\tdependencies plain-crypto-js",
+            "file\tchanged\tpackage.json\t-",
+        ])
+
+    def test_new_requires_dist_is_reported_and_a_version_change_is_not(self):
+        # Headers end at the first blank line; a Requires-Dist line in the description is text.
+        meta = "Metadata-Version: 2.1\nName: demo\nVersion: %s\n%s\n\n%s\n"
+        old = write_zip(self.path("demo-1.0-py3-none-any.whl"), wheel_files("1.0", {
+            "demo-1.0.dist-info/METADATA": (meta % ("1.0", "Requires-Dist: requests>=2",
+                                                    "About.")).encode()}))
+        new = write_zip(self.path("demo-1.1-py3-none-any.whl"), wheel_files("1.1", {
+            "demo-1.1.dist-info/METADATA": (meta % ("1.1", "Requires-Dist: requests>=3\n"
+                                                    "Requires-Dist: Evil_Pkg ; extra == 'x'",
+                                                    "Requires-Dist: in-the-description")).encode()}))
+        records = [r for r in diff(read_artifact(old), read_artifact(new)) if r[0] == "dependency"]
+        self.assertEqual(records, [("dependency", "added", "demo-1.1.dist-info/METADATA",
+                                    "Requires-Dist evil-pkg [extra=x]")])
+
     def test_file_changes_without_findings_exit_0(self):
         old, new = self.wheels({"demo/extra.py": b"def sub(a, b):\n    return a - b\n"})
         code, out, err = run_cli("diff", old, new)
