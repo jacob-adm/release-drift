@@ -2,7 +2,8 @@
 
 release-drift compares two releases of a package, and a release with the git tag it was built
 from, before you install it. It reports which files changed, which new code runs at install or
-interpreter start-up, and which files of the release are not in the project's tagged source.
+interpreter start-up, which dependencies the release adds, and which files of the release are not
+in the project's tagged source.
 
 Recent supply-chain attacks used these places: a `.pth` file in a PyPI wheel, which
 [Python runs at every start](https://docs.python.org/3/library/site.html)
@@ -11,8 +12,8 @@ published with a stolen maintainer account or token
 ([axios](https://github.com/axios/axios/issues/10636),
 [Cline](https://github.com/cline/cline/security/advisories/GHSA-9ppg-jx86-fqw7)); and npm
 `preinstall` scripts
-([tensorlake](https://github.com/tensorlakeai/tensorlake/security/advisories/GHSA-8g63-53c9-65j2)). A new `.pth` file or install script is a record in release-drift's
-output, and so is a file in a release that is not in the project's tag.
+([tensorlake](https://github.com/tensorlakeai/tensorlake/security/advisories/GHSA-8g63-53c9-65j2)). A new `.pth` file, install script or dependency is a record in
+release-drift's output, and so is a file in a release that is not in the project's tag.
 
 release-drift only reports. It does not decide whether a package is malicious, and it does not
 block or quarantine anything; what to do with a record is up to you, for example a required
