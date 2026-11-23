@@ -40,7 +40,14 @@ release-drift lists facts about files. It does not decide whether a package is m
   `file changed` record, not an `npm-script` record. Script commands are not followed.
 - Execution surfaces are the ones listed in [Commands](commands.md#categories). Code that runs on
   `import` of an ordinary module, entry points and console scripts, and install-time behaviour
-  of other ecosystems are not covered.
+  of other ecosystems are not covered. This is the gap real attacks fall through: in a test on 119
+  hijacked releases from 2026 that the tool had not been tuned on, all 5 misses were PyPI wheels
+  whose payload is ordinary Python added to a package's `__init__.py` (see
+  [Replaying the 2026 attacks](https://github.com/jacob-adm/jacob-adm/blob/main/replays.md)). A
+  rule that reports an `__init__.py` newly importing `subprocess`, `socket`, `ctypes`,
+  `urllib.request`, `http.client`, `requests` or `httpx` was tested and not adopted: on 6 other
+  hijacked PyPI releases (2024 to 2025) it caught nothing release-drift missed, and on new packages
+  it fired for 34 of 100 malicious ones and 12 of 100 ordinary ones.
 - URL hosts are found only in plain text: a URL built at run time, encoded or compressed is not
   seen. Blobs shorter than 200 characters are not reported.
 - Files are read as UTF-8: a host in another encoding ends at its first byte that is not
