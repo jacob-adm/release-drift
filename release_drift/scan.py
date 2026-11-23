@@ -109,6 +109,47 @@ def npm_script_findings(data):
     return out
 
 
+NPM_DEPENDENCY_FIELDS = ("dependencies", "optionalDependencies", "peerDependencies")
+_REQUIREMENT_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
+_EXTRA = re.compile(r"""\bextra\s*==\s*['"]([^'"]+)['"]""")
+
+
+def npm_dependency_findings(data):
+    """Names a package.json installs with the package: `FIELD NAME`. Versions are
+    left out, so a version change is not a new dependency."""
+    try:
+        manifest = json.loads(data.decode("utf-8"))
+    except ValueError:
+        return []
+    if not isinstance(manifest, dict):
+        return []
+    out = []
+    for field in NPM_DEPENDENCY_FIELDS:
+        deps = manifest.get(field)
+        if isinstance(deps, dict):
+            out.extend("%s %s" % (field, name) for name in sorted(deps))
+    return out
+
+
+def requires_dist_findings(data):
+    """Requires-Dist names in wheel METADATA or sdist PKG-INFO, normalised as pip
+    compares them: `Requires-Dist NAME`, with `[extra=X]` for an optional one."""
+    out = []
+    for line in data.decode("utf-8", "replace").splitlines():
+        if not line.strip():
+            break  # the headers end at the first blank line; the description follows
+        if not line.lower().startswith("requires-dist:"):
+            continue
+        value = line.split(":", 1)[1].strip()
+        name = _REQUIREMENT_NAME.match(value)
+        if not name:
+            continue
+        detail = "Requires-Dist " + re.sub(r"[-_.]+", "-", name.group(0)).lower()
+        extra = _EXTRA.search(value)
+        out.append(detail + (" [extra=%s]" % extra.group(1) if extra else ""))
+    return out
+
+
 def _is_manifest_to_scan(path):
     """The root package.json, and those of bundled dependencies."""
     if path == "package.json":
@@ -148,6 +189,13 @@ def surfaces(artifact):
         if artifact.kind == NPM and _is_manifest_to_scan(path):
             for detail in npm_script_findings(data):
                 out.append(("npm-script", path, detail, False))
+        if artifact.kind == NPM and path == "package.json":
+            for detail in npm_dependency_findings(data):
+                out.append(("dependency", path, detail, False))
+        if (base == "METADATA" and path.count("/") == 1 and path.split("/")[0].endswith(".dist-info")) \
+                or (artifact.kind == SDIST and path == "PKG-INFO"):
+            for detail in requires_dist_findings(data):
+                out.append(("dependency", path, detail, False))
         if artifact.kind == NPM and base == "binding.gyp" and "/" not in path:
             out.append(("npm-script", path, "install=node-gyp rebuild (implicit)", False))
         if base.endswith(".pyc") and _pyc_source(path) not in files:
