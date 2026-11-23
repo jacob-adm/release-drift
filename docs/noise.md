@@ -75,6 +75,25 @@ benchmark/noise-results-*.json):
 - npm stays lower in every sample (6% to 20%), and no npm sample had an `npm-script` finding in more
   than 6 pairs.
 
+## Optional informational records
+
+`--informational native-changed,build-changed` (from 0.4.0) prints those records without setting
+exit status 1. On the samples above, the share of ordinary updates with a finding:
+
+| Sample | Default | `native-changed` | `build-changed` | Both |
+| --- | --- | --- | --- | --- |
+| Single step, sdists and tarballs | 10.6% | 10.6% | 8.0% | 8.0% |
+| Wheels | 22.0% | 15.0% | 22.0% | 15.0% |
+| Five versions apart | 33.5% | 33.5% | 28.5% | 28.5% |
+| Ranked from 5001st | 24.7% | 22.7% | 12.6% | 10.6% |
+
+On 125 attack samples (the 119 held-out 2026 releases in
+[Replaying the 2026 attacks](https://github.com/jacob-adm/jacob-adm/blob/main/replays.md) and 6
+hijacked PyPI releases from 2024 and 2025), no release that the default reports went unreported
+with either option. Those samples contain almost no attack that works by changing `setup.py` or
+replacing a compiled binary, so they cannot show what the options give up on that route. That is
+why both stay findings by default.
+
 ## Limits
 
 - One release step per package, of popular packages only. Smaller packages and longer steps (for

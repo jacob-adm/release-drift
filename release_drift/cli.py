@@ -7,7 +7,7 @@ import sys
 
 from . import __version__
 from .archive import ArtifactError, read_artifact
-from .compare import CompareError, diff, is_finding, source
+from .compare import OPTIONAL_INFORMATIONAL, CompareError, diff, is_finding, source
 from .fetch import FetchError, fetch
 
 _ESCAPES = {"\\": "\\\\", "\t": "\\t", "\n": "\\n", "\r": "\\r"}
@@ -48,6 +48,9 @@ def _parser():
     d = sub.add_parser("diff", help="compare two artifacts of a package")
     d.add_argument("old", metavar="OLD")
     d.add_argument("new", metavar="NEW")
+    d.add_argument("--informational", metavar="LIST", default="",
+                   help="comma-separated records to print without setting exit status 1: "
+                        + ", ".join(sorted(OPTIONAL_INFORMATIONAL)))
 
     s = sub.add_parser("source", help="files of an artifact that are not in git at a ref")
     s.add_argument("artifact", metavar="ARTIFACT")
@@ -70,7 +73,14 @@ def _parser():
 
 
 def main(argv=None):
-    args = _parser().parse_args(argv)
+    parser = _parser()
+    args = parser.parse_args(argv)
+    quiet = set()
+    for name in filter(None, getattr(args, "informational", "").split(",")):
+        if name.strip() not in OPTIONAL_INFORMATIONAL:
+            parser.error("--informational: unknown value %r (choose from %s)"
+                         % (name.strip(), ", ".join(sorted(OPTIONAL_INFORMATIONAL))))
+        quiet.add(OPTIONAL_INFORMATIONAL[name.strip()])
     out = sys.stdout.buffer
     try:
         if args.command == "fetch":
@@ -86,4 +96,4 @@ def main(argv=None):
         return 2
     out.write(render(records, args.json))
     out.flush()
-    return 1 if any(is_finding(args.command, r) for r in records) else 0
+    return 1 if any(is_finding(args.command, r, quiet) for r in records) else 0

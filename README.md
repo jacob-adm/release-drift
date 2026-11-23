@@ -68,7 +68,7 @@ pip installs `release-drift` as a console script. Without installing, it runs fr
 ## Commands
 
 ```
-release-drift diff OLD NEW [--json]                           compare two artifacts
+release-drift diff OLD NEW [--json] [--informational LIST]    compare two artifacts
 release-drift source ARTIFACT --repo DIR --ref REF             files not in git at REF
       [--prefix PATH] [--json]
 release-drift fetch {pypi,npm} NAME VERSION DIR                download one version; no install
