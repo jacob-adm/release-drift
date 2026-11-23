@@ -78,10 +78,17 @@ def diff(old, new):
     return sorted(set(records))
 
 
+# Records diff prints but that do not set exit status 1. A new URL host is common in
+# ordinary releases (links in documentation and changelogs, docs/noise.md) and is
+# reported for a reader to see; it is not a finding on its own.
+INFORMATIONAL = ("file", "url-host")
+
+
 def is_finding(command, record):
     """A finding sets exit status 1. For diff, every record except a plain file
-    record; for source, every record, since each names a file not in the tag."""
-    return command == "source" or record[0] != "file"
+    record or a new URL host; for source, every record, since each names a file
+    not in the tag."""
+    return command == "source" or record[0] not in INFORMATIONAL
 
 
 # --- release against git ---------------------------------------------------
