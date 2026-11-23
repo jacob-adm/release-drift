@@ -1,0 +1,702 @@
+[
+  {
+    "registry": "pypi",
+    "name": "boto3",
+    "old": "1.44.8",
+    "new": "1.44.9",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "packaging",
+    "old": "26.2",
+    "new": "26.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "typing-extensions",
+    "old": "4.15.0",
+    "new": "4.16.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "certifi",
+    "old": "2026.10.23",
+    "new": "2026.11.20",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "idna",
+    "old": "3.19",
+    "new": "3.20",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "urllib3",
+    "old": "2.7.0",
+    "new": "2.8.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "charset-normalizer",
+    "old": "3.5.2",
+    "new": "3.5.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "requests",
+    "old": "2.34.1",
+    "new": "2.34.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "cryptography",
+    "old": "50.0.1",
+    "new": "50.0.2",
+    "wheel_tag": "cp311-abi3-macosx_11_0_arm64"
+  },
+  {
+    "registry": "pypi",
+    "name": "cffi",
+    "old": "2.1.0",
+    "new": "2.1.1",
+    "wheel_tag": "cp310-cp310-macosx_10_15_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "pluggy",
+    "old": "1.6.0",
+    "new": "1.7.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyyaml",
+    "old": "6.0.3",
+    "new": "6.0.4",
+    "wheel_tag": "cp310-cp310-macosx_11_0_arm64"
+  },
+  {
+    "registry": "pypi",
+    "name": "pycparser",
+    "old": "3.11",
+    "new": "3.12",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pygments",
+    "old": "2.20.0",
+    "new": "2.21.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "six",
+    "old": "1.16.0",
+    "new": "1.17.0",
+    "wheel_tag": "py2.py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "setuptools",
+    "old": "84.2.0",
+    "new": "84.2.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pydantic",
+    "old": "2.14.3",
+    "new": "2.14.4",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pydantic-core",
+    "old": "2.50.4",
+    "new": "2.50.5",
+    "wheel_tag": "cp310-cp310-macosx_10_12_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "click",
+    "old": "8.5.0",
+    "new": "8.5.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "numpy",
+    "old": "2.5.4",
+    "new": "2.5.5",
+    "wheel_tag": "cp312-cp312-macosx_10_13_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "botocore",
+    "old": "1.44.8",
+    "new": "1.44.9",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "anyio",
+    "old": "4.15.1",
+    "new": "4.16.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "annotated-types",
+    "old": "0.7.0",
+    "new": "0.8.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pytest",
+    "old": "9.1.1",
+    "new": "9.2.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "iniconfig",
+    "old": "2.3.0",
+    "new": "2.3.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "typing-inspection",
+    "old": "0.4.4",
+    "new": "0.4.5",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "h11",
+    "old": "0.15.0",
+    "new": "0.16.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "attrs",
+    "old": "25.4.0",
+    "new": "26.1.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "markupsafe",
+    "old": "3.0.3",
+    "new": "3.0.4",
+    "wheel_tag": "cp310-cp310-macosx_10_9_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "httpx",
+    "old": "0.28.0",
+    "new": "0.28.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "httpcore",
+    "old": "1.0.8",
+    "new": "1.0.9",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "s3transfer",
+    "old": "0.19.2",
+    "new": "0.19.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "protobuf",
+    "old": "7.36.1",
+    "new": "7.36.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "python-dotenv",
+    "old": "1.2.3",
+    "new": "1.2.4",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyjwt",
+    "old": "2.15.0",
+    "new": "2.15.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "jinja2",
+    "old": "3.1.5",
+    "new": "3.1.6",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pandas",
+    "old": "3.1.0",
+    "new": "3.1.1",
+    "wheel_tag": "cp311-cp311-macosx_10_9_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "aiobotocore",
+    "old": "3.9.2",
+    "new": "3.10.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "starlette",
+    "old": "1.9.0",
+    "new": "1.10.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "opentelemetry-api",
+    "old": "1.45.1",
+    "new": "1.45.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "platformdirs",
+    "old": "4.14.7",
+    "new": "4.14.8",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pillow",
+    "old": "12.3.0",
+    "new": "13.0.0",
+    "wheel_tag": "cp311-cp311-macosx_10_10_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "uvicorn",
+    "old": "0.53.0",
+    "new": "0.54.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pathspec",
+    "old": "1.1.0",
+    "new": "1.1.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "rpds-py",
+    "old": "2026.6.3",
+    "new": "2026.9.1",
+    "wheel_tag": "cp311-cp311-macosx_10_12_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "fsspec",
+    "old": "2026.7.0",
+    "new": "2026.9.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "jsonschema",
+    "old": "4.25.1",
+    "new": "4.26.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "filelock",
+    "old": "4.2.12",
+    "new": "4.3.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "jmespath",
+    "old": "1.0.1",
+    "new": "1.1.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "tzdata",
+    "old": "2026.5",
+    "new": "2026.6",
+    "wheel_tag": "py2.py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "referencing",
+    "old": "0.36.2",
+    "new": "0.37.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "tomlkit",
+    "old": "0.15.1",
+    "new": "0.15.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "jsonschema-specifications",
+    "old": "2025.4.1",
+    "new": "2025.9.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "multidict",
+    "old": "7.2.0",
+    "new": "7.2.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "markdown-it-py",
+    "old": "4.2.0",
+    "new": "4.3.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "rich",
+    "old": "14.3.4",
+    "new": "15.0.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "aiohttp",
+    "old": "3.14.4",
+    "new": "3.14.5",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "yarl",
+    "old": "1.24.5",
+    "new": "1.25.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "mdurl",
+    "old": "0.1.1",
+    "new": "0.1.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "propcache",
+    "old": "0.5.3",
+    "new": "0.5.4",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pip",
+    "old": "26.2.2",
+    "new": "26.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "annotated-doc",
+    "old": "0.0.6",
+    "new": "0.0.7",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "websockets",
+    "old": "17.3",
+    "new": "17.4",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "fastapi",
+    "old": "0.164.0",
+    "new": "0.165.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "googleapis-common-protos",
+    "old": "1.75.5",
+    "new": "1.76.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pytz",
+    "old": "2026.5",
+    "new": "2026.6",
+    "wheel_tag": "py2.py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "frozenlist",
+    "old": "1.7.0",
+    "new": "1.8.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "tqdm",
+    "old": "4.70.0",
+    "new": "4.70.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyasn1",
+    "old": "0.6.4",
+    "new": "0.6.5",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "aiohappyeyeballs",
+    "old": "2.6.2",
+    "new": "2.7.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "sniffio",
+    "old": "1.3.0",
+    "new": "1.3.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pydantic-settings",
+    "old": "2.16.2",
+    "new": "2.16.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "wrapt",
+    "old": "2.5.1",
+    "new": "2.5.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "python-multipart",
+    "old": "0.0.33",
+    "new": "0.0.34",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "google-auth",
+    "old": "2.63.0",
+    "new": "2.63.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyarrow",
+    "old": "26.0.0",
+    "new": "26.0.1",
+    "wheel_tag": "cp311-cp311-macosx_12_0_arm64"
+  },
+  {
+    "registry": "pypi",
+    "name": "trove-classifiers",
+    "old": "2026.6.1.19",
+    "new": "2026.9.21.13",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "zipp",
+    "old": "4.1.1",
+    "new": "4.1.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "lxml",
+    "old": "6.1.2",
+    "new": "6.1.3",
+    "wheel_tag": "cp310-cp310-macosx_10_9_universal2"
+  },
+  {
+    "registry": "pypi",
+    "name": "tenacity",
+    "old": "9.1.4",
+    "new": "9.2.1",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "importlib-metadata",
+    "old": "10.1.0",
+    "new": "10.2.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyasn1-modules",
+    "old": "0.4.1",
+    "new": "0.4.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "ruff",
+    "old": "0.17.5",
+    "new": "0.17.6",
+    "wheel_tag": "py3-none-linux_armv6l"
+  },
+  {
+    "registry": "pypi",
+    "name": "sqlalchemy",
+    "old": "2.1.8",
+    "new": "2.1.9",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "jiter",
+    "old": "0.18.0",
+    "new": "0.19.0",
+    "wheel_tag": "cp311-cp311-macosx_10_12_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "greenlet",
+    "old": "3.5.5",
+    "new": "3.5.6",
+    "wheel_tag": "cp310-cp310-macosx_11_0_universal2"
+  },
+  {
+    "registry": "pypi",
+    "name": "hatchling",
+    "old": "1.32.4",
+    "new": "1.33.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "wheel",
+    "old": "0.47.0",
+    "new": "0.48.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "pyparsing",
+    "old": "3.3.2",
+    "new": "3.3.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "grpcio",
+    "old": "1.85.1",
+    "new": "1.85.3",
+    "wheel_tag": "cp310-cp310-linux_armv7l"
+  },
+  {
+    "registry": "pypi",
+    "name": "regex",
+    "old": "2026.11.18",
+    "new": "2026.11.19",
+    "wheel_tag": "cp311-cp311-macosx_10_9_universal2"
+  },
+  {
+    "registry": "pypi",
+    "name": "truststore",
+    "old": "0.10.4",
+    "new": "0.10.5",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "scipy",
+    "old": "1.18.0",
+    "new": "1.18.1",
+    "wheel_tag": "cp312-cp312-macosx_10_15_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "grpcio-status",
+    "old": "1.85.1",
+    "new": "1.85.3",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "openai",
+    "old": "3.56.0",
+    "new": "3.57.0",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "httpx2",
+    "old": "2.16.1",
+    "new": "2.16.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "watchfiles",
+    "old": "1.2.0",
+    "new": "1.3.0",
+    "wheel_tag": "cp314-cp314t-macosx_10_12_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "httpcore2",
+    "old": "2.16.1",
+    "new": "2.16.2",
+    "wheel_tag": "py3-none-any"
+  },
+  {
+    "registry": "pypi",
+    "name": "psutil",
+    "old": "7.2.1",
+    "new": "7.2.2",
+    "wheel_tag": "cp313-cp313t-macosx_10_13_x86_64"
+  },
+  {
+    "registry": "pypi",
+    "name": "google-api-core",
+    "old": "2.43.2",
+    "new": "2.44.0",
+    "wheel_tag": "py3-none-any"
+  }
+]

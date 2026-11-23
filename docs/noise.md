@@ -55,6 +55,26 @@ stays a finding.
 plain `npm install` with a folder dependency both ran a package's `prepare`; a plain `npm install`
 with a tarball dependency did not. npm's documentation also names git dependencies.
 
+## Other samples
+
+The same measurement with release-drift 0.3.0, on three more pinned samples (benchmark/noise-pairs-*.json,
+benchmark/noise-results-*.json):
+
+| Sample | Compared | With a finding | Main categories |
+| --- | --- | --- | --- |
+| The same 100 PyPI packages, as wheels with the same file tag (`--kind wheel`) | 100 | 22 (22%) | `native` 18, `blob` 9, `dependency` 7 |
+| The 100 PyPI and 100 npm packages, five versions apart (`--step 5`) | 200 | 67 (33.5%): PyPI 47, npm 20 | `dependency` 33, `build` 31, `blob` 10 |
+| 100 PyPI and 100 npm packages ranked from 5001st (`--offset 5000`) | 198 | 49 (24.7%): PyPI 40, npm 9 | `build` 33, `dependency` 17, `native` 6 |
+
+- **Wheels.** Compiled extensions are rebuilt for every release: of 227 `native` records, 224 are
+  `changed` and 3 `added`. In 7 wheels a changed native file was the only finding.
+- **Larger steps** add more of everything a single release adds, mostly new dependencies and
+  `setup.py` changes.
+- **Less popular packages.** On PyPI, `build` (a changed `setup.py` or build section) is the most
+  common finding: 33 of 98 sdists.
+- npm stays lower in every sample (6% to 20%), and no npm sample had an `npm-script` finding in more
+  than 6 pairs.
+
 ## Limits
 
 - One release step per package, of popular packages only. Smaller packages and longer steps (for

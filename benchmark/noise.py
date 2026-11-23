@@ -2,10 +2,12 @@
 """How often release-drift reports a finding for an ordinary release.
 
     python3 benchmark/noise.py pick --pypi TOP.json --npm TOP.js --count 100 > benchmark/noise-pairs.json
+    python3 benchmark/noise.py pick ... [--step N] [--offset K] [--kind wheel] [--registry pypi]
     python3 benchmark/noise.py run [--pairs FILE] [--cache DIR] [--out FILE]
 
-`pick` takes the most-downloaded packages and pins, for each, its latest stable release and
-the stable release before it. `run` downloads both releases of every pair (PyPI sdist, npm
+`pick` takes the most-downloaded packages (after skipping the first K with --offset) and pins,
+for each, its latest stable release and the stable release N versions before it (--step, default
+1). With --kind wheel, PyPI pairs are compared as wheels with the same file tag. `run` downloads both releases of every pair (PyPI sdist, npm
 tarball), runs release-drift's diff on them and prints the share of pairs with a finding and
 the findings by category. Nothing is installed or run; release-drift only reads the files.
 Needs network access.
@@ -25,7 +27,8 @@ sys.path.insert(0, os.path.dirname(HERE))
 
 from release_drift.archive import ArtifactError, read_artifact  # noqa: E402
 from release_drift.compare import diff, is_finding  # noqa: E402
-from release_drift.fetch import FetchError, fetch  # noqa: E402
+from release_drift.fetch import FetchError, _get, check_digest, fetch, pypi_files  # noqa: E402
+from release_drift.fetch import MAX_DOWNLOAD  # noqa: E402
 
 STABLE = re.compile(r"^\d+(\.\d+)*$")
 
@@ -35,24 +38,38 @@ def _json(url):
         return json.load(resp)
 
 
-def _last_two(versions):
-    """The highest stable version and the one just below it, by version number (not by
-    publish time, so a backport to an older line is not taken as the newest release)."""
+def _last_two(versions, step=1):
+    """The highest stable version and the one STEP versions below it, by version number (not
+    by publish time, so a backport to an older line is not taken as the newest release)."""
     ordered = sorted((tuple(int(x) for x in v.split(".")), v) for v in versions if STABLE.match(v))
-    return [v for _, v in ordered[-2:]] if len(ordered) >= 2 else None
+    return [ordered[-1 - step][1], ordered[-1][1]] if len(ordered) > step else None
 
 
-def _pypi_pair(name):
-    """The two highest stable releases that both have an sdist."""
+def _wheel_tag(filename):
+    """The part of a wheel's name after NAME-VERSION: python, ABI and platform tags."""
+    return "-".join(filename[:-4].split("-")[2:])
+
+
+def _pypi_pair(name, step=1, kind="sdist"):
+    """Releases with an sdist, or with a wheel; for wheels the pair must share a file tag."""
     data = _json("https://pypi.org/pypi/%s/json" % name)
-    return _last_two([v for v, files in data["releases"].items()
-                      if any(f["packagetype"] == "sdist" and not f.get("yanked") for f in files)])
+    wanted = "bdist_wheel" if kind == "wheel" else "sdist"
+    usable = {v: [f["filename"] for f in files if f["packagetype"] == wanted and not f.get("yanked")]
+              for v, files in data["releases"].items()}
+    pair = _last_two([v for v, names in usable.items() if names], step)
+    if pair and kind == "wheel":
+        common = sorted(set(map(_wheel_tag, usable[pair[0]])) & set(map(_wheel_tag, usable[pair[1]])))
+        if not common:
+            return None
+        pure = [t for t in common if t.endswith("none-any")]
+        pair.append((pure or common)[0])
+    return pair
 
 
-def _npm_pair(name):
-    """The two highest stable versions."""
+def _npm_pair(name, step=1, kind=None):
+    """The highest stable version and the one STEP versions below it."""
     data = _json("https://registry.npmjs.org/" + name.replace("/", "%2F"))
-    return _last_two(list(data.get("versions", {})))
+    return _last_two(list(data.get("versions", {})), step)
 
 
 def pick(args):
@@ -60,20 +77,38 @@ def pick(args):
     npm = re.findall(r"'([^']+)'", open(args.npm).read())
     pairs = []
     for registry, names, get in (("pypi", pypi, _pypi_pair), ("npm", npm, _npm_pair)):
+        if args.registry and registry != args.registry:
+            continue
         taken = 0
-        for name in names:
+        for name in names[args.offset:]:
             if taken == args.count:
                 break
             try:
-                pair = get(name)
+                pair = get(name, args.step, args.kind)
             except Exception as exc:  # noqa: BLE001 - a package that cannot be read is skipped
                 print("skip %s %s: %s" % (registry, name, exc), file=sys.stderr)
                 continue
             if pair:
-                pairs.append({"registry": registry, "name": name, "old": pair[0], "new": pair[1]})
+                row = {"registry": registry, "name": name, "old": pair[0], "new": pair[1]}
+                if len(pair) == 3:
+                    row["wheel_tag"] = pair[2]
+                pairs.append(row)
                 taken += 1
     json.dump(pairs, sys.stdout, indent=2)
     sys.stdout.write("\n")
+
+
+def _fetch_wheel(name, version, tag, directory):
+    """Download the one wheel of VERSION with file tag TAG, checking its digest."""
+    for filename, url, algorithm, digest, _ in pypi_files(name, version):
+        if filename.endswith(".whl") and _wheel_tag(filename) == tag:
+            data = _get(url, MAX_DOWNLOAD)
+            check_digest(data, algorithm, digest)
+            target = os.path.join(directory, os.path.basename(filename))
+            with open(target, "wb") as fh:
+                fh.write(data)
+            return target
+    raise FetchError("%s %s has no wheel tagged %s" % (name, version, tag))
 
 
 def run(args):
@@ -83,11 +118,15 @@ def run(args):
     for p in pairs:
         paths = []
         for version in (p["old"], p["new"]):
-            directory = os.path.join(cache, p["registry"], p["name"].replace("/", "__"), version)
+            tag = p.get("wheel_tag")
+            directory = os.path.join(cache, p["registry"] + ("-wheel" if tag else ""),
+                                     p["name"].replace("/", "__"), version)
             os.makedirs(directory, exist_ok=True)
             try:
                 found = [os.path.join(directory, f) for f in sorted(os.listdir(directory))
                          if not f.startswith(".")]
+                if not found and tag:
+                    found = [_fetch_wheel(p["name"], version, tag, directory)]
                 paths.append((found or fetch(p["registry"], p["name"], version, directory))[0])
             except (FetchError, OSError) as exc:
                 paths.append(None)
@@ -131,6 +170,10 @@ def main(argv=None):
     p.add_argument("--pypi", required=True)
     p.add_argument("--npm", required=True)
     p.add_argument("--count", type=int, default=100)
+    p.add_argument("--step", type=int, default=1)
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--kind", choices=("sdist", "wheel"), default="sdist")
+    p.add_argument("--registry", choices=("pypi", "npm"))
     r = sub.add_parser("run")
     r.add_argument("--pairs", default=os.path.join(HERE, "noise-pairs.json"))
     r.add_argument("--cache")
