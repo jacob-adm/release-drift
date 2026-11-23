@@ -86,11 +86,18 @@ class _Reader:
         if self.count > self.max_members:
             raise ArtifactError("more than %d members" % self.max_members)
         name = check_name(name)
-        if name in self.files or name in self.links:
+        if name in self.links:
             raise ArtifactError("duplicate member %r" % name)
         data = read(self.max_member + 1)
         if len(data) > self.max_member:
             raise ArtifactError("member %r is larger than %d bytes" % (name, self.max_member))
+        if name in self.files:
+            # Some build tools write a file twice (pyarrow 26 repeats LICENSE.txt). An identical
+            # copy changes nothing; a different one is refused, since tools disagree on which
+            # copy wins when the archive is unpacked.
+            if self.files[name] != data:
+                raise ArtifactError("duplicate member %r with different content" % name)
+            return
         self.total += len(data)
         if self.total > self.max_total:
             raise ArtifactError("artifact is larger than %d bytes uncompressed" % self.max_total)
@@ -101,7 +108,7 @@ class _Reader:
         if self.count > self.max_members:
             raise ArtifactError("more than %d members" % self.max_members)
         name = check_name(name)
-        if name in self.files or name in self.links:
+        if name in self.files or (name in self.links and self.links[name] != target):
             raise ArtifactError("duplicate member %r" % name)
         if not _link_target_ok(name, target):
             raise ArtifactError("link %r points outside the artifact (%r)" % (name, target))

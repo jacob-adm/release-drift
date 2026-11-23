@@ -81,8 +81,21 @@ class ReadArtifact(TempCase):
             warnings.simplefilter("ignore")
             with zipfile.ZipFile(path, "a") as zf:
                 zf.writestr("a.py", b"2")
-        with self.assertRaisesRegex(ArtifactError, "duplicate"):
+        with self.assertRaisesRegex(ArtifactError, "duplicate member 'a.py' with different content"):
             read_artifact(path)
+
+    def test_identical_duplicate_members_are_accepted(self):
+        # pyarrow 26's sdist holds LICENSE.txt and NOTICE.txt twice, byte for byte.
+        import io
+        import tarfile
+        path = self.path("demo-1.0.tar.gz")
+        with tarfile.open(path, "w:gz") as tf:
+            for name, data in (("demo-1.0/PKG-INFO", b"x"), ("demo-1.0/LICENSE.txt", b"L"),
+                               ("demo-1.0/LICENSE.txt", b"L")):
+                info = tarfile.TarInfo(name)
+                info.size = len(data)
+                tf.addfile(info, io.BytesIO(data))
+        self.assertEqual(read_artifact(path).files, {"PKG-INFO": b"x", "LICENSE.txt": b"L"})
 
     def test_size_caps_are_enforced_while_reading(self):
         path = write_zip(self.path("big.whl"), {"a": b"x" * 1000, "b": b"y" * 1000})
