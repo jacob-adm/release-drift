@@ -15,6 +15,9 @@ tarball, and anything else is treated as an sdist. The top directory of an sdist
 (`name-1.0/`, `package/`) is removed from every path. A `._NAME` metadata file that tar on macOS
 writes beside that directory is kept, as a file at the root, and compared like any other.
 
+A member that appears twice in an archive is read once when both copies are identical, as some
+build tools write them; copies that differ are an error, because tools disagree on which one wins.
+
 An artifact that is already unpacked can be given as a directory: the directory is the artifact's
 root (for an sdist or npm tarball, the inside of its top directory). A directory that holds nothing
 but one directory, as `tar xzf` leaves an npm tarball (`package/`) or an sdist (`NAME-VERSION/`),
