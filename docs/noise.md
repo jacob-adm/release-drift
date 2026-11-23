@@ -44,6 +44,13 @@ plain-crypto-js 4.2.1) and `dependency` (axios 1.14.1). No attack was caught by 
 | Every record but `file` is a finding (0.2.0) | 47 (23.6%) | All six |
 | `url-host` is printed but not a finding (from 0.3.0) | 21 (10.6%): PyPI 15, npm 6 | All six |
 
+The 9 `build` records were read by hand. Two `setup.py` changes are only a version pin or a
+copyright line (boto3, six), two change the version and supported Python versions (pyyaml,
+jmespath), two add or change build logic (charset-normalizer now runs a separate build hook file at
+install, pillow), and three rewrite or empty the file (python-dateutil, sniffio, tenacity). No narrow
+pattern separates harmless changes from the rest, and `setup.py` runs at install, so a change to it
+stays a finding.
+
 `prepare` stays an install script. In a test with npm 10.9.9, `npm install ./PACKAGE.tgz` and a
 plain `npm install` with a folder dependency both ran a package's `prepare`; a plain `npm install`
 with a tarball dependency did not. npm's documentation also names git dependencies.
