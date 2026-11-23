@@ -67,8 +67,10 @@ To see only the findings of `diff`, leave out the `file` records: `grep -v '^fil
 | 1 | one or more findings |
 | 2 | error: an unreadable or unsafe artifact, a git failure, a bad argument or a failed download |
 
-A finding is any record of `diff` other than a plain `file` record: a new or changed execution
-surface, a new URL host or a new blob. Every record of `source` is a finding, because each names a
+A finding is any record of `diff` other than a plain `file` record or a `url-host` record: a new
+or changed execution surface, a new dependency or a new blob. A new URL host is printed but does not
+set the exit status on its own, because ordinary releases add links often (in the measurement in
+[Findings on ordinary releases](noise.md), 26 of 199 ordinary updates had no other record). Every record of `source` is a finding, because each names a
 file of the artifact that is not, as it is, in the tag. So `diff` between two releases that only
 change ordinary files prints those files and exits 0.
 

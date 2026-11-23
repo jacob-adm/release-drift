@@ -41,6 +41,15 @@ class Diff(TempCase):
             ("url-host", "added", "setup.py", "drop.example"),
         ])
 
+    def test_new_host_with_a_finding_still_exits_1(self):
+        old = write_zip(self.path("a.whl"), {"a.py": b"x = 1\n"})
+        new = write_zip(self.path("b.whl"), {"a.py": b"x = 1\n",
+                                             "b.py": b"u = 'https://new.invalid/'\n",
+                                             "c.pth": b"import os\n"})
+        code, out, _ = run_cli("diff", old, new)
+        self.assertEqual(code, 1)
+        self.assertIn(b"url-host\tadded\tb.py\tnew.invalid\n", out)
+
     def test_known_host_is_not_new(self):
         old = write_zip(self.path("a.whl"), {"a.py": b"'https://docs.example/'"})
         new = write_zip(self.path("b.whl"), {"b.py": b"'https://docs.example/other'"})
@@ -51,7 +60,7 @@ class Diff(TempCase):
         old = write_zip(self.path("a.whl"), {"a.py": b"x = 1\n"})
         new = write_zip(self.path("b.whl"), {"a.py": "u = 'https://ex\u00e4mple.com/'\n".encode("utf-8")})
         code, out, _ = run_cli("diff", old, new)
-        self.assertEqual(code, 1)
+        self.assertEqual(code, 0)  # a new host alone is reported, not a finding
         self.assertIn("url-host\tadded\ta.py\tex\u00e4mple.com\n".encode("utf-8"), out)
         code, out, _ = run_cli("diff", "--json", old, new)
         self.assertIn(b'"detail": "ex\\u00e4mple.com"', out)
