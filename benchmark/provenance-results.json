@@ -1,0 +1,1844 @@
+[
+ {
+  "name": "boto3",
+  "new": "1.44.9",
+  "new_workflow": null,
+  "old": "1.44.8",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "packaging",
+  "new": "26.3",
+  "new_workflow": "GitHub pypa/packaging publish.yml environment=pypi",
+  "old": "26.2",
+  "old_workflow": "GitHub pypa/packaging publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "typing-extensions",
+  "new": "4.16.0",
+  "new_workflow": "GitHub python/typing_extensions publish.yml environment=publish",
+  "old": "4.15.0",
+  "old_workflow": "GitHub python/typing_extensions publish.yml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "certifi",
+  "new": "2026.11.20",
+  "new_workflow": "GitHub certifi/python-certifi release.yml environment=release",
+  "old": "2026.10.23",
+  "old_workflow": "GitHub certifi/python-certifi release.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "idna",
+  "new": "3.20",
+  "new_workflow": "GitHub kjd/idna deploy.yml environment=pypi",
+  "old": "3.19",
+  "old_workflow": "GitHub kjd/idna deploy.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "urllib3",
+  "new": "2.8.0",
+  "new_workflow": "GitHub urllib3/urllib3 publish.yml environment=publish",
+  "old": "2.7.0",
+  "old_workflow": "GitHub urllib3/urllib3 publish.yml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "charset-normalizer",
+  "new": "3.5.3",
+  "new_workflow": "GitHub jawah/charset_normalizer cd.yml environment=pypi",
+  "old": "3.5.2",
+  "old_workflow": "GitHub jawah/charset_normalizer cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "requests",
+  "new": "2.34.2",
+  "new_workflow": "GitHub psf/requests publish.yml environment=publish",
+  "old": "2.34.1",
+  "old_workflow": "GitHub psf/requests publish.yml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "cryptography",
+  "new": "50.0.2",
+  "new_workflow": "GitHub pyca/cryptography pypi-publish.yml",
+  "old": "50.0.1",
+  "old_workflow": "GitHub pyca/cryptography pypi-publish.yml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "cffi",
+  "new": "2.1.1",
+  "new_workflow": null,
+  "old": "2.1.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pluggy",
+  "new": "1.7.0",
+  "new_workflow": "GitHub pytest-dev/pluggy deploy.yml",
+  "old": "1.6.0",
+  "old_workflow": "GitHub pytest-dev/pluggy main.yml",
+  "records": [
+   [
+    "provenance",
+    "workflow-changed",
+    "-",
+    "GitHub pytest-dev/pluggy main.yml -> GitHub pytest-dev/pluggy deploy.yml"
+   ]
+  ],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyyaml",
+  "new": "6.0.4",
+  "new_workflow": null,
+  "old": "6.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pycparser",
+  "new": "3.12",
+  "new_workflow": null,
+  "old": "3.11",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pygments",
+  "new": "2.21.0",
+  "new_workflow": null,
+  "old": "2.20.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "python-dateutil",
+  "new": "4.0.0",
+  "new_workflow": "GitHub dateutil/dateutil publish.yml environment=release",
+  "old": "3.0.0",
+  "old_workflow": "GitHub dateutil/dateutil publish.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "six",
+  "new": "1.17.0",
+  "new_workflow": null,
+  "old": "1.16.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "setuptools",
+  "new": "84.2.1",
+  "new_workflow": null,
+  "old": "84.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pydantic",
+  "new": "2.14.4",
+  "new_workflow": "GitHub pydantic/pydantic ci.yml environment=release",
+  "old": "2.14.3",
+  "old_workflow": "GitHub pydantic/pydantic ci.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pydantic-core",
+  "new": "2.50.5",
+  "new_workflow": null,
+  "old": "2.50.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "click",
+  "new": "8.5.1",
+  "new_workflow": "GitHub pallets/click publish.yaml environment=publish",
+  "old": "8.5.0",
+  "old_workflow": "GitHub pallets/click publish.yaml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "numpy",
+  "new": "2.5.5",
+  "new_workflow": "GitHub numpy/numpy-release wheels.yml environment=pypi",
+  "old": "2.5.4",
+  "old_workflow": "GitHub numpy/numpy-release wheels.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "botocore",
+  "new": "1.44.9",
+  "new_workflow": null,
+  "old": "1.44.8",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "anyio",
+  "new": "4.16.0",
+  "new_workflow": "GitHub agronholm/anyio publish.yml environment=release",
+  "old": "4.15.1",
+  "old_workflow": "GitHub agronholm/anyio publish.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "annotated-types",
+  "new": "0.8.0",
+  "new_workflow": null,
+  "old": "0.7.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pytest",
+  "new": "9.2.0",
+  "new_workflow": "GitHub pytest-dev/pytest deploy.yml environment=deploy",
+  "old": "9.1.1",
+  "old_workflow": "GitHub pytest-dev/pytest deploy.yml environment=deploy",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "iniconfig",
+  "new": "2.3.1",
+  "new_workflow": "GitHub pytest-dev/iniconfig test.yml environment=pypi-upload",
+  "old": "2.3.0",
+  "old_workflow": "GitHub pytest-dev/iniconfig test.yml environment=pypi-upload",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "typing-inspection",
+  "new": "0.4.5",
+  "new_workflow": "GitHub pydantic/typing-inspection ci.yml environment=release",
+  "old": "0.4.4",
+  "old_workflow": "GitHub pydantic/typing-inspection ci.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "h11",
+  "new": "0.16.0",
+  "new_workflow": null,
+  "old": "0.15.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "attrs",
+  "new": "26.1.0",
+  "new_workflow": "GitHub python-attrs/attrs pypi-package.yml environment=release-pypi",
+  "old": "25.4.0",
+  "old_workflow": "GitHub python-attrs/attrs pypi-package.yml environment=release-pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "markupsafe",
+  "new": "3.0.4",
+  "new_workflow": "GitHub pallets/markupsafe publish.yaml environment=publish",
+  "old": "3.0.3",
+  "old_workflow": "GitHub pallets/markupsafe publish.yaml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "httpx",
+  "new": "0.28.1",
+  "new_workflow": null,
+  "old": "0.28.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "httpcore",
+  "new": "1.0.9",
+  "new_workflow": null,
+  "old": "1.0.8",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "s3transfer",
+  "new": "0.19.3",
+  "new_workflow": null,
+  "old": "0.19.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "protobuf",
+  "new": "7.36.2",
+  "new_workflow": null,
+  "old": "7.36.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "python-dotenv",
+  "new": "1.2.4",
+  "new_workflow": "GitHub theskumar/python-dotenv release.yml environment=release",
+  "old": "1.2.3",
+  "old_workflow": "GitHub theskumar/python-dotenv release.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyjwt",
+  "new": "2.15.1",
+  "new_workflow": "GitHub jpadilla/pyjwt pypi-package.yml environment=release-pypi",
+  "old": "2.15.0",
+  "old_workflow": "GitHub jpadilla/pyjwt pypi-package.yml environment=release-pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "jinja2",
+  "new": "3.1.6",
+  "new_workflow": "GitHub pallets/jinja publish.yaml environment=publish",
+  "old": "3.1.5",
+  "old_workflow": "GitHub pallets/jinja publish.yaml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pandas",
+  "new": "3.1.1",
+  "new_workflow": "GitHub pandas-dev/pandas wheels.yml environment=pypi",
+  "old": "3.1.0",
+  "old_workflow": "GitHub pandas-dev/pandas wheels.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "aiobotocore",
+  "new": "3.10.0",
+  "new_workflow": "GitHub aio-libs/aiobotocore ci-cd.yml environment=pypi",
+  "old": "3.9.2",
+  "old_workflow": "GitHub aio-libs/aiobotocore ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "starlette",
+  "new": "1.10.0",
+  "new_workflow": "GitHub Kludex/starlette publish.yml environment=pypi",
+  "old": "1.9.0",
+  "old_workflow": "GitHub Kludex/starlette publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "opentelemetry-api",
+  "new": "1.45.2",
+  "new_workflow": null,
+  "old": "1.45.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "platformdirs",
+  "new": "4.14.8",
+  "new_workflow": "GitHub tox-dev/platformdirs release.yaml environment=release",
+  "old": "4.14.7",
+  "old_workflow": "GitHub tox-dev/platformdirs release.yaml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pillow",
+  "new": "13.0.0",
+  "new_workflow": "GitHub python-pillow/Pillow wheels.yml environment=release-pypi",
+  "old": "12.3.0",
+  "old_workflow": "GitHub python-pillow/Pillow wheels.yml environment=release-pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "uvicorn",
+  "new": "0.54.0",
+  "new_workflow": "GitHub Kludex/uvicorn publish.yml environment=pypi",
+  "old": "0.53.0",
+  "old_workflow": "GitHub Kludex/uvicorn publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pathspec",
+  "new": "1.1.1",
+  "new_workflow": "GitHub cpburnz/python-pathspec publish-to-pypi.yml environment=pypi",
+  "old": "1.1.0",
+  "old_workflow": "GitHub cpburnz/python-pathspec publish-to-pypi.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "rpds-py",
+  "new": "2026.9.1",
+  "new_workflow": "GitHub crate-py/rpds CI.yml environment=pypi",
+  "old": "2026.6.3",
+  "old_workflow": "GitHub crate-py/rpds CI.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "fsspec",
+  "new": "2026.9.0",
+  "new_workflow": null,
+  "old": "2026.7.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "jsonschema",
+  "new": "4.26.0",
+  "new_workflow": "GitHub python-jsonschema/jsonschema ci.yml environment=pypi",
+  "old": "4.25.1",
+  "old_workflow": "GitHub python-jsonschema/jsonschema ci.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "filelock",
+  "new": "4.3.0",
+  "new_workflow": "GitHub tox-dev/filelock release.yaml environment=release",
+  "old": "4.2.12",
+  "old_workflow": "GitHub tox-dev/filelock release.yaml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "jmespath",
+  "new": "1.1.0",
+  "new_workflow": null,
+  "old": "1.0.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "tzdata",
+  "new": "2026.6",
+  "new_workflow": "GitHub python/tzdata publish.yml environment=release",
+  "old": "2026.5",
+  "old_workflow": "GitHub python/tzdata publish.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "referencing",
+  "new": "0.37.0",
+  "new_workflow": "GitHub python-jsonschema/referencing ci.yml environment=pypi",
+  "old": "0.36.2",
+  "old_workflow": "GitHub python-jsonschema/referencing ci.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "tomlkit",
+  "new": "0.15.2",
+  "new_workflow": null,
+  "old": "0.15.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "jsonschema-specifications",
+  "new": "2025.9.1",
+  "new_workflow": "GitHub python-jsonschema/jsonschema-specifications ci.yml environment=pypi",
+  "old": "2025.4.1",
+  "old_workflow": "GitHub python-jsonschema/jsonschema-specifications ci.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "multidict",
+  "new": "7.2.1",
+  "new_workflow": "GitHub aio-libs/multidict ci-cd.yml environment=pypi",
+  "old": "7.2.0",
+  "old_workflow": "GitHub aio-libs/multidict ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "markdown-it-py",
+  "new": "4.3.0",
+  "new_workflow": "GitHub executablebooks/markdown-it-py tests.yml environment=pypi",
+  "old": "4.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "rich",
+  "new": "15.0.0",
+  "new_workflow": null,
+  "old": "14.3.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "aiohttp",
+  "new": "3.14.5",
+  "new_workflow": "GitHub aio-libs/aiohttp ci-cd.yml environment=pypi",
+  "old": "3.14.4",
+  "old_workflow": "GitHub aio-libs/aiohttp ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "yarl",
+  "new": "1.25.1",
+  "new_workflow": "GitHub aio-libs/yarl ci-cd.yml environment=pypi",
+  "old": "1.24.5",
+  "old_workflow": "GitHub aio-libs/yarl ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "mdurl",
+  "new": "0.1.2",
+  "new_workflow": null,
+  "old": "0.1.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "propcache",
+  "new": "0.5.4",
+  "new_workflow": "GitHub aio-libs/propcache ci-cd.yml environment=pypi",
+  "old": "0.5.3",
+  "old_workflow": "GitHub aio-libs/propcache ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pip",
+  "new": "26.3",
+  "new_workflow": "GitHub pypa/pip release.yml environment=pypi",
+  "old": "26.2.2",
+  "old_workflow": "GitHub pypa/pip release.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "annotated-doc",
+  "new": "0.0.7",
+  "new_workflow": null,
+  "old": "0.0.6",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "websockets",
+  "new": "17.4",
+  "new_workflow": "GitHub python-websockets/websockets release.yml",
+  "old": "17.3",
+  "old_workflow": "GitHub python-websockets/websockets release.yml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "fastapi",
+  "new": "0.165.0",
+  "new_workflow": null,
+  "old": "0.164.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "googleapis-common-protos",
+  "new": "1.76.0",
+  "new_workflow": "Google",
+  "old": "1.75.5",
+  "old_workflow": "Google",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pytz",
+  "new": "2026.6",
+  "new_workflow": "GitHub stub42/pytz publish.yml environment=publish",
+  "old": "2026.5",
+  "old_workflow": "GitHub stub42/pytz publish.yml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "frozenlist",
+  "new": "1.8.0",
+  "new_workflow": "GitHub aio-libs/frozenlist ci-cd.yml environment=pypi",
+  "old": "1.7.0",
+  "old_workflow": "GitHub aio-libs/frozenlist ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "tqdm",
+  "new": "4.70.1",
+  "new_workflow": "GitHub tqdm/tqdm test.yml environment=pypi",
+  "old": "4.70.0",
+  "old_workflow": "GitHub tqdm/tqdm test.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyasn1",
+  "new": "0.6.5",
+  "new_workflow": null,
+  "old": "0.6.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "aiosignal",
+  "new": "1.4.0",
+  "new_workflow": "GitHub aio-libs/aiosignal ci-cd.yml environment=pypi",
+  "old": "1.3.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "aiohappyeyeballs",
+  "new": "2.7.1",
+  "new_workflow": "GitHub aio-libs/aiohappyeyeballs ci-cd.yml environment=pypi",
+  "old": "2.6.2",
+  "old_workflow": "GitHub aio-libs/aiohappyeyeballs ci-cd.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "sniffio",
+  "new": "1.3.1",
+  "new_workflow": null,
+  "old": "1.3.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pydantic-settings",
+  "new": "2.16.3",
+  "new_workflow": "GitHub pydantic/pydantic-settings ci.yml environment=release",
+  "old": "2.16.2",
+  "old_workflow": "GitHub pydantic/pydantic-settings ci.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "wrapt",
+  "new": "2.5.2",
+  "new_workflow": "GitHub GrahamDumpleton/wrapt build-test-release.yml environment=pypi-wrapt",
+  "old": "2.5.1",
+  "old_workflow": "GitHub GrahamDumpleton/wrapt build-test-release.yml environment=pypi-wrapt",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "python-multipart",
+  "new": "0.0.34",
+  "new_workflow": "GitHub Kludex/python-multipart publish.yml environment=pypi",
+  "old": "0.0.33",
+  "old_workflow": "GitHub Kludex/python-multipart publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "google-auth",
+  "new": "2.63.1",
+  "new_workflow": "Google",
+  "old": "2.63.0",
+  "old_workflow": "Google",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyarrow",
+  "new": "26.0.1",
+  "new_workflow": null,
+  "old": "26.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "trove-classifiers",
+  "new": "2026.9.21.13",
+  "new_workflow": "GitHub pypa/trove-classifiers release.yml",
+  "old": "2026.6.1.19",
+  "old_workflow": "GitHub pypa/trove-classifiers release.yml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "zipp",
+  "new": "4.1.2",
+  "new_workflow": null,
+  "old": "4.1.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "lxml",
+  "new": "6.1.3",
+  "new_workflow": null,
+  "old": "6.1.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "tenacity",
+  "new": "9.2.1",
+  "new_workflow": "GitHub jd/tenacity release.yml",
+  "old": "9.1.4",
+  "old_workflow": "GitHub jd/tenacity release.yml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "importlib-metadata",
+  "new": "10.2.0",
+  "new_workflow": null,
+  "old": "10.1.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyasn1-modules",
+  "new": "0.4.2",
+  "new_workflow": null,
+  "old": "0.4.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "ruff",
+  "new": "0.17.6",
+  "new_workflow": null,
+  "old": "0.17.5",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "sqlalchemy",
+  "new": "2.1.9",
+  "new_workflow": "GitHub sqlalchemy/sqlalchemy create-wheels.yaml",
+  "old": "2.1.8",
+  "old_workflow": "GitHub sqlalchemy/sqlalchemy create-wheels.yaml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "jiter",
+  "new": "0.19.0",
+  "new_workflow": "GitHub pydantic/jiter ci.yml environment=release-python",
+  "old": "0.18.0",
+  "old_workflow": "GitHub pydantic/jiter ci.yml environment=release-python",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "greenlet",
+  "new": "3.5.6",
+  "new_workflow": null,
+  "old": "3.5.5",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "hatchling",
+  "new": "1.33.0",
+  "new_workflow": "GitHub pypa/hatch build-hatchling.yml",
+  "old": "1.32.4",
+  "old_workflow": "GitHub pypa/hatch build-hatchling.yml",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "wheel",
+  "new": "0.48.0",
+  "new_workflow": "GitHub pypa/wheel publish.yml environment=release",
+  "old": "0.47.0",
+  "old_workflow": "GitHub pypa/wheel publish.yml environment=release",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "pyparsing",
+  "new": "3.3.3",
+  "new_workflow": null,
+  "old": "3.3.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "grpcio",
+  "new": "1.85.3",
+  "new_workflow": null,
+  "old": "1.85.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "regex",
+  "new": "2026.11.19",
+  "new_workflow": null,
+  "old": "2026.11.18",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "truststore",
+  "new": "0.10.5",
+  "new_workflow": "GitHub sethmlarson/truststore deploy.yml environment=deploy",
+  "old": "0.10.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "scipy",
+  "new": "1.18.1",
+  "new_workflow": "GitHub scipy/scipy-release wheels.yml environment=pypi",
+  "old": "1.18.0",
+  "old_workflow": "GitHub scipy/scipy-release wheels.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "grpcio-status",
+  "new": "1.85.3",
+  "new_workflow": null,
+  "old": "1.85.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "openai",
+  "new": "3.57.0",
+  "new_workflow": "GitHub openai/openai-python create-releases.yml environment=publish",
+  "old": "3.56.0",
+  "old_workflow": "GitHub openai/openai-python create-releases.yml environment=publish",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "httpx2",
+  "new": "2.16.2",
+  "new_workflow": "GitHub pydantic/httpx2 publish.yml environment=pypi",
+  "old": "2.16.1",
+  "old_workflow": "GitHub pydantic/httpx2 publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "watchfiles",
+  "new": "1.3.0",
+  "new_workflow": null,
+  "old": "1.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "httpcore2",
+  "new": "2.16.2",
+  "new_workflow": "GitHub pydantic/httpx2 publish.yml environment=pypi",
+  "old": "2.16.1",
+  "old_workflow": "GitHub pydantic/httpx2 publish.yml environment=pypi",
+  "records": [],
+  "registry": "pypi"
+ },
+ {
+  "name": "semver",
+  "new": "7.8.6",
+  "new_workflow": "https://github.com/npm/node-semver .github/workflows/release.yml",
+  "old": "7.8.5",
+  "old_workflow": "https://github.com/npm/node-semver .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "minimatch",
+  "new": "11.0.9",
+  "new_workflow": "https://github.com/isaacs/minimatch .github/workflows/release.yml",
+  "old": "11.0.8",
+  "old_workflow": "https://github.com/isaacs/minimatch .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "debug",
+  "new": "4.4.3",
+  "new_workflow": null,
+  "old": "4.4.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ansi-styles",
+  "new": "7.0.0",
+  "new_workflow": null,
+  "old": "6.2.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "brace-expansion",
+  "new": "5.0.13",
+  "new_workflow": null,
+  "old": "5.0.12",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "strip-ansi",
+  "new": "7.2.0",
+  "new_workflow": null,
+  "old": "7.1.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ansi-regex",
+  "new": "6.6.0",
+  "new_workflow": null,
+  "old": "6.5.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ms",
+  "new": "2.1.3",
+  "new_workflow": null,
+  "old": "2.1.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "supports-color",
+  "new": "11.0.0",
+  "new_workflow": null,
+  "old": "10.2.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "chalk",
+  "new": "6.0.1",
+  "new_workflow": null,
+  "old": "6.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "commander",
+  "new": "15.1.0",
+  "new_workflow": null,
+  "old": "15.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "lru-cache",
+  "new": "11.5.3",
+  "new_workflow": null,
+  "old": "11.5.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "string-width",
+  "new": "9.0.0",
+  "new_workflow": null,
+  "old": "8.3.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "wrap-ansi",
+  "new": "10.0.2",
+  "new_workflow": null,
+  "old": "10.0.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "tslib",
+  "new": "2.9.1",
+  "new_workflow": null,
+  "old": "2.8.1",
+  "old_workflow": null,
+  "records": [
+   [
+    "provenance",
+    "publisher-changed",
+    "-",
+    "typescript-bot -> microsoft1es"
+   ]
+  ],
+  "registry": "npm"
+ },
+ {
+  "name": "picomatch",
+  "new": "4.0.7",
+  "new_workflow": null,
+  "old": "4.0.6",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "emoji-regex",
+  "new": "11.0.0",
+  "new_workflow": "https://github.com/mathiasbynens/emoji-regex .github/workflows/publish-on-tag.yml",
+  "old": "10.6.0",
+  "old_workflow": "https://github.com/mathiasbynens/emoji-regex .github/workflows/publish-on-tag.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "glob",
+  "new": "14.0.6",
+  "new_workflow": "https://github.com/isaacs/node-glob .github/workflows/release.yml",
+  "old": "14.0.5",
+  "old_workflow": "https://github.com/isaacs/node-glob .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "type-fest",
+  "new": "6.0.3",
+  "new_workflow": null,
+  "old": "6.0.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "color-name",
+  "new": "2.1.1",
+  "new_workflow": null,
+  "old": "2.1.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "eslint-visitor-keys",
+  "new": "5.0.1",
+  "new_workflow": "https://github.com/eslint/js .github/workflows/release-please.yml",
+  "old": "5.0.0",
+  "old_workflow": "https://github.com/eslint/js .github/workflows/release-please.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "color-convert",
+  "new": "3.1.3",
+  "new_workflow": null,
+  "old": "3.1.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ajv",
+  "new": "8.20.0",
+  "new_workflow": null,
+  "old": "8.18.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "minipass",
+  "new": "7.1.3",
+  "new_workflow": null,
+  "old": "7.1.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "source-map",
+  "new": "0.8.0",
+  "new_workflow": null,
+  "old": "0.7.6",
+  "old_workflow": null,
+  "records": [
+   [
+    "provenance",
+    "publisher-changed",
+    "-",
+    "nchevobbe -> hmanilla"
+   ]
+  ],
+  "registry": "npm"
+ },
+ {
+  "name": "balanced-match",
+  "new": "5.0.0",
+  "new_workflow": null,
+  "old": "4.0.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "readable-stream",
+  "new": "4.8.0",
+  "new_workflow": null,
+  "old": "4.7.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "which",
+  "new": "7.0.0",
+  "new_workflow": "https://github.com/npm/node-which .github/workflows/release.yml",
+  "old": "6.0.1",
+  "old_workflow": "https://github.com/npm/node-which .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "glob-parent",
+  "new": "7.0.0",
+  "new_workflow": null,
+  "old": "6.0.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "escape-string-regexp",
+  "new": "5.0.0",
+  "new_workflow": null,
+  "old": "4.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "has-flag",
+  "new": "5.0.1",
+  "new_workflow": null,
+  "old": "5.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "find-up",
+  "new": "8.0.0",
+  "new_workflow": null,
+  "old": "7.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "locate-path",
+  "new": "8.0.0",
+  "new_workflow": null,
+  "old": "7.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "json-schema-traverse",
+  "new": "1.0.0",
+  "new_workflow": null,
+  "old": "0.5.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "p-limit",
+  "new": "7.3.3",
+  "new_workflow": null,
+  "old": "7.3.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "yallist",
+  "new": "5.0.0",
+  "new_workflow": null,
+  "old": "4.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "safe-buffer",
+  "new": "5.2.1",
+  "new_workflow": null,
+  "old": "5.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "uuid",
+  "new": "14.0.3",
+  "new_workflow": "https://github.com/uuidjs/uuid .github/workflows/release-please.yml",
+  "old": "14.0.2",
+  "old_workflow": "https://github.com/uuidjs/uuid .github/workflows/release-please.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "p-locate",
+  "new": "7.0.0",
+  "new_workflow": null,
+  "old": "6.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "undici-types",
+  "new": "8.13.1",
+  "new_workflow": "https://github.com/nodejs/undici .github/workflows/release.yml",
+  "old": "8.13.0",
+  "old_workflow": "https://github.com/nodejs/undici .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ignore",
+  "new": "7.0.16",
+  "new_workflow": null,
+  "old": "7.0.14",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "iconv-lite",
+  "new": "0.7.3",
+  "new_workflow": null,
+  "old": "0.7.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "signal-exit",
+  "new": "4.1.0",
+  "new_workflow": null,
+  "old": "4.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "esbuild",
+  "new": "0.28.2",
+  "new_workflow": "https://github.com/evanw/esbuild .github/workflows/publish.yml",
+  "old": "0.28.1",
+  "old_workflow": "https://github.com/evanw/esbuild .github/workflows/publish.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "is-fullwidth-code-point",
+  "new": "5.1.0",
+  "new_workflow": null,
+  "old": "5.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "js-yaml",
+  "new": "5.5.0",
+  "new_workflow": null,
+  "old": "5.4.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "entities",
+  "new": "9.0.0",
+  "new_workflow": "https://github.com/fb55/entities .github/workflows/publish.yml",
+  "old": "8.1.0",
+  "old_workflow": "https://github.com/fb55/entities .github/workflows/publish.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "globals",
+  "new": "17.14.0",
+  "new_workflow": null,
+  "old": "17.13.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "postcss",
+  "new": "8.5.33",
+  "new_workflow": "https://github.com/postcss/postcss .github/workflows/release.yml",
+  "old": "8.5.32",
+  "old_workflow": "https://github.com/postcss/postcss .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "isexe",
+  "new": "4.0.0",
+  "new_workflow": null,
+  "old": "3.1.5",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "isarray",
+  "new": "2.0.5",
+  "new_workflow": null,
+  "old": "2.0.4",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "path-key",
+  "new": "4.0.0",
+  "new_workflow": null,
+  "old": "3.1.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "string_decoder",
+  "new": "1.3.0",
+  "new_workflow": null,
+  "old": "1.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "argparse",
+  "new": "3.0.4",
+  "new_workflow": null,
+  "old": "3.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "ws",
+  "new": "8.23.0",
+  "new_workflow": null,
+  "old": "8.22.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "mime-db",
+  "new": "1.54.0",
+  "new_workflow": null,
+  "old": "1.53.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "resolve",
+  "new": "1.22.14",
+  "new_workflow": null,
+  "old": "1.22.13",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "agent-base",
+  "new": "9.0.0",
+  "new_workflow": "https://github.com/TooTallNate/proxy-agents .github/workflows/release.yml",
+  "old": "8.0.0",
+  "old_workflow": "https://github.com/TooTallNate/proxy-agents .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "@esbuild/linux-x64",
+  "new": "0.28.2",
+  "new_workflow": "https://github.com/evanw/esbuild .github/workflows/publish.yml",
+  "old": "0.28.1",
+  "old_workflow": "https://github.com/evanw/esbuild .github/workflows/publish.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "yargs-parser",
+  "new": "22.0.0",
+  "new_workflow": null,
+  "old": "21.1.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "mime-types",
+  "new": "3.0.2",
+  "new_workflow": null,
+  "old": "3.0.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "acorn",
+  "new": "8.19.0",
+  "new_workflow": null,
+  "old": "8.18.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "estraverse",
+  "new": "5.3.0",
+  "new_workflow": null,
+  "old": "5.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "cross-spawn",
+  "new": "7.0.6",
+  "new_workflow": null,
+  "old": "7.0.5",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "react-is",
+  "new": "19.3.1",
+  "new_workflow": "https://github.com/react/react .github/workflows/runtime_release_from_ci.yml",
+  "old": "19.3.0",
+  "old_workflow": "https://github.com/react/react .github/workflows/runtime_release_from_ci.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "picocolors",
+  "new": "1.1.1",
+  "new_workflow": null,
+  "old": "1.1.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "fs-extra",
+  "new": "11.4.1",
+  "new_workflow": null,
+  "old": "11.4.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "hasown",
+  "new": "2.0.4",
+  "new_workflow": null,
+  "old": "2.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "nanoid",
+  "new": "6.0.2",
+  "new_workflow": "https://github.com/ai/nanoid .github/workflows/release.yml",
+  "old": "6.0.1",
+  "old_workflow": "https://github.com/ai/nanoid .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "yargs",
+  "new": "18.2.0",
+  "new_workflow": "https://github.com/yargs/yargs .github/workflows/release-please.yml",
+  "old": "18.1.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "resolve-from",
+  "new": "5.0.0",
+  "new_workflow": null,
+  "old": "4.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "shebang-command",
+  "new": "2.0.0",
+  "new_workflow": null,
+  "old": "1.2.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "pretty-format",
+  "new": "30.5.1",
+  "new_workflow": null,
+  "old": "30.5.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "json5",
+  "new": "2.2.3",
+  "new_workflow": null,
+  "old": "2.2.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "https-proxy-agent",
+  "new": "9.1.0",
+  "new_workflow": "https://github.com/TooTallNate/proxy-agents .github/workflows/release.yml",
+  "old": "9.0.0",
+  "old_workflow": "https://github.com/TooTallNate/proxy-agents .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "path-to-regexp",
+  "new": "9.0.0",
+  "new_workflow": "https://github.com/pillarjs/path-to-regexp .github/workflows/release.yml",
+  "old": "8.4.2",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "path-exists",
+  "new": "5.0.0",
+  "new_workflow": null,
+  "old": "4.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "punycode",
+  "new": "2.3.1",
+  "new_workflow": null,
+  "old": "2.3.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "js-tokens",
+  "new": "10.0.1",
+  "new_workflow": null,
+  "old": "10.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "cliui",
+  "new": "9.0.1",
+  "new_workflow": null,
+  "old": "9.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "shebang-regex",
+  "new": "4.0.0",
+  "new_workflow": null,
+  "old": "3.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "@babel/types",
+  "new": "8.1.3",
+  "new_workflow": "https://github.com/babel/babel .github/workflows/release.yml",
+  "old": "8.1.2",
+  "old_workflow": "https://github.com/babel/babel .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "chokidar",
+  "new": "6.0.0",
+  "new_workflow": "https://github.com/paulmillr/chokidar .github/workflows/release.yml",
+  "old": "5.0.0",
+  "old_workflow": "https://github.com/paulmillr/chokidar .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "strip-json-comments",
+  "new": "5.1.0",
+  "new_workflow": null,
+  "old": "5.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "inherits",
+  "new": "2.0.4",
+  "new_workflow": null,
+  "old": "2.0.3",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "webidl-conversions",
+  "new": "8.0.1",
+  "new_workflow": "https://github.com/jsdom/webidl-conversions .github/workflows/publish.yml",
+  "old": "8.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "get-stream",
+  "new": "9.0.1",
+  "new_workflow": null,
+  "old": "9.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "eslint-scope",
+  "new": "9.1.2",
+  "new_workflow": "https://github.com/eslint/js .github/workflows/release-please.yml",
+  "old": "9.1.1",
+  "old_workflow": "https://github.com/eslint/js .github/workflows/release-please.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "cookie",
+  "new": "2.0.2",
+  "new_workflow": "https://github.com/jshttp/cookie .github/workflows/release.yml",
+  "old": "2.0.1",
+  "old_workflow": "https://github.com/jshttp/cookie .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "@babel/parser",
+  "new": "8.1.3",
+  "new_workflow": "https://github.com/babel/babel .github/workflows/release.yml",
+  "old": "8.1.2",
+  "old_workflow": "https://github.com/babel/babel .github/workflows/release.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "qs",
+  "new": "6.17.1",
+  "new_workflow": null,
+  "old": "6.17.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "is-number",
+  "new": "7.0.0",
+  "new_workflow": null,
+  "old": "6.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "whatwg-url",
+  "new": "17.3.0",
+  "new_workflow": "https://github.com/jsdom/whatwg-url .github/workflows/publish.yml",
+  "old": "17.2.0",
+  "old_workflow": "https://github.com/jsdom/whatwg-url .github/workflows/publish.yml",
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "@types/estree",
+  "new": "1.0.10",
+  "new_workflow": null,
+  "old": "1.0.9",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "tr46",
+  "new": "7.0.0",
+  "new_workflow": "https://github.com/jsdom/tr46 .github/workflows/publish.yml",
+  "old": "6.0.0",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "convert-source-map",
+  "new": "2.0.0",
+  "new_workflow": null,
+  "old": "1.9.0",
+  "old_workflow": null,
+  "records": [
+   [
+    "provenance",
+    "publisher-changed",
+    "-",
+    "thlorenz -> phated"
+   ]
+  ],
+  "registry": "npm"
+ },
+ {
+  "name": "is-glob",
+  "new": "4.0.3",
+  "new_workflow": null,
+  "old": "4.0.2",
+  "old_workflow": null,
+  "records": [
+   [
+    "provenance",
+    "publisher-changed",
+    "-",
+    "jonschlinkert -> phated"
+   ]
+  ],
+  "registry": "npm"
+ },
+ {
+  "name": "braces",
+  "new": "3.0.3",
+  "new_workflow": null,
+  "old": "3.0.2",
+  "old_workflow": null,
+  "records": [
+   [
+    "provenance",
+    "publisher-changed",
+    "-",
+    "doowb -> jonschlinkert"
+   ]
+  ],
+  "registry": "npm"
+ },
+ {
+  "name": "fast-deep-equal",
+  "new": "3.1.3",
+  "new_workflow": null,
+  "old": "3.1.1",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ },
+ {
+  "name": "form-data",
+  "new": "4.0.6",
+  "new_workflow": null,
+  "old": "4.0.5",
+  "old_workflow": null,
+  "records": [],
+  "registry": "npm"
+ }
+]

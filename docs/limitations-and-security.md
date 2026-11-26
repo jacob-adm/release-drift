@@ -10,6 +10,9 @@
 - `fetch` connects to `pypi.org`, `registry.npmjs.org` and the download host the registry names,
   over HTTPS only, and writes the downloaded files into the directory given. It never installs,
   unpacks or runs them.
+- `provenance`, and `lockfile` unless `--no-provenance` is given, read version metadata, the
+  JSON simple index and provenance attestations from `pypi.org` and `registry.npmjs.org` over
+  HTTPS. They write nothing.
 
 ## Hostile artifacts
 
@@ -61,7 +64,15 @@ release-drift lists facts about files. It does not decide whether a package is m
 - `lockfile` compares only packages whose version changed. A package that a lockfile change adds
   is listed, not compared, and does not set exit status 1. Packages from other registries or
   indexes than registry.npmjs.org and pypi.org are listed as `skipped`.
-- It does not check signatures, provenance attestations, maintainers or registry metadata.
+- It does not check signatures itself. `provenance` reads whether a release has a provenance
+  attestation and which workflow it names, as the registry records them; the registry checked the
+  signature at publication.
+- `provenance` cannot tell a stolen account from a maintainer handover, and a release built by
+  the project's own workflow after its CI was compromised has the same provenance as an honest
+  one. It reports only a change between the two versions compared, so a package that never had
+  provenance gives no `removed` record.
+- PyPI: the workflow is read from one attested file of each version; files of the same version
+  attested by different workflows are not compared with each other.
 
 ## Determinism
 

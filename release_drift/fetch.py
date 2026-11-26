@@ -38,10 +38,13 @@ def _opener():
     return urllib.request.build_opener(_HttpsOnly())
 
 
-def _get(url, limit):
+def _get(url, limit, accept=None):
     if urllib.parse.urlsplit(url).scheme != "https":
         raise FetchError("refusing non-https URL %s" % url)
-    req = urllib.request.Request(url, headers={"User-Agent": "release-drift"})
+    headers = {"User-Agent": "release-drift"}
+    if accept:
+        headers["Accept"] = accept
+    req = urllib.request.Request(url, headers=headers)
     try:
         with _opener().open(req, timeout=TIMEOUT) as resp:
             data = resp.read(limit + 1)

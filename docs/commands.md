@@ -3,7 +3,8 @@
 ```
 release-drift diff OLD NEW [--json] [--informational LIST]
 release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json]
-release-drift lockfile OLD NEW [--type {sdist,wheel}] [--cache DIR] [--json] [--informational LIST]
+release-drift lockfile OLD NEW [--type {sdist,wheel}] [--cache DIR] [--no-provenance] [--json] [--informational LIST]
+release-drift provenance {pypi,npm} NAME OLD NEW [--json] [--informational LIST]
 release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel,all}]
 release-drift --version
 ```
@@ -62,6 +63,7 @@ To see only the findings of `diff`, leave out the `file` records: `grep -v '^fil
 | `link` | a symbolic or hard link member | its target |
 | `url-host` | any file containing `http://`, `https://`, `ws://`, `wss://` or `ftp://` | the host (and port) as found, with ASCII letters lower-cased; a host is a run of letters and digits of any script, combining marks and `._~%-`, so it never holds a control character, and it is not converted to or from punycode (`xn--`) |
 | `blob` | any run of 200 or more characters from `A-Za-z0-9+/_-` (plus `=` padding) | `base64` or `hex`, its length and the first 16 hex digits of its SHA-256 |
+| `provenance` | `provenance` and `lockfile` only: the registry's record of how a release was published | see [provenance](#provenance) |
 
 ### Exit status
 
@@ -78,11 +80,12 @@ set the exit status on its own, because ordinary releases add links often (in th
 file of the artifact that is not, as it is, in the tag. So `diff` between two releases that only
 change ordinary files prints those files and exits 0.
 
-`--informational LIST` makes the records it names printed but not findings, for `diff` only.
-LIST is comma-separated: `native-changed` (a native file in both releases, changed) and
-`build-changed` (a build script or build section in both releases, changed). The default treats
-both as findings, because a modified `setup.py` or a replaced binary is a way to run code at
-install. [Findings on ordinary releases](noise.md#optional-informational-records) gives the measured
+`--informational LIST` makes the records it names printed but not findings, for `diff`,
+`lockfile` and `provenance`. LIST is comma-separated: `native-changed` (a native file in both
+releases, changed), `build-changed` (a build script or build section in both releases, changed)
+and `publisher-changed` (an npm release without provenance, published by a different account).
+The default treats all three as findings, because a modified `setup.py` or a replaced binary is a
+way to run code at install, and a release from another account is how a stolen account shows. [Findings on ordinary releases](noise.md#optional-informational-records) gives the measured
 trade-off. Any other value is a usage error (exit 2).
 
 On exit 2 nothing is printed to standard output and the reason is on standard error, starting
@@ -151,6 +154,9 @@ release-drift lockfile /tmp/old-requirements.txt requirements.txt
 - `--cache DIR` keeps the downloads in `DIR/REGISTRY/NAME/VERSION/` and uses files already there
   without downloading them again or checking their digest. Without it, downloads go to a temporary
   directory that is removed afterwards.
+- Each upgraded package is also checked as `provenance` does, and its `provenance` records are
+  printed with the `diff` records. `--no-provenance` leaves this out, for a `--cache` used without
+  network access.
 - Output adds three fields before the `diff` fields: `NAME`, `OLD` and `NEW`. Each `diff` record of
   an upgraded package is printed with them. Other records use category `package`:
 
@@ -164,6 +170,48 @@ release-drift lockfile /tmp/old-requirements.txt requirements.txt
 
 Exit status is 2 if any package has an `error` record, otherwise 1 if any upgraded package has a
 record that sets exit status 1 under the `diff` rules (with the same `--informational`), otherwise 0.
+
+## provenance
+
+`release-drift provenance npm NAME OLD NEW` and `release-drift provenance pypi NAME OLD NEW`
+compare how two published versions were published, from the registry's own metadata. Nothing is
+downloaded but metadata.
+
+```sh
+release-drift provenance pypi pluggy 1.6.0 1.7.0
+```
+
+```text
+provenance	workflow-changed	-	GitHub pytest-dev/pluggy main.yml -> GitHub pytest-dev/pluggy deploy.yml
+```
+
+pluggy moved its release job to another workflow file between these versions; the record says
+so, and exit status 1 asks a person to look.
+
+- **npm:** a version has provenance when `https://registry.npmjs.org/NAME/VERSION` lists
+  `dist.attestations`. Its workflow is the repository and workflow path in the SLSA provenance
+  attestation at the URL given there (read only from `registry.npmjs.org`). Its publisher is the
+  `_npmUser` account.
+- **PyPI:** a version has provenance when any of its files has a PEP 740 provenance URL in the
+  JSON simple index (`https://pypi.org/simple/NAME/`). Its workflow is the trusted publisher of
+  the first such file, by URL order: kind, repository, workflow file and environment when set.
+  PyPI does not publish which account uploaded a file, so there is no publisher record.
+
+Each record has category `provenance`, PATH `-`:
+
+| STATUS | When | DETAIL |
+|---|---|---|
+| `removed` | OLD has provenance and NEW has none | which workflow OLD came from |
+| `workflow-changed` | both have provenance, from different workflows or repositories | `OLD WORKFLOW -> NEW WORKFLOW` |
+| `publisher-changed` | npm: NEW has no provenance and another account published it | `OLD ACCOUNT -> NEW ACCOUNT` |
+
+A version that gains provenance gives no record. An account change is not reported when NEW has
+provenance, because the attestation then names the build; a different build is
+`workflow-changed`. Every record is a finding (exit 1) unless `--informational publisher-changed`
+is given. A version the registry does not list is an error (exit 2).
+
+release-drift trusts the registry's record: npm and PyPI check an attestation's Sigstore signature
+when the release is published, and release-drift does not check it again.
 
 ## fetch
 

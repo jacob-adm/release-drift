@@ -24,7 +24,7 @@ check in CI. There is no AI and no scoring: the same inputs always give byte-ide
 - Python 3.9 or later, standard library only.
 - git, for `release-drift source`.
 - No platform-specific code; the tests run on Linux, macOS and Windows in CI.
-- Network access only for the optional `fetch` command.
+- Network access only for `fetch`, `provenance` and `lockfile`.
 
 ## Install
 
@@ -60,7 +60,10 @@ pip installs `release-drift` as a console script. Without installing, it runs fr
 4. **Compare.** `diff` lists the files added, removed or changed between two releases, and the
    surfaces, hosts and strings that are new. `source` lists the files of a release that are not,
    as they are, in git at a tag, apart from a documented list of files packaging tools generate.
-5. **Act on the result.** release-drift exits 1 when it finds something, 0 when it finds nothing
+5. **Check how it was published.** `provenance` compares the registry's record of two versions:
+   a release without the provenance attestation the previous one had, one built by another
+   workflow, or an npm release without provenance from another account.
+6. **Act on the result.** release-drift exits 1 when it finds something, 0 when it finds nothing
    and 2 on an error, like `grep`. A finding is a new or changed execution surface, a new URL host
    or encoded string, or, for `source`, a file not in the tag. Files that merely changed between
    two releases are listed but are not findings.
@@ -72,7 +75,9 @@ release-drift diff OLD NEW [--json] [--informational LIST]    compare two artifa
 release-drift source ARTIFACT --repo DIR --ref REF             files not in git at REF
       [--prefix PATH] [--json]
 release-drift lockfile OLD NEW [--json] [--informational LIST] compare every package a
-      [--type {sdist,wheel}] [--cache DIR]                     lockfile change upgrades
+      [--type {sdist,wheel}] [--cache DIR] [--no-provenance]   lockfile change upgrades
+release-drift provenance {pypi,npm} NAME OLD NEW               how each version was
+      [--json] [--informational LIST]                          published: provenance, npm account
 release-drift fetch {pypi,npm} NAME VERSION DIR                download one version; no install
       [--type {sdist,wheel,all}]
 ```
