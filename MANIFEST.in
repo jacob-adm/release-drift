@@ -1,2 +1,4 @@
 # The tests import their helpers from tests/fixtures.py; ship it so the sdist can run them.
 include tests/fixtures.py
+# tests/test_stress.py imports benchmark/stress.py, which imports benchmark/noise.py.
+include benchmark/stress.py benchmark/noise.py
