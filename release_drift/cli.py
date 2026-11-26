@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""Command line: release-drift diff | source | lockfile | fetch."""
+"""Command line: release-drift diff | source | lockfile | provenance | fetch."""
 
 import argparse
 import json
@@ -11,6 +11,7 @@ from .archive import ArtifactError, read_artifact
 from .compare import OPTIONAL_INFORMATIONAL, CompareError, diff, is_finding, source
 from .fetch import FetchError, fetch
 from .lockfile import LockfileError, artifact_pair, changes, read_lockfile
+from .provenance import provenance
 
 _ESCAPES = {"\\": "\\\\", "\t": "\\t", "\n": "\\n", "\r": "\\r"}
 
@@ -70,10 +71,20 @@ def _parser():
     k.add_argument("--cache", metavar="DIR",
                    help="keep downloads in DIR and reuse files already there (default: a temporary "
                         "directory, removed afterwards)")
+    k.add_argument("--no-provenance", action="store_true",
+                   help="do not ask the registry how each upgrade was published (for a "
+                        "--cache used offline)")
 
-    for cmd in (d, s, k):
+    v = sub.add_parser("provenance", help="compare how two versions were published (registry "
+                                          "provenance and npm publisher)")
+    v.add_argument("registry", choices=("pypi", "npm"))
+    v.add_argument("name", metavar="NAME")
+    v.add_argument("old", metavar="OLD")
+    v.add_argument("new", metavar="NEW")
+
+    for cmd in (d, s, k, v):
         cmd.add_argument("--json", action="store_true", help="print a JSON array")
-    for cmd in (d, k):
+    for cmd in (d, k, v):
         cmd.add_argument("--informational", metavar="LIST", default="",
                          help="comma-separated records to print without setting exit status 1: "
                               + ", ".join(sorted(OPTIONAL_INFORMATIONAL)))
@@ -107,6 +118,8 @@ def main(argv=None):
             return 0
         if args.command == "diff":
             records = diff(read_artifact(args.old), read_artifact(args.new))
+        elif args.command == "provenance":
+            records = provenance(args.registry, args.name, args.old, args.new)
         else:
             records = source(read_artifact(args.artifact), args.repo, args.ref, args.prefix)
     except (ArtifactError, CompareError, FetchError, OSError) as exc:
@@ -137,6 +150,8 @@ def run_lockfile(args, quiet, out):
             try:
                 paths = artifact_pair(new_reg, name, before, after, cache, args.kind)
                 pkg = diff(read_artifact(paths[0]), read_artifact(paths[1]))
+                if not args.no_provenance:
+                    pkg += provenance(new_reg, name, before, after)
             except (ArtifactError, CompareError, FetchError, OSError) as exc:
                 records.add((name, before, after, "package", "error", "-", str(exc)))
                 failed = True

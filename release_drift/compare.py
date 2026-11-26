@@ -84,11 +84,13 @@ def diff(old, new):
 INFORMATIONAL = ("file", "url-host")
 
 
-# Records diff can be told to print without failing (--informational): a native file or a
-# build script that is in both releases but changed. Off by default, because a modified
-# setup.py or a replaced binary is an install-time attack route (docs/noise.md).
+# Records that can be printed without failing (--informational): a native file or a
+# build script that is in both releases but changed, and an npm release without provenance
+# published by another account. Off by default, because each is an attack route
+# (docs/noise.md).
 OPTIONAL_INFORMATIONAL = {"native-changed": ("native", "changed"),
-                          "build-changed": ("build", "changed")}
+                          "build-changed": ("build", "changed"),
+                          "publisher-changed": ("provenance", "publisher-changed")}
 
 
 def is_finding(command, record, quiet=()):

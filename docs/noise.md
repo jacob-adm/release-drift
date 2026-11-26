@@ -94,6 +94,28 @@ with either option. Those samples contain almost no attack that works by changin
 replacing a compiled binary, so they cannot show what the options give up on that route. That is
 why both stay findings by default.
 
+## Provenance records
+
+`release-drift provenance` (from 0.6.0) on the same 200 pinned pairs, measured on 26 November 2026
+(`benchmark/provenance.py`, per-pair results in `benchmark/provenance-results.json`). It reads
+registry metadata only, so all 200 pairs were compared.
+
+| | Newer release attested | Pairs with a record | Records |
+| --- | --- | --- | --- |
+| PyPI (100) | 63 | 1 | `workflow-changed` 1: pluggy 1.7.0 moved its release job from `main.yml` to `deploy.yml` |
+| npm (100) | 26 | 5 | `publisher-changed` 5: tslib, source-map, convert-source-map, is-glob, braces, each published by a different maintainer account without provenance |
+
+No pair had a `removed` record. Four more npm pairs changed account when the project moved to
+trusted publishing (yargs, path-to-regexp, webidl-conversions, tr46: from a maintainer to GitHub
+Actions, with provenance). Those give no record, because a release with provenance is judged by
+its workflow, not its account. `--informational publisher-changed` prints the account changes
+without setting exit status 1.
+
+The malicious axios and Cline releases are no longer on npm, so their registry records could not
+be read and are not part of this measurement. The axios release before the incident, 1.14.0, was
+published by GitHub Actions with provenance from `axios/axios` `.github/workflows/publish.yml`. The
+tests use that record with a following release that has none.
+
 ## Limits
 
 - One release step per package, of popular packages only. Smaller packages and longer steps (for

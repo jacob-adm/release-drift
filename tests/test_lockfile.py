@@ -91,7 +91,7 @@ class Command(TempCase):
         return os.path.join(self.path("old"), name), os.path.join(self.path("new"), name)
 
     def run_lock(self, old, new, *extra):
-        return run_cli("lockfile", old, new, "--cache", self.cache, *extra)
+        return run_cli("lockfile", old, new, "--cache", self.cache, "--no-provenance", *extra)
 
     def test_pth_added_in_an_upgrade_is_a_finding(self):
         self.cached("pypi", "demo", "1.0", "demo-1.0-py3-none-any.whl", write_zip, wheel_files("1.0"))

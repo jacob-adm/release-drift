@@ -155,5 +155,7 @@ Apache-2.0, that looks for malicious packages.
 - **Reports only.** release-drift does not decide whether a package is malicious and does not
   block installs. What to do with a record is the operator's decision.
 
-release-drift does not replace either tool: it has no malware signatures, no registry metadata
-checks (maintainers, provenance, typosquatting) and no dependency-tree scanning.
+release-drift does not replace either tool: it has no malware signatures, no typosquatting or
+maintainer checks and no dependency-tree scanning. Its only registry metadata check is
+`provenance`: lost provenance, a changed build workflow on npm and PyPI, and a different npm
+publisher on a release without provenance.
