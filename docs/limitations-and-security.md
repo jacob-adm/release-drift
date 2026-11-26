@@ -21,7 +21,8 @@ Every artifact is treated as hostile. An artifact is refused (exit 2) when it ha
 - a member name that is absolute (`/x`, `C:x`), contains `..`, a backslash or a NUL byte;
 - a symbolic or hard link whose target is absolute or leads outside the artifact;
 - a device, FIFO or other special member;
-- two members with the same path;
+- two members with the same path and different content (identical copies are read once);
+- for an sdist or npm tarball, members that are not all under one top-level directory;
 - more than 50,000 members, a member larger than 64 MiB, or more than 512 MiB in total once
   decompressed. Sizes are counted while reading, not taken from the archive's headers.
 

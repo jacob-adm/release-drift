@@ -111,27 +111,34 @@ def _fetch_wheel(name, version, tag, directory):
     raise FetchError("%s %s has no wheel tagged %s" % (name, version, tag))
 
 
+def artifacts(p, cache):
+    """Paths of the old and new artifact of pair P, downloaded into CACHE once; None for a
+    release that could not be fetched."""
+    paths = []
+    for version in (p["old"], p["new"]):
+        tag = p.get("wheel_tag")
+        directory = os.path.join(cache, p["registry"] + ("-wheel" if tag else ""),
+                                 p["name"].replace("/", "__"), version)
+        os.makedirs(directory, exist_ok=True)
+        try:
+            found = [os.path.join(directory, f) for f in sorted(os.listdir(directory))
+                     if not f.startswith(".")]
+            if not found and tag:
+                found = [_fetch_wheel(p["name"], version, tag, directory)]
+            paths.append((found or fetch(p["registry"], p["name"], version, directory))[0])
+        except (FetchError, OSError) as exc:
+            paths.append(None)
+            print("fetch failed %s %s %s: %s" % (p["registry"], p["name"], version, exc),
+                  file=sys.stderr)
+    return paths
+
+
 def run(args):
     pairs = json.load(open(args.pairs))
     cache = args.cache or tempfile.mkdtemp(prefix="release-drift-noise-")
     rows = []
     for p in pairs:
-        paths = []
-        for version in (p["old"], p["new"]):
-            tag = p.get("wheel_tag")
-            directory = os.path.join(cache, p["registry"] + ("-wheel" if tag else ""),
-                                     p["name"].replace("/", "__"), version)
-            os.makedirs(directory, exist_ok=True)
-            try:
-                found = [os.path.join(directory, f) for f in sorted(os.listdir(directory))
-                         if not f.startswith(".")]
-                if not found and tag:
-                    found = [_fetch_wheel(p["name"], version, tag, directory)]
-                paths.append((found or fetch(p["registry"], p["name"], version, directory))[0])
-            except (FetchError, OSError) as exc:
-                paths.append(None)
-                print("fetch failed %s %s %s: %s" % (p["registry"], p["name"], version, exc),
-                      file=sys.stderr)
+        paths = artifacts(p, cache)
         if None in paths:
             rows.append(dict(p, error="fetch"))
             continue
