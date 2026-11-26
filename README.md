@@ -71,11 +71,14 @@ pip installs `release-drift` as a console script. Without installing, it runs fr
 release-drift diff OLD NEW [--json] [--informational LIST]    compare two artifacts
 release-drift source ARTIFACT --repo DIR --ref REF             files not in git at REF
       [--prefix PATH] [--json]
+release-drift lockfile OLD NEW [--json] [--informational LIST] compare every package a
+      [--type {sdist,wheel}] [--cache DIR]                     lockfile change upgrades
 release-drift fetch {pypi,npm} NAME VERSION DIR                download one version; no install
       [--type {sdist,wheel,all}]
 ```
 
-Output is one TAB-separated record per line: `CATEGORY`, `STATUS`, `PATH`, `DETAIL`, sorted.
+Output is one TAB-separated record per line: `CATEGORY`, `STATUS`, `PATH`, `DETAIL`, sorted;
+`lockfile` adds `NAME`, `OLD` and `NEW` in front.
 `--json` prints a JSON array instead. `fetch` downloads only the sdist from PyPI unless `--type`
 says otherwise.
 

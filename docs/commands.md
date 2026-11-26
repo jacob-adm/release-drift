@@ -3,6 +3,7 @@
 ```
 release-drift diff OLD NEW [--json] [--informational LIST]
 release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json]
+release-drift lockfile OLD NEW [--type {sdist,wheel}] [--cache DIR] [--json] [--informational LIST]
 release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel,all}]
 release-drift --version
 ```
@@ -127,6 +128,42 @@ as they are, in the tree of REF in the git repository at DIR.
 - Files in the repository that are missing from the artifact are not reported.
 
 REF must not start with `-`. It can be any name `git rev-parse` accepts: a tag, branch or commit.
+
+## lockfile
+
+`release-drift lockfile OLD NEW` reads two versions of a lockfile, downloads both versions of every
+package whose version changed, and compares each pair as `diff` does. It is meant for a dependency
+pull request: OLD is the lockfile on the base branch and NEW the one in the pull request.
+
+```sh
+git show origin/main:requirements.txt > /tmp/old-requirements.txt
+release-drift lockfile /tmp/old-requirements.txt requirements.txt
+```
+
+- Formats, detected from the content, not the file name: npm `package-lock.json` or
+  `npm-shrinkwrap.json` (lockfileVersion 1, 2 or 3); a requirements file with `NAME==VERSION` pins,
+  as `pip-compile` and `uv export` write it; `uv.lock` and `poetry.lock` (these two need Python
+  3.11 or later). OLD and NEW must be the same kind.
+- npm packages are matched by install path, so two copies of one package at different paths are
+  compared separately. Python packages are matched by normalized name.
+- Downloads use `fetch`, so digests are checked against the registry. PyPI packages are compared
+  as sdists, or with `--type wheel` as the wheels of both versions that share a file tag.
+- `--cache DIR` keeps the downloads in `DIR/REGISTRY/NAME/VERSION/` and uses files already there
+  without downloading them again or checking their digest. Without it, downloads go to a temporary
+  directory that is removed afterwards.
+- Output adds three fields before the `diff` fields: `NAME`, `OLD` and `NEW`. Each `diff` record of
+  an upgraded package is printed with them. Other records use category `package`:
+
+| STATUS | Meaning |
+|---|---|
+| `unchanged` | The two versions have the same files. |
+| `added` | The package is only in NEW. It is not compared. |
+| `removed` | The package is only in OLD. |
+| `skipped` | An entry in NEW that is not installed from the registry (a link, git or file source, an editable install, a line that is not a pin). DETAIL says which. |
+| `error` | The package could not be downloaded or read. DETAIL is the error. |
+
+Exit status is 2 if any package has an `error` record, otherwise 1 if any upgraded package has a
+record that sets exit status 1 under the `diff` rules (with the same `--informational`), otherwise 0.
 
 ## fetch
 

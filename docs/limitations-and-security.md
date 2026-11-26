@@ -58,6 +58,9 @@ release-drift lists facts about files. It does not decide whether a package is m
   from several directories (for example a wheel's `.data/` directories, or a tree rearranged by
   the build) show those files as `not-in-tag`. Line-ending conversion at build time shows files
   as `differs`.
+- `lockfile` compares only packages whose version changed. A package that a lockfile change adds
+  is listed, not compared, and does not set exit status 1. Packages from other registries or
+  indexes than registry.npmjs.org and pypi.org are listed as `skipped`.
 - It does not check signatures, provenance attestations, maintainers or registry metadata.
 
 ## Determinism
