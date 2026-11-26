@@ -116,6 +116,36 @@ be read and are not part of this measurement. The axios release before the incid
 published by GitHub Actions with provenance from `axios/axios` `.github/workflows/publish.yml`. The
 tests use that record with a following release that has none.
 
+## Stress run
+
+Whether release-drift completes on real packages, measured on 26 November 2026 with release-drift
+0.5.0 over every pair of the four pinned samples above (700 pairs, 1.3 GB of downloads). Each pair
+ran `release-drift diff --json` in its own process. Reproduce with
+`python3 benchmark/stress.py --cache DIR --out FILE`; the per-pair results are in
+`benchmark/stress-results.json`.
+
+| Result | Pairs |
+| --- | --- |
+| Compared (exit status 0 or 1, valid JSON) | 698 |
+| Refused (exit status 2, with a message) | 2 |
+| Crashed (traceback, other exit status or invalid output) | 0 |
+| Timed out (over 300 s) | 0 |
+
+The median comparison took 0.07 s and the slowest 8.0 s (the pyarrow 26.0.0 and 26.0.1 wheels,
+70 MiB together); 33 pairs took longer than 1 s, none longer than 10 s. Times are wall-clock on
+one Apple-silicon Mac and include starting Python.
+
+Both refusals are the hostile-artifact rules in
+[Limitations and security](limitations-and-security.md) working as written, so neither was changed:
+
+- **hexdump 3.2 and 3.3** are zip sdists from 2015 and 2016 with their six files at the root
+  instead of under one `NAME-VERSION/` directory, which the sdist format requires.
+- **livekit-plugins-krisp-internal 0.2.2** holds a compiled library larger than the 64 MiB
+  per-member limit, which bounds memory use on hostile archives.
+
+The pyarrow sdist that the first measurement refused for holding `LICENSE.txt` twice is compared
+from 0.3.0, which reads identical duplicate members once.
+
 ## Limits
 
 - One release step per package, of popular packages only. Smaller packages and longer steps (for
