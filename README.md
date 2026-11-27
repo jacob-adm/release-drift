@@ -19,6 +19,10 @@ release-drift only reports. It does not decide whether a package is malicious, a
 block or quarantine anything; what to do with a record is up to you, for example a required
 check in CI. There is no AI and no scoring: the same inputs always give byte-identical output.
 
+It is one of six audit tools that print the same result format with `--audit-json`.
+[suite-gate](https://github.com/jacob-adm/suite-gate) runs them together and gives one verdict per
+branch, as a command, a GitHub Action or an MCP server for coding agents.
+
 ## Example output
 
 Two demo wheels, where the newer one adds a module and a `.pth` file that imports it at
