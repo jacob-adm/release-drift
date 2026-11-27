@@ -148,6 +148,7 @@ Every file of the sdist is in the tag `1.17.0`, apart from the files setuptools 
 
 ## Documentation
 
+- [For coding agents](https://github.com/jacob-adm/release-drift/blob/main/docs/AGENTS.md): how an agent runs release-drift, reads `--audit-json` and cites the evidence.
 - [Commands](https://github.com/jacob-adm/release-drift/blob/main/docs/commands.md): each command's input, records, options and exit status.
 - [Running it in CI](https://github.com/jacob-adm/release-drift/blob/main/docs/ci.md): a tested GitHub Actions workflow for pull requests that change a lockfile, and a pre-commit hook.
 - [Findings on ordinary releases](https://github.com/jacob-adm/release-drift/blob/main/docs/noise.md): how often a finding appears for 199 ordinary releases of popular PyPI and npm packages, and by which category.
