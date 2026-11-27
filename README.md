@@ -24,11 +24,11 @@ check in CI. There is no AI and no scoring: the same inputs always give byte-ide
 Two demo wheels, where the newer one adds a module and a `.pth` file that imports it at
 interpreter startup:
 
-![release-drift diff listing added files and the new .pth import](https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift.svg)
+<p align="center"><img src="https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift.svg" alt="release-drift diff listing added files and the new .pth import"></p>
 
 The same comparison with `--audit-json` (first lines of the result):
 
-![release-drift diff --audit-json output](https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift-audit-json.svg)
+<p align="center"><img src="https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift-audit-json.svg" alt="release-drift diff --audit-json output"></p>
 
 ## Requirements
 
