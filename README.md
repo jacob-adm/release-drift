@@ -19,6 +19,17 @@ release-drift only reports. It does not decide whether a package is malicious, a
 block or quarantine anything; what to do with a record is up to you, for example a required
 check in CI. There is no AI and no scoring: the same inputs always give byte-identical output.
 
+## Example output
+
+Two demo wheels, where the newer one adds a module and a `.pth` file that imports it at
+interpreter startup:
+
+![release-drift diff listing added files and the new .pth import](https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift.svg)
+
+The same comparison with `--audit-json` (first lines of the result):
+
+![release-drift diff --audit-json output](https://raw.githubusercontent.com/jacob-adm/release-drift/main/docs/screenshots/release-drift-audit-json.svg)
+
 ## Requirements
 
 - Python 3.9 or later, standard library only.
