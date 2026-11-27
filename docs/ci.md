@@ -29,7 +29,7 @@ jobs:
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.13"
-      - run: python -m pip install release-drift==0.6.0
+      - run: python -m pip install release-drift==0.7.0
       - name: Compare upgraded packages
         env:
           BASE_REF: ${{ github.base_ref }}
@@ -62,7 +62,7 @@ repos:
       - id: release-drift
         name: release-drift lockfile
         language: python
-        additional_dependencies: [release-drift==0.6.0]
+        additional_dependencies: [release-drift==0.7.0]
         files: (^|/)(package-lock\.json|npm-shrinkwrap\.json|uv\.lock|poetry\.lock|requirements[^/]*\.txt)$
         entry: >-
           sh -c 'status=0; for f in "$@"; do
@@ -74,7 +74,7 @@ repos:
 
 ## Tested
 
-Tested on 26 November 2026 in a test repository on GitHub, with release-drift 0.6.0:
+Tested on 27 November 2026 in a test repository on GitHub, with release-drift 0.7.0:
 
 | Pull request | Check |
 | --- | --- |
