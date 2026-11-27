@@ -1,6 +1,6 @@
 # release-drift
 
-[![Test](https://github.com/jacob-adm/release-drift/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/jacob-adm/release-drift/actions/workflows/test.yml) [![PyPI](https://img.shields.io/pypi/v/release-drift?style=flat-square&color=0F6378&label=PyPI)](https://pypi.org/project/release-drift/) [![Python](https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/jacob-adm/release-drift/main/pyproject.toml&style=flat-square&color=0F6378&label=python)](https://github.com/jacob-adm/release-drift/blob/main/pyproject.toml) [![Licence](https://img.shields.io/pypi/l/release-drift?style=flat-square&color=0F6378&label=licence)](https://github.com/jacob-adm/release-drift#licence)
+[![PyPI](https://img.shields.io/pypi/v/release-drift?style=flat-square&color=0F6378&label=PyPI)](https://pypi.org/project/release-drift/) [![Python](https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/jacob-adm/release-drift/main/pyproject.toml&style=flat-square&color=0F6378&label=python)](https://github.com/jacob-adm/release-drift/blob/main/pyproject.toml) [![Licence](https://img.shields.io/pypi/l/release-drift?style=flat-square&color=0F6378&label=licence)](https://github.com/jacob-adm/release-drift#licence)
 
 release-drift compares two releases of a package, and a release with the git tag it was built
 from, before you install it. It reports which files changed, which new code runs at install or
