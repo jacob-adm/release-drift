@@ -84,7 +84,9 @@ release-drift fetch {pypi,npm} NAME VERSION DIR                download one vers
 
 Output is one TAB-separated record per line: `CATEGORY`, `STATUS`, `PATH`, `DETAIL`, sorted;
 `lockfile` adds `NAME`, `OLD` and `NEW` in front.
-`--json` prints a JSON array instead. `fetch` downloads only the sdist from PyPI unless `--type`
+`--json` prints a JSON array instead, and `--audit-json` one object in the audit result format
+shared with other audit tools, with a rule, severity, message and evidence for each record (see
+[Commands](https://github.com/jacob-adm/release-drift/blob/main/docs/commands.md#audit-result-output)). `fetch` downloads only the sdist from PyPI unless `--type`
 says otherwise.
 
 ## Quick start

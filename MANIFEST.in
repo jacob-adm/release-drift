@@ -2,3 +2,5 @@
 include tests/fixtures.py
 # tests/test_stress.py imports benchmark/stress.py, which imports benchmark/noise.py.
 include benchmark/stress.py benchmark/noise.py
+# tests/test_audit_json.py checks the example in docs/commands.md against real output.
+include docs/commands.md

@@ -1,10 +1,10 @@
 # Commands
 
 ```
-release-drift diff OLD NEW [--json] [--informational LIST]
-release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json]
-release-drift lockfile OLD NEW [--type {sdist,wheel}] [--cache DIR] [--no-provenance] [--json] [--informational LIST]
-release-drift provenance {pypi,npm} NAME OLD NEW [--json] [--informational LIST]
+release-drift diff OLD NEW [--json | --audit-json] [--informational LIST]
+release-drift source ARTIFACT --repo DIR --ref REF [--prefix PATH] [--json | --audit-json]
+release-drift lockfile OLD NEW [--type {sdist,wheel}] [--cache DIR] [--no-provenance] [--json | --audit-json] [--informational LIST]
+release-drift provenance {pypi,npm} NAME OLD NEW [--json | --audit-json] [--informational LIST]
 release-drift fetch {pypi,npm} NAME VERSION DIR [--type {sdist,wheel,all}]
 release-drift --version
 ```
@@ -88,8 +88,112 @@ The default treats all three as findings, because a modified `setup.py` or a rep
 way to run code at install, and a release from another account is how a stolen account shows. [Findings on ordinary releases](noise.md#optional-informational-records) gives the measured
 trade-off. Any other value is a usage error (exit 2).
 
-On exit 2 nothing is printed to standard output and the reason is on standard error, starting
-with `release-drift: error:`.
+On exit 2 nothing is printed to standard output, except with `--audit-json` (see [Audit result
+output](#audit-result-output)), and the reason is on standard error, starting with
+`release-drift: error:`.
+
+### Audit result output
+
+`--audit-json`, for `diff`, `source`, `lockfile` and `provenance`, prints one JSON object in the
+audit result format (`audit-result/1`), for a CI job or an agent that runs several audit tools
+and reads their results the same way. Each record becomes a finding with what a reader needs to
+act on it: a rule id, a severity, one sentence and the evidence to check it. A record that is not
+a finding is listed with severity `info`, so the exit status is the same as with the other
+outputs. For an sdist that adds a `.pth` file with an import line
+(`release-drift diff --audit-json demo-1.0.tar.gz demo-1.1.tar.gz`):
+
+```json
+{
+  "errors": [],
+  "exit": 1,
+  "findings": [
+    {
+      "evidence": {
+        "path": "demo_init.pth"
+      },
+      "message": "New file demo_init.pth",
+      "record": {
+        "category": "file",
+        "detail": "-",
+        "path": "demo_init.pth",
+        "status": "added"
+      },
+      "rule": "release-drift.file.added",
+      "severity": "info"
+    },
+    {
+      "evidence": {
+        "path": "demo.py"
+      },
+      "message": "Changed file demo.py",
+      "record": {
+        "category": "file",
+        "detail": "-",
+        "path": "demo.py",
+        "status": "changed"
+      },
+      "rule": "release-drift.file.changed",
+      "severity": "info"
+    },
+    {
+      "evidence": {
+        "path": "demo_init.pth"
+      },
+      "message": "New .pth file demo_init.pth, with an import line that Python runs at every start",
+      "record": {
+        "category": "pth",
+        "detail": "import",
+        "path": "demo_init.pth",
+        "status": "added"
+      },
+      "rule": "release-drift.pth.added",
+      "severity": "high"
+    }
+  ],
+  "format": "audit-result/1",
+  "target": {
+    "base": "demo-1.0.tar.gz",
+    "kind": "artifact",
+    "name": "demo-1.1.tar.gz"
+  },
+  "tool": {
+    "name": "release-drift",
+    "version": "0.7.0"
+  }
+}
+```
+
+| Key | Value |
+| --- | --- |
+| `format` | `audit-result/1`. |
+| `tool` | `release-drift` and its version. |
+| `target` | `diff` and `lockfile`: `kind` `artifact`, `name` the file name of NEW, `base` that of OLD. `source`: `kind` `artifact`, `name` the file name of ARTIFACT, `ref` REF. `provenance`: `kind` `package`, `name` `REGISTRY/NAME`, `ref` NEW, `base` OLD. |
+| `exit` | The exit status of the run, 0, 1 or 2. |
+| `findings` | One object per record, in the order of `--json`. |
+| `errors` | One object per error, with the `message` also written to standard error. |
+
+Each finding has:
+
+- `rule`: `release-drift.CATEGORY.STATUS`, for example `release-drift.npm-script.added`.
+- `severity`: `info` for a record that does not set exit status 1 (a `file` or `url-host` record
+  of `diff`, a pair named by `--informational`, and the `package` records of `lockfile`).
+  Otherwise fixed by the category, never by what the file contains: `high` for `build`,
+  `npm-script`, `provenance`, `pth`, `pyc-only` and `startup`, which run code at install or start
+  or show a change in who publishes; `medium` for `blob`, `dependency`, `link`, `native`, and, in
+  `source`, `file` and `url-host`.
+- `message`: one sentence from the record, for example `New install script in package.json:
+  postinstall=node setup.js` or `File extra.py is not in v1.0`; for `lockfile`, it starts with
+  the package and its versions, for example `demo 1.0 -> 1.1: `.
+- `evidence`: `path`, when the record has one; for `source`, `ref` and `commit`, the full id of the
+  commit REF names; for `lockfile` and `provenance`, `url`, the registry page of the new version
+  (of the old one for a removed package).
+- `record`: the `--json` record, unchanged.
+
+The object is printed on every run, also on an error, so a reader always gets one object. In
+`lockfile`, a package that could not be compared is an entry in `errors` (exit status 2) and its
+record is also listed, as `info`; the other packages' findings are kept. Any other error,
+including a usage error such as `--json` with `--audit-json`, gives no findings, the message in
+`errors` and exit status 2.
 
 ## diff
 
